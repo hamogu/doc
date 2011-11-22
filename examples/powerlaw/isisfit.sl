@@ -1,0 +1,13 @@
+load_dataset ("plaw_pha.fits", "plaw_rmf.fits", "plaw_arf.fits");
+rebin_data (1, 30);
+xnotice_en (1, 0.1, 12.0);
+fit_fun("phabs(1)*powerlaw(1)");
+set_par(1,1,1);
+fit_counts;
+list_par;
+rebin_data (1,1);
+eval_counts;
+plot_open("plawfit.ps/CPS");
+xrange(0.01,12);
+rplot_counts (1);
+plot_close ();
