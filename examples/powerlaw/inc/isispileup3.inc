@@ -1,4 +1,3 @@
-set_fit_method("subplex");
-fit_counts;
-fit_counts;
+set_par (2; max=0.01);
 list_par;
+

@@ -4,9 +4,10 @@
 
 #d marx-technical-manual \href{\marx-manual-url}{Marx Technical Manual}
 
-[\tt{2010-01-29}] \Marx \marx-version was released.  See the
-\href{install.html}{installation page} for links to the \marx source
-code.
+[\tt{2012-01-27}] \Marx \marx-version was released.  See the
+\href{install.html}{Download/Install page} for links to the \marx source
+code.  See the \href{news.html}{Release Notes} for important
+information about this release.
 
 \p
 \Marx is a suite of programs created and maintained by the
@@ -19,21 +20,21 @@ output. It contains detailed models for Chandra's High Resolution
 Mirror Assembly (HRMA), the HETG and LETG gratings, and all the focal
 plane detectors.
 
-\hline
+#% \hline
 
-\h2{\center{Marx-\marx-version Highlights}}
+#% \h2{\center{Marx-\marx-version Highlights}}
 
-\begin{ulist}
-\item
- The \marx ACIS spatial contamination model has been updated to be
-  consistent with that of the latest Chandra CALDB (specifically,
-  \tt{acisD1999-08-13contamN0005.fits}).
+#% \begin{ulist}
+#% \item
+#%  The \marx ACIS spatial contamination model has been updated to be
+#%   consistent with that of the latest Chandra CALDB (specifically,
+#%   \tt{acisD1999-08-13contamN0005.fits}).
 
-\item
- If the \tt{marx.par} parameter \tt{NumRays} is set to a negative value, then
- the simulation will continue until at least \tt{|NumRays|} photons have
- been detected.
-\end{ulist}
+#% \item
+#%  If the \tt{marx.par} parameter \tt{NumRays} is set to a negative value, then
+#%  the simulation will continue until at least \tt{|NumRays|} photons have
+#%  been detected.
+#% \end{ulist}
 
 #i jdweb_end.tm
 

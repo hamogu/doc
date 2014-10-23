@@ -1,6 +1,27 @@
 #i jdweb.tm
 #d pagename Caveats for MARX \marx-version
 
+\h1{Use of the EDSER Subpixel Algorithm with SAOTrace/Chart Rays}
+\p
+  One of the \href{news.html}{new features} in \marx 5 is the ability
+  to use the EDSER subpixel algorithm to randomize chip coordinates.
+  This algorithm works by shifting the event position from the center
+  of the pixel by an amount \em{(dx,dy)} that depends upon energy and
+  flight grade. However, the values of \em{(dx,dy)} in the Chandra
+  CALDB form a small discrete set, not a continuous one.  As a result,
+  in the absence of dither the EDSER algorithm will produce a PSF that
+  consists of a number of sharp peaks.  It is the dither motion of the
+  telescope that smooths this peakiness out, and as such is an
+  integral part of the EDSER algorithm.
+\p
+  As of January 2012 no publicly released versions of \saotrace
+  generate dithered rays.  However, marx 5.0 has been tested with rays
+  produced by development versions of \saotrace that do incorporate
+  dither.  Until such rays and the corresponding aspect solution files
+  are available, non-dithered \saotrace rays will require \marx2fits
+  to be used with the \tt{--pixadj=RANDOMIZE} option to avoid the
+  peakiness outlined above.
+
 \h1{Spatial Dependence of the Quantum Efficiency}
 
 #d mkarf \tt{mkarf}
@@ -56,28 +77,28 @@ Alternatively, \marxrsp may be used to apply \em{any} RMF to a \marx
 simulation with the caveat that the mapping from photon energy to PHA
 does not vary over the detector.
 
-\h1{LETG+HRC Line Widths}
+#% \h1{LETG+HRC Line Widths}
 
-In standard Chandra pipeline processing, the motion of the observatory
-over the course of an observation is computed and stored in the aspect
-solution (ASOL) file.  The tool \marxasp replicates this behavior and
-produces an aspect solution file for a given \marx simulation. A
-number of factors contribute to the accuracy or inaccuracy of Chandra
-aspect reconstructions. In \marxasp, these noise terms are represented
-empirically using the \em{sigma} parameters in \tt{marxasp.par}. The
-default values for these noise terms have been calibrated to be
-consistent with HETG+ACIS observations and will give erroneously
-narrow line widths when used with LETG+HRC simulations. Users wishing
-to simulate LETG+HRC instrument combinations should adjust these
-values before running \marxasp.  For example, a calling sequence of the
-form:
+#% In standard Chandra pipeline processing, the motion of the observatory
+#% over the course of an observation is computed and stored in the aspect
+#% solution (ASOL) file.  The tool \marxasp replicates this behavior and
+#% produces an aspect solution file for a given \marx simulation. A
+#% number of factors contribute to the accuracy or inaccuracy of Chandra
+#% aspect reconstructions. In \marxasp, these noise terms are represented
+#% empirically using the \em{sigma} parameters in \tt{marxasp.par}. The
+#% default values for these noise terms have been calibrated to be
+#% consistent with HETG+ACIS observations and will give erroneously
+#% narrow line widths when used with LETG+HRC simulations. Users wishing
+#% to simulate LETG+HRC instrument combinations should adjust these
+#% values before running \marxasp.  For example, a calling sequence of the
+#% form:
 
-#v+
-  unix% marxasp RA_Sigma=0.34 Dec_Sigma=0.34 Roll_Sigma=0.34 ......
-#v-
+#% #v+
+#%   unix% marxasp RA_Sigma=0.34 Dec_Sigma=0.34 Roll_Sigma=0.34 ......
+#% #v-
 
-will produce an ASOL file consistent with current pipeline processing
-for LETG+HRC datasets.
+#% will produce an ASOL file consistent with current pipeline processing
+#% for LETG+HRC datasets.
 
 #% \h1{ISIS Pileup Fitting Kernel}
 
@@ -96,10 +117,10 @@ for LETG+HRC datasets.
 #% allowed to vary during the spectral fit.  See the \isis manual for
 #% more discussion of the pileup fitting kernel.
 
-\h1{Chandra Aimpoint Drift}
+#% \h1{Chandra Aimpoint Drift}
 
-\marx does not currently take into account of temporal drift in 
-Chandra's HRMA aimpoint. Fortunately the effect of the drift is 
-generally negligible and should not be a concern for Chandra proposers. 
+#% \marx does not currently take into account of temporal drift in 
+#% Chandra's HRMA aimpoint. Fortunately the effect of the drift is 
+#% generally negligible and should not be a concern for Chandra proposers. 
 
 #i jdweb_end.tm

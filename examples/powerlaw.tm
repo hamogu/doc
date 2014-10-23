@@ -1,15 +1,13 @@
 #i jdweb.tm
 #i local.tm
 #d pagename Simulating a user-defined spectrum with Marx
-#d xspec \href{http://heasarc.nasa.gov/xanadu/xspec/}{xspec}
-#d sherpa \href{http://cxc.harvard.edu/sherpa/}{sherpa}
 
 #d file#1 \href{powerlaw/$1}{$1}
 
 The purpose of this example is to show how to use \marx to simulate an ACIS
 observation of a point source with a user-specified spectrum.  For
 simplicity, suppose that we wish to simulate a 3000 ksec observation of
-a point source whose spectrum is represented by an absorbed powerlaw,
+an on-axis point source whose spectrum is represented by an absorbed powerlaw,
 with a spectral index of 1.8, and a column density of 10^22
 atoms/cm^2.  The normalization of the powerlaw will be set to 0.001
 photons/keV/cm^2/s at 1 keV.  The large exposure time was chosen to
@@ -110,25 +108,32 @@ isis script:
 #i powerlaw/isisfit.sl
 #v-
 This script produced the following parameter values with a reduced
-chi-square of 1.10:
+chi-square of 1.2:
 #v+
  Parameters[Variable] = 3[2]
-            Data bins = 615
-           Chi-square = 673.9226
-   Reduced chi-square = 1.099384
+            Data bins = 600
+           Chi-square = 722.847
+   Reduced chi-square = 1.208774
 phabs(1)*powerlaw(1)
  idx  param             tie-to  freeze         value         min         max
   1  phabs(1).nH            0     1                1           0      100000  10^22
-  2  powerlaw(1).norm       0     0      0.001008843           0       1e+10  
-  3  powerlaw(1).PhoIndex   0     0         1.824765          -2           9  
+  2  powerlaw(1).norm       0     0      0.001003397           0       1e+10  
+  3  powerlaw(1).PhoIndex   0     0         1.826904          -2           9  
 #v-
+\p
+The \tt{rplot_counts} may be used to produce a plot of the resulting
+fit.
 \begin{center}
 \img{powerlaw/plawfit.png}{Plot of the spectrum}
 \end{center}
 
 \p
-This example shows that the \marx simulation is consistent with the
-underlying calibration products.
+The residuals show that the model is systematically high for some
+energies.  The reason for this can be traced back to energy-dependent
+scattering where photons are scattered outside the extraction region.
+The CIAO effective area does not include this loss factor, and as a
+result, this omission appears in the residuals.  This effect is
+apparant because of the enormous number of counts in this simulation.
 
 #i jdweb_end.tm
 

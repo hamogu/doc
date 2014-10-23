@@ -10,6 +10,10 @@
 #d marxflux \href{marxflux}{marxflux}
 
 \sidebar_text{\hline}
+\sidebar_link{../}{Marx Home}
+\sidebar_link{../docs.html}{Documentation}
+\sidebar_link{\isis_home}{Isis}
+\sidebar_text{\hline}
 \sidebar_label{Examples}
 \sidebar_text{\hline}
 \sidebar_link{index.html}{Basic Setup}
@@ -19,15 +23,14 @@
 \sidebar_link{powerlaw.html}{Powerlaw}
 \sidebar_link{pileup.html}{Pileup}
 \sidebar_space{}
+\sidebar_label{LETG/ACIS}
+\sidebar_link{letgplaw.html}{Powerlaw}
+\sidebar_space{}
 \sidebar_label{HETG}
 \sidebar_link{aped.html}{Thermal}
 \sidebar_link{hetgplaw.html}{Powerlaw}
 \sidebar_text{\hline}
-\sidebar_link{../}{Marx Home}
-\sidebar_link{../docs.html}{Documentation}
-\sidebar_text{\hline}
 
-\sidebar_link{\isis_home}{isis}
 \sidebar_link{http://space.mit.edu/cxc/}{CXC@MIT}
 \sidebar_link{\chandra_home}{Chandra}
 

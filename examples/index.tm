@@ -15,11 +15,11 @@ latter requirement may be accomplished by running \marx via
     .
     .
   marx parameter files may be found in:
-   /opt/marx4.4/share/marx/pfiles/
+   /opt/marx5.0/share/marx/pfiles/
 #v-
 Simply copy the files from the indicated directory to the current one:
 #v+
-  unix% cp /opt/marx4.4/share/marx/pfiles/*.par .
+  unix% cp /opt/marx5.0/share/marx/pfiles/*.par .
 #v-
 
 #i jdweb_end.tm

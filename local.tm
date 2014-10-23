@@ -1,7 +1,7 @@
 #% #d sidebar_link_inactive#1 \sidebar_item{\sidebar_bg_color}{[\em{$1}]}
 
-#d marx-fullversion 4.5.0
-#d marx-version 4.5
+#d marx-fullversion 5.0.0
+#d marx-version 5.0
 
 #d corner_html \center{\p Marx \marx-fullversion \p}
 
@@ -33,6 +33,13 @@
 #d mit_home http://web.mit.edu/
 #d mit_home_image  \mit_home/interface/mit.gif
 #d mit_image \img{\mit_home_image}{MIT}{border=0 width=42 height=24 hspace=20}
+
+#d evt2img \href{http://space.mit.edu/cxc/software/slang/modules/hist/evt2img.html}{evt2img}
+#d ds9 \href{http://hea-www.harvard.edu/RD/ds9/}{ds9}
+
+#d xspec \href{http://heasarc.nasa.gov/xanadu/xspec/}{xspec}
+#d sherpa \href{http://cxc.harvard.edu/sherpa/}{sherpa}
+#d saotrace \href{http://cxc.harvard.edu/chart/index.html}{SAOTrace}
 
 #d marxasp \bf{marxasp}
 #d marxrsp \bf{marxrsp}

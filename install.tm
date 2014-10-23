@@ -19,18 +19,18 @@ been installed.
 \p
 Next uncompress and untar the file:
 #v+
-    # gzip -d marx-dist-4.5.0.tar.gz
-    # tar xf marx-dist-4.5.0.tar
+    # gzip -d marx-dist-5.0.0.tar.gz
+    # tar xf marx-dist-5.0.0.tar
 #v-
 (Some versions of tar can also uncompress the file, permitting the
 above to be accomplished in one step).  At this point the tar file is
 no longer needed so it may be removed:
 #v+
-    # /bin/rm marx-dist-4.5.0.tar
+    # /bin/rm marx-dist-5.0.0.tar
 #v-
 Now change to the newly created directory to start the build process:
 #v+
-    # cd marx-dist-4.5.0
+    # cd marx-dist-5.0.0
 #v-
 The next step is to run the \tt{configure} script, which will probe your
 system to see what tools are available for compiling \marx.  Before
@@ -54,7 +54,7 @@ this choice the resulting \marx executable will be placed in
 Now run the \tt{configure} script
 specifying this value as the \tt{--prefix} argument:
 #v+
-    # ./configure --prefix=/opt/marx/4.5.0
+    # ./configure --prefix=/opt/marx/5.0.0
 #v-
 If all has gone well, the last bit of output from the above command
 should resemble:
@@ -63,7 +63,7 @@ should resemble:
        CC = gcc
           .
           .
-       MARX parameter files will be installed in /opt/marx/4.5.0/share/marx/pfiles/.
+       MARX parameter files will be installed in /opt/marx/5.0.0/share/marx/pfiles/.
             
        To continue the build process, run 'make'.
 #v-

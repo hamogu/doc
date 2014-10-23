@@ -11,6 +11,7 @@
 #%\sidebar_label{Site Map}
 \sidebar_link{index.html}{Marx Home}
 \sidebar_link{install.html}{Download/Install}
+\sidebar_link{news.html}{Release Notes}
 \sidebar_link{docs.html}{Documentation}
 \sidebar_link{examples/index.html}{Examples}
 \sidebar_link{caveats.html}{Caveats}

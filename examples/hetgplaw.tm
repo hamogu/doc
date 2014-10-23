@@ -93,7 +93,7 @@ Add the following to the ``working directory'':
 \ul
 {
 
-\myulitem{marxflux}{The \file{marxflux} file (click it to download).  Then do a
+\myulitem{marxflux}{The \marxflux file (click it to download).  Then do a
 \tt{chmod a+x marxflux} to ensure that it can be executed.}
 
 \myulitem{TG-Cat reprocessing scripts}{Download the file
@@ -109,10 +109,10 @@ Thanks to Dave Huenemoerder for making these ``TGCat scripts'' available
 ahead of their release.}
 
 \myulitem{marx_orig.par}{Copy fresh versions of the marx parameter files
-into the working directory;  doing ``\tt{[unix] marx --help}''
+into the working directory;  doing \tt{marx --help}
 will show the location of the marx parameter files.
 Also do a \newline
-``\tt{cp marx.par marx_orig.par}''\newline
+\tt{cp marx.par marx_orig.par}\newline
 to save the original marx.par file to use as a starting point in
 simulation scripts.}
 

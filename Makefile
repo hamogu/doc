@@ -1,6 +1,6 @@
 # -*- sh -*-
 
-INSTALL_ROOT_DIR = /nfs/space/web/ASC/marx-4.5
+INSTALL_ROOT_DIR = /nfs/space/web/ASC/marx-5.0
 
 OTHER_INSTALL_TARGETS = install_subdirs
 LOCAL_INCLUDE_DIR=../include
