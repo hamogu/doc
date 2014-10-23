@@ -4,13 +4,11 @@
 #d xspec \href{http://heasarc.nasa.gov/xanadu/xspec/}{xspec}
 #d sherpa \href{http://cxc.harvard.edu/sherpa/}{sherpa}
 
-
 #% Changed/added definitions:
 
 #d hetg \href{http://space.mit.edu/HETG/}{HETG}
 #d file#1 \href{hetgplaw/$1}{$1}
 #d myulitem#2 \item \bf{$1} - $2
-
 
 #% Show a pretty picutre or two here...
 \p
@@ -40,7 +38,7 @@ After some \bf{Preliminaries}, the basic steps described in detail below are:
 
     \myulitem{Extract \hetg spectra}{Use standard \ciao tools, called conveniently
     from \isis scripts, to create pha2 and response files.}
-    
+
     \myulitem{Perform spectral analysis}{Carry out model fitting in \isis,
     \sherpa, or \xspec using as input the pha2 and response files.}
 
@@ -48,7 +46,7 @@ After some \bf{Preliminaries}, the basic steps described in detail below are:
 
 \p
 Each of these steps is described in a text file that includes comments
-and the command lines which can be cut-and-pasted; 
+and the command lines which can be cut-and-pasted;
 these files are displayed on this page as well.
 The user is encouraged to download and use these files as starting
 points for customization and recording ones own analysis steps.
@@ -57,7 +55,7 @@ Some screen shots from this example are given here as enticement:
 \ul{
 \item\href{hetgplaw/ss_spectrum.png}{Plotting the isis-created spectral
 model.}  The spectra are shown on the PGPLOT window appearing above the isis command
-window (lower left) and editor window (\href{http://www.jedsoft.org/jed/}{xjed}, lower right) where the 
+window (lower left) and editor window (\href{http://www.jedsoft.org/jed/}{xjed}, lower right) where the
 isis_spectrum.txt file is being displayed and used as cut-ans-paste source.
 \item\href{hetgplaw/ss_ds9marxboth.png}{Looking at marx-created FITS file
 with ds9.}  The is from the marxcat'ed union of the point source simulation
@@ -89,7 +87,7 @@ in a ``\bf{working directory}'' that the user has
 write privilege in, e.g., \tt{/nfs/mycomputer/d1/AGN_amazing/hetg_simulations/} .
 
 \p
-Add the following to the ``working directory'': 
+Add the following to the ``working directory'':
 \ul
 {
 
@@ -127,15 +125,13 @@ now contains:
 marxasp.par  marxflux  marx_orig.par  marx.par  marxpileup.par  scripts
 #v-
 
-
 \p \center{\em{
 (*) Note that in some installations it can happen that \ciao and stand-alone
-\newline 
+\newline
 \isis may have conflicts.  In these cases it is useful to only ``setup'' \ciao when needed
 \newline
 (the third step) and then restart a new window when done with \ciao processing.
 }}
-
 
 \sect{Create the spectral file}
 
@@ -145,7 +141,6 @@ marxasp.par  marxflux  marx_orig.par  marx.par  marxpileup.par  scripts
 #i hetgplaw/isis_spectrum.txt
 #v-
 
-
 \sect{Setup and run \marx}
 
 \p The following instructions are in \file{marx_hetg_plaw.txt}.
@@ -153,7 +148,6 @@ marxasp.par  marxflux  marx_orig.par  marx.par  marxpileup.par  scripts
 #v+
 #i hetgplaw/marx_hetg_plaw.txt
 #v-
-
 
 \sect{Extract \hetg spectra}
 
@@ -163,7 +157,6 @@ marxasp.par  marxflux  marx_orig.par  marx.par  marxpileup.par  scripts
 #i hetgplaw/ciao_marx_process.txt
 #v-
 
-
 \sect{Perform spectral analysis}
 
 \p The following instructions are in \file{isis_analysis.txt}.
@@ -171,7 +164,6 @@ marxasp.par  marxflux  marx_orig.par  marx.par  marxpileup.par  scripts
 #v+
 #i hetgplaw/isis_analysis.txt
 #v-
-
 
 #i jdweb_end.tm
 

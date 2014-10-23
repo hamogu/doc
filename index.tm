@@ -20,6 +20,12 @@ output. It contains detailed models for Chandra's High Resolution
 Mirror Assembly (HRMA), the HETG and LETG gratings, and all the focal
 plane detectors.
 
+\p
+If you publish any work that made use of \marx, please cite the
+paper
+\href{http://adsabs.harvard.edu/abs/2012SPIE.8443E..1AD}{Raytracing
+with MARX: x-ray observatory design, calibration, and support}.
+
 #% \hline
 
 #% \h2{\center{Marx-\marx-version Highlights}}

@@ -7,7 +7,7 @@ LOCAL_INCLUDE_DIR=../include
 OTHER_DEPS = ./local.tm
 
 HTML = index.html install.html docs.html \
-       faqs.html caveats.html psf.html news.html
+       faqs.html caveats.html psf.html news.html news5.0.html
 
 OTHER_INSTALL_FILES = anim_1878_chart.gif anim_1878_marx.gif marxsubpix.png
 OTHER_ALL_TARGETS = examples

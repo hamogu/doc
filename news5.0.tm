@@ -3,17 +3,15 @@
 #d pagename \Marx 5 Highlights
 #d saotrace \href{http://cxc.harvard.edu/chart/index.html}{SAOTrace}
 
-This page is devoted to a description of some of the changes since
-version 5.0.  The changes consist mainly of some minor enhancements,
-calibration updates, and bug fixes.  If you are upgrading from version
-4.x, you should also read the \href{news5.0.html}{release notes for
-version 5.0}
+\Marx 5 is a major new release.  This page is devoted to the new
+features.
 
 #d section#2 \hline\center{\h1{\label{toc-$1} $2}}\hline
 
-#d sect-aspect Enhanced support for dithered SAOTrace files
+#d sect-aspect Subpixel Randomization
+#d sect-dither New Dither Model
 #d sect-calibration Calibration Updates
-#d sect- Bug Fixes
+#d sect-marxpar Marx Parameter File Updates
 
 \h1{\bf{Contents}}
  \href{#toc-1}{\sect-aspect} \newline
