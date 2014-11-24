@@ -134,7 +134,7 @@ Using |marx| with SAOSAC
 
 .. warning:: Out of date.
 
-   Some information in section might be out of date. It will be rewritten as soon as possible.
+   Some information in section might be out of date. It will be rewritten soon.
 
 For calibration purposes, the Mission Support Team (MST) has developed
 an extremely high-fidelity raytrace of the HRMA onboard Chandra called
@@ -239,6 +239,3 @@ Here we have piped that output into an ASCII file.
 
 Note, according to the MST, the SAOSAC DPDE format is being phased out
 in favor of the FITS rayfile standard discussed in the previous section.
-In a future release of |marx|, the :marxtool:`marx2dpde` tool will be superseded
-by a new tool :marxtool:`marx2ray` which recasts |marx| simulations in the FITS
-rayfile format.

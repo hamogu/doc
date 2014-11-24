@@ -31,6 +31,7 @@ Contents:
    FAQ/faqs
 
    Reference/tools
+   Reference/othermarxpars
 
 
 Indices and tables

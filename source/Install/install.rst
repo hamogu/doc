@@ -33,27 +33,39 @@ Now change to the newly created directory to start the build process::
 
 The next step is to run the ``configure`` script, which will probe your
 system to see what tools are available for compiling |marx|.  Before
-doing so, it is recommended that you read the INSTALL file before
-proceeding.
+doing so, we recommended that you read the ``INSTALL`` file.
+
+Note that the configure script will take the ``CC``, ``CFLAGS``, ``LDFLAGS``, and
+``ARCH``, variables from your environment, if they are defined. If not, it
+will first look for gcc. So, if you have gcc installed, and you want to
+use a compiler other than gcc, such as acc perhaps, you can instruct the
+configure script to use the other compiler using:
+
+::
+
+    unix% setenv CC acc
+    unix% setenv CFLAGS -g
+    unix% ./configure
+
 
 At this point you need to think about where you want |marx| to be
-installed, and if you want the optional |marxrsp| program to also be
-created (* |marxrsp| was written for calibration purposes - it is
-not needed by most users*).  If you want |marxrsp| to be installed, then
+installed, and if you want the optional :marxtool:`marxrsp` program to also be
+created (:marxtool:`marxrsp` was written for calibration purposes - it is
+not needed by most users).  If you want :marxtool:`marxrsp` to be installed, then
 you will also need to have `cfitsio`_ compiled and installed as detailed
-in the ``INSTALL`` file.  For simplicity, here it is assumed that |marxrsp|
+in the ``INSTALL`` file.  For simplicity, here it is assumed that :marxtool:`marxrsp`
 will not be installed.
 
-Assume that you want \marx installed in its own tree under
-``/opt/marx/\marx-fullversion/``.  This value is known as the
+Assume that you want |marx| installed in its own tree under
+``/opt/marx/marx-fullversion/``.  This value is known as the
 *installation-prefix*.  It is important to understand that with
-this choice the resulting \marx executable will be placed in
-``/opt/marx/\marx-fullversion/bin/``.
+this choice the resulting |marx| executable will be placed in
+``/opt/marx/marx-fullversion/bin/``.
 
 Now run the ``configure`` script
 specifying this value as the ``--prefix`` argument::
 
-    ./configure --prefix=/opt/marx/5.0.0
+    ./configure --prefix=/opt/marx/5.1.0
 
 If all has gone well, the last bit of output from the above command
 should resemble::
@@ -67,62 +79,173 @@ should resemble::
        To continue the build process, run 'make'.
 
 If not, then you may not have the necessary tools installed to compile
-\marx, or you have an unsupported system.  If you are unable to
-resolve the problem on your own, the contact \marx-email-address.
+|marx|, or you have an unsupported system.  If you are unable to
+resolve the problem on your own, then contact |marx-email|.
 
 Assuming all has gone well, execute the ``make`` command::
 
     make
 
 (If this step fails and you are unable to resolve the problem, then
- contact \marx-email-address.)
+ contact |marx-email|.)
 
 The final step in the installation process is to actually install the
 compiled executables.  If you do not have write permission to the
-installation-prefix directory (``/opt/marx/\marx-fullversion`` in this case),
+installation-prefix directory (``/opt/marx/marx-fullversion`` in this case),
 then you will need to obtain the appropriate privileges to complete
 the next step.  For example, this may require temporarily becoming the
 ``root`` user.  Now run::
 
     make install
 
-to complete the installation.  As indicated above, the \marx
-executable will be copied to ``/opt/marx/\marx-fullversion/bin/``.  As
+to complete the installation.  As indicated above, the |marx|
+executable will be copied to ``/opt/marx/marx-fullversion/bin/``.  As
 such, it is recommended this directory be added to the user's
 ``PATH`` environment variable.  The install step will create the
 following directories:
 
-``/opt/marx/\marx-fullversion/bin/``
-    Directory where |marx|, |marx2fits|, and other |marx| -related executables are placed.
+``/opt/marx/marx-fullversion/bin/``
+    Directory where |marx|, :marxtool:`marx2fits`, and other |marx| -related executables are placed.
 
-``/opt/marx/\marx-fullversion/share/marx/data/``
+``/opt/marx/marx-fullversion/share/marx/data/``
     Directory under which the |marx| calibration data files are located.
 
-``/opt/marx/\marx-fullversion/share/marx/pfiles/``
+``/opt/marx/marx-fullversion/share/marx/pfiles/``
     The parameter files used by |marx| are located here.
 
-``/opt/marx/\marx-fullversion/share/doc/marx/``
+``/opt/marx/marx-fullversion/share/doc/marx/``
     Directory containing |marx| -related documentation.
 
-``/opt/marx/\marx-fullversion/lib/``
+``/opt/marx/marx-fullversion/lib/``
     Static versions of libraries distributed with and used by |marx| are put here.
 
-``/opt/marx/\marx-fullversion/include/``
+``/opt/marx/marx-fullversion/include/``
     The C header files of the |marx| libraries are put here.
 
-``/opt/marx/\marx-fullversion/lib/marx/``
+``/opt/marx/marx-fullversion/lib/marx/``
     Contains miscellaneous |marx| -related tools.
 
 As the above indicates, the |marx| data files will be copied to the
-``/opt/marx/\marx-fullversion/share/marx/data/`` directory.  |marx| will
+``/opt/marx/marx-fullversion/share/marx/data/`` directory.  |marx| will
 automatically search this directory for calibration files.  Also note
 that the parameter files will be placed under
-``/opt/marx/\marx-fullversion/share/marx/pfiles/``.  As a helpful reminder, this
+``/opt/marx/marx-fullversion/share/marx/pfiles/``.  As a helpful reminder, this
 location is reported when \marx is invoked as ``marx --help``.
 
 The parameter files are **NOT** automatically loaded by |marx| unless the ``UPARM`` or ``PFILES`` environment variables are set appropriately.  For this
 reason, it is recommended that the user copy these files to the
 directory where the simulation will be performed.  
+
+Special cases
+-------------
+For most users, the steps described above are all that is needed. In this section we provide instruction for a few
+special cases that are a little more involved.
+
+Building marxrsp
+~~~~~~~~~~~~~~~~
+
+The above procedure will compile the majority of the programs in the
+|marx| suite. The exceptions are the :marxtool:`marxrsp` and :marxtool`rspdump` tools which
+allows users to work with user provided FITS response matrix file (RMF).
+In order to compile :marxtool:`marxrsp` and :marxtool:`rspdump`, you will need to obtain and
+install the CFITSIO library if you do not already have it installed on
+your system. The library can be obtained from the HEASARC web page as cfitsio_.
+
+Instructions for installing the library are included with the CFITSIO
+source code and will not be discussed here.
+
+After installing the CFITSIO library, you must edit the Makefile in the
+``marxrsp`` directory to point to the library. If you have the HEASARC 
+FTOOLS or LHEASOFT packages installed on your system, you can use the
+CFITSIO library distributed as part of that package. The following
+excerpt from the Makefile indicates the two paths which must be defined
+in order to build the :marxtool:`marxrsp` tool. The ``CFITSIO_LIB`` and ``CFITSIO_INC``
+variables point to the location of the compiled CFITSIO library and
+include files, respectively, and should be modified appropriately for
+your particular system. The sample Makefile reproduced here shows an
+example of building marxrsp using the CFITSIO library installed as part
+of the LHEASOFT package on a machine running Linux.
+
+::
+
+    #---*- sh -*----------------------------------------------------------------
+    # ANSI C compiler.  The default is to use your CC environment variable
+    #---------------------------------------------------------------------------
+    #CC = gcc         # Uncomment this line if you want gcc!!!
+    #CFLAGS = -g
+
+    #---------------------------------------------------------------------------
+    # Where is your CFITSIO library and include file?  CFITSIO is part of IRAF.
+    #---------------------------------------------------------------------------
+    # At MIT, we use:
+    #
+    #CFITSIO_LIB = /nfs/wiwaxia/d4/ASC/lib/$(ARCH)
+    #CFITSIO_INC = /nfs/wiwaxia/d4/ASC/include
+    #
+    # Perhaps one of these combinations will work for you:
+    #
+    #CFITSIO_LIB = /usr/local/include
+    #CFITSIO_INC = /usr/local/lib
+    #
+    #CFITSIO_INC = /usr/local/src/ftools/SunOS_5.5_sparc/include
+    #CFITSIO_LIB = /usr/local/src/ftools/SunOS_5.5_sparc/lib
+    #
+    CFITSIO_INC = /usr/local/src/lheasoft/Linux_2.2_i586/include
+    CFITSIO_LIB = /usr/local/src/lheasoft/Linux_2.2_i586/lib
+
+    #---------------------------------------------------------------------------
+    # New versions of CFITSIO require additional networking libraries on some
+    # systems.  The most well known system with this requirement is solaris.
+    #---------------------------------------------------------------------------
+    #NETLIBS = -lsocket -lnsl  # <<<---- Solaris
+    NETLIBS =                # <<<---- Linux
+
+    #---------------------------------------------------------------------------
+    # There should be no need to modify anything else below this point
+    #---------------------------------------------------------------------------
+
+With the appropriate modifications to the marxrsp Makefile completed,
+the tool can now be built. Assuming you are in the main |marx| source
+directory, the commands:
+
+::
+
+    unix% cd ./marxrsp
+    unix% make install
+
+will build the marxrsp and rspdump executables and move them to the
+``bin`` directory with the other tools in the suite. Note, you do not need
+:marxtool:`marxrsp` to run |marx|  simulations.
+
+
+Building |marx| on Multiple Architectures
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The |marx| suite can be compiled to support multiple architectures
+using the same source tree. To create |marx| on multiple
+architectures (e.g. if your network has 32 and 64 bit machines), simply define an environment variable called ``ARCH`` and
+set it to an architecture-dependent value. For example, to build
+a version of for the NeXT platform, one could type:
+
+::
+
+    unix% setenv ARCH next
+    unix% ./configure
+    unix% make
+
+This sequence will build NeXT executables and place them in the
+“./bin/next” subdirectory. To then compile a Linux version as well, use:
+
+::
+
+    unix% setenv ARCH linux
+    unix% ./configure
+    unix% make
+
+These binaries will be placed in “./bin/linux”. This process can be
+repeated as needed.
+
+
 
 Known Bugs and Limitations
 --------------------------
@@ -138,23 +261,3 @@ so that is looks as if ``gcc`` was available. ``clang`` is a relatively new comp
 We found that |marx| compiles successfully with ``clang``, but before ``clang 3.5`` there is a bug in the optimization
 that leads to wrong numerical results. Until ``clang`` is a bit more mature, we recommend to compile |marx| without
 optimizations (``CFLAGS=-g``) and **not** with the default ``CFLAGS=-g -O``.
-
-
-
-Ultrix
-~~~~~~
-
-There appears to be a bug in the Ultrix cc optimizer which can lead to
-problems building the **MARX **suite. The bug seems to be caused by the
-creation of bad assembly code which can lead to core dumps during the
-assembly process. Typically, when this bug occurs, the marx executable
-itself compiles fine, but the full build of the other tools in the suite
-will produce a fatal error during compilation. On this system, it is
-recommended that, before configuring, you set the CFLAGS environment
-variable to “-g”.
-
-::
-
-    unix% setenv CFLAGS -g
-    unix% ./configure
-

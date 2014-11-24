@@ -28,7 +28,7 @@ features.
 Subpixel Randomization
 ----------------------
 The EDSER subpixel algorithm was incorporated into CIAO 4.3.  When
-computing Sky coordinates, `acis_process_events`_ first converts the
+computing Sky coordinates, :ciao:`acis_process_events` first converts the
 integer-valued chip coordinate to a floating point value.  There are
 several ways in which this may be done.  One way is to simply cast the
 integer to a float, e.g,, the integer 2 becomes 2.0.  The problem with

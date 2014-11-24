@@ -68,6 +68,10 @@ in ``marx.par`` controls which type of dither model is used:
 
    (*default*: `NONE`) Dither Model [`NONE`, `INTERNAL`, `FILE`]
 
+.. parameter:: AspectBlur
+
+   (*default*: 0.07) This parameters represents the uncertainty in the Chandra pointing (in arcsec)
+
 
 .. figure:: dither_combo.*
    :alt: Example of simulation with dither enabled
@@ -127,43 +131,9 @@ for a simulation which used the |marx| internal dither model. This
 ASPSOL file can be used in conjunction with normal `CIAO`_ tool :ciao:`asphist` to
 produce an aspect histogram file. See :marxtool:`marxasp` for more details.
 
-Set :par:`DitherModel=INTERNAL` and use the following parameters in ``marx.par`` control the internal dither model:
+Set :par:`DitherModel=INTERNAL` and use the parameters described in `internalditherpars`_ in 
+``marx.par`` to control the internal dither model.
 
-.. parameter:: DitherAmp_RA
-
-   (*default*: `8`)  Amplitude for RA dither (arcsecs)
-
-.. parameter:: DitherAmp_Dec
-
-   (*default*: `8`)  Amplitude for Dec dither (arcsecs)
-
-.. parameter:: DitherAmp_Roll
-
-   (*default*: `0`)  Amplitude for Roll dither (arcsecs)
-
-.. parameter:: DitherPeriod_RA
-
-   (*default*: `1000`)  Period for RA dither (secs)
-
-.. parameter:: DitherPeriod_Dec
-
-   (*default*: `707`)  Period for Dec dither (secs)
-
-.. parameter:: DitherPeriod_Roll
-
-   (*default*: `1e+05`)  Period for Roll dither (secs)
-
-.. parameter:: DitherPhase_RA
-
-   (*default*: `0`)  Phase for RA dither (radians)
-
-.. parameter:: DitherPhase_Dec
-
-   (*default*: `0`)  Phase for Dec dither (radians)
-
-.. parameter:: DitherPhase_Roll
-
-   (*default*: `0`)  Phase for Roll dither (radians)
 
 .. figure:: fig_asol.*
    :alt: Example of contents of a :marxtool:`marxasp` ASPSOL file
