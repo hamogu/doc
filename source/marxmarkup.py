@@ -1,9 +1,8 @@
 '''Custom Sphinx extension for MARX
 
 '''
-"""
 
-"""
+
 
 import re
 
@@ -18,6 +17,7 @@ from sphinx.util.nodes import make_refnode
 from sphinx.util.compat import Directive
 from sphinx.util.docfields import Field, GroupedField, TypedField
 from sphinx.domains.std import GenericObject, Target, StandardDomain
+
 
 def _pseudo_parse_arglist(signode, arglist):
     """"Parse" a list of arguments separated by commas.
@@ -64,6 +64,7 @@ def _pseudo_parse_arglist(signode, arglist):
         signode[-1] += addnodes.desc_parameter(arglist, arglist)
     else:
         signode += paramlist
+
 
 
 class MARXtool(ObjectDescription):
@@ -115,6 +116,7 @@ class MARXtool(ObjectDescription):
             signode += addnodes.desc_annotation(' ' + anno, ' ' + anno)
         return name
 
+
     def add_target_and_index(self, name, sig, signode):
         if name not in self.state.document.ids:
             signode['ids'].append(name)
@@ -133,14 +135,32 @@ class MARXtool(ObjectDescription):
         self.indexnode['entries'].append(('pair', indextext,
                                               name , ''))
 
+
 class MARXpost(MARXtool):
     indextext = '%s; post-processing'
 
+
 def ciao_reference_role(role, rawtext, text, lineno, inliner,
                        options={}, content=[]):
+    '''Automatically construct the right URL for a CIAO tool'''
     ref = "http://cxc.harvard.edu/ciao/ahelp/{0}.html".format(text.strip())
     node = nodes.reference(rawtext, text, refuri=ref, **options)
     return [node], []
+
+
+class Parameter(GenericObject):
+    indextemplate = 'pair: %s; MARX parameter'
+
+
+class ParRole(XRefRole):
+    """Role to mark up MARX paramters that recognizes them in expressions like par=5"""
+    def process_link(self, env, refnode, has_explicit_title, title, target):
+        """Called after parsing title and target text, and creating the
+        reference node (given in *refnode*).  This method can alter the
+        reference node and must return a new (or the same) ``(title, target)``
+        tuple.
+        """
+        return title, target.split('=')[0].strip()
 
 
 def setup(app):
@@ -157,7 +177,9 @@ def setup(app):
 
     app.add_role('ciao', ciao_reference_role)
 
-    # To-Do: make parameter such that it also recognixes "parname=VALUE" ane links to parname.
-    # Then, introduce those links in docs.
-    app.add_object_type('parameter', 'par', 'pair: %s; MARX parameter')
+    app.add_directive('parameter', Parameter)
+    StandardDomain.object_types['parameter'] = \
+        ObjType('parameter', 'par')
+
+    StandardDomain.roles['par'] = ParRole()
 
