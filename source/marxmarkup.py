@@ -2,9 +2,8 @@
 
 '''
 
-
-
 import re
+from itertools import groupby
 
 from docutils import nodes
 from docutils.parsers.rst import directives
@@ -17,54 +16,6 @@ from sphinx.util.nodes import make_refnode
 from sphinx.util.compat import Directive
 from sphinx.util.docfields import Field, GroupedField, TypedField
 from sphinx.domains.std import GenericObject, Target, StandardDomain
-
-
-def _pseudo_parse_arglist(signode, arglist):
-    """"Parse" a list of arguments separated by commas.
-
-    Arguments can have "optional" annotations given by enclosing them in
-    brackets.  Currently, this will split at any comma, even if it's inside a
-    string literal (e.g. default argument value).
-    """
-    paramlist = addnodes.desc_parameterlist()
-    stack = [paramlist]
-    try:
-        for argument in arglist.split(','):
-            argument = argument.strip()
-            ends_open = ends_close = 0
-            while argument.startswith('['):
-                stack.append(addnodes.desc_optional())
-                stack[-2] += stack[-1]
-                argument = argument[1:].strip()
-            while argument.startswith(']'):
-                stack.pop()
-                argument = argument[1:].strip()
-            while argument.endswith(']'):
-                ends_close += 1
-                argument = argument[:-1].strip()
-            while argument.endswith('['):
-                ends_open += 1
-                argument = argument[:-1].strip()
-            if argument:
-                stack[-1] += addnodes.desc_parameter(argument, argument)
-            while ends_open:
-                stack.append(addnodes.desc_optional())
-                stack[-2] += stack[-1]
-                ends_open -= 1
-            while ends_close:
-                stack.pop()
-                ends_close -= 1
-        if len(stack) != 1:
-            raise IndexError
-    except IndexError:
-        # if there are too few or too many elements on the stack, just give up
-        # and treat the whole argument list as one argument, discarding the
-        # already partially populated paramlist node
-        signode += addnodes.desc_parameterlist()
-        signode[-1] += addnodes.desc_parameter(arglist, arglist)
-    else:
-        signode += paramlist
-
 
 
 class MARXtool(ObjectDescription):
@@ -94,28 +45,32 @@ class MARXtool(ObjectDescription):
         return False
 
     def handle_signature(self, sig, signode):
-        sig = sig.split()
-        name = sig[0]
-        arglist = " ".join(sig[1:])
+        match = re.search('(\w+)', sig)
+        name = match.groups()[0]
+        # At this point, we make no attempt to break up the arglist into
+        # reqired parameters, keywords, optional arguments etc.
+        # This would be very hard, since we would have to cover the syntax
+        # of shell, IDL, S-Lang, ...
+        # For our output all we want to attach it to the name in
+        # reasonable formatting.
+        arglist = sig[len(name):]
 
         anno = self.options.get('annotation')
         lang = self.options.get('language')
 
         signode += addnodes.desc_name(name, name)
+        # addname has a good formatting, even if it is meant for a
+        # different use in sphinx for python.
+        # Sphinx expects name + parameterlist, but unfortunately,
+        # the parameterlist is automatically wrapped in (), so we avoid that
+        # here.
+        signode += addnodes.desc_addname(arglist, arglist)
 
-        #if arglist:
-        _pseudo_parse_arglist(signode, arglist)
-#            for arg in arglist:
-                #signode += addnodes.desc_parameterlist(arglist, arglist)
-                #signode[-1] += addnodes.desc_parameter(arglist, arglist)
-
-                #addnodes.desc_parameter(arg, arg)
         if lang:
             signode += addnodes.desc(' ' + lang, ' ' + lang)
         if anno:
             signode += addnodes.desc_annotation(' ' + anno, ' ' + anno)
         return name
-
 
     def add_target_and_index(self, name, sig, signode):
         if name not in self.state.document.ids:
@@ -124,16 +79,15 @@ class MARXtool(ObjectDescription):
             objects = self.env.domaindata['std']['objects']
             if name in objects:
                 self.state_machine.reporter.warning(
-                    'duplicate object description of %s, ' % fullname +
+                    'duplicate object description of %s, ' % name +
                     'other instance in ' +
-                    self.env.doc2path(objects[fullname][0]) +
+                    self.env.doc2path(objects[name][0]) +
                     ', use :noindex: for one of them',
                     line=self.lineno)
             objects['marxtool', name] = (self.env.docname, name)
 
         indextext = self.indextext % name
-        self.indexnode['entries'].append(('pair', indextext,
-                                              name , ''))
+        self.indexnode['entries'].append(('pair', indextext, name, ''))
 
 
 class MARXpost(MARXtool):
@@ -141,7 +95,7 @@ class MARXpost(MARXtool):
 
 
 def ciao_reference_role(role, rawtext, text, lineno, inliner,
-                       options={}, content=[]):
+                        options={}, content=[]):
     '''Automatically construct the right URL for a CIAO tool'''
     ref = "http://cxc.harvard.edu/ciao/ahelp/{0}.html".format(text.strip())
     node = nodes.reference(rawtext, text, refuri=ref, **options)
@@ -149,11 +103,14 @@ def ciao_reference_role(role, rawtext, text, lineno, inliner,
 
 
 class Parameter(GenericObject):
-    indextemplate = 'pair: %s; MARX parameter'
+    # use this line to make them show up in general index
+    # indextemplate = 'pair: %s; MARX parameter'
+    # use this line to NOT have them in general index
+    indextemplate = ''
 
 
 class ParRole(XRefRole):
-    """Role to mark up MARX paramters that recognizes them in expressions like par=5"""
+    """Role that recognizes MARX parameters in expressions like ``par=5``"""
     def process_link(self, env, refnode, has_explicit_title, title, target):
         """Called after parsing title and target text, and creating the
         reference node (given in *refnode*).  This method can alter the
@@ -163,23 +120,52 @@ class ParRole(XRefRole):
         return title, target.split('=')[0].strip()
 
 
+class MARXParIndex(Index):
+    """
+    Index subclass to provide the Python module index.
+    """
+
+    name = 'parindex'
+    localname = 'MARX Parameter Index'
+    shortname = 'MARX Parameters'
+
+    def generate(self, docnames=None):
+        entries = []
+        objects = self.domain.data['objects']
+        parameters = [o for o in objects if o[0] == 'parameter']
+        for p in parameters:
+            docname, anchor = objects[p]
+            # can use this for more info, e.g.
+            # a = one line description of par
+            # b = 'default'
+            # c = value for default from defautl file
+            #     (I need to check how MARX determines the default)
+            entries.append([p[1], 0, docname, anchor, 'a', 'b', 'c'])
+
+        entries = sorted(entries)
+        content = []
+        # key can be anything!
+        for k, g in groupby(entries, key=lambda x: x[0][0].upper()):
+            content.append((k, list(g)))
+
+        return content, False
+
+
 def setup(app):
     app.add_directive('marxtool', MARXtool)
-    StandardDomain.object_types['marxtool'] = \
-            ObjType('marxtool', 'marxtool')
-            #(objname or directivename, rolename)
+    StandardDomain.object_types['marxtool'] = ObjType('marxtool', 'marxtool')
+    # (objname or directivename, rolename)
     StandardDomain.roles['marxtool'] = XRefRole(warn_dangling=True)
 
     app.add_directive('marxpost', MARXpost)
-    StandardDomain.object_types['marxpost'] = \
-            ObjType('marxpost', 'marxtool')
-    #StandardDomain.roles['marxpost'] = XRefRole(warn_dangling=True)
+    StandardDomain.object_types['marxpost'] = ObjType('marxpost', 'marxtool')
+    StandardDomain.roles['marxpost'] = XRefRole(warn_dangling=True)
 
     app.add_role('ciao', ciao_reference_role)
 
     app.add_directive('parameter', Parameter)
-    StandardDomain.object_types['parameter'] = \
-        ObjType('parameter', 'par')
+    StandardDomain.object_types['parameter'] = ObjType('parameter', 'par')
 
     StandardDomain.roles['par'] = ParRole()
 
+    app.add_index_to_domain('std', MARXParIndex)
