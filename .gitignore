@@ -6,3 +6,5 @@
 *.png
 *.ps
 
+*.pyc
+build

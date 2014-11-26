@@ -1,3 +1,5 @@
+.. _tools:
+
 The |marx| tool suite
 =====================
 
@@ -190,8 +192,7 @@ with no parameters on the call line.
    :param RA_Sigma: (*default*: ``0.12``) RA Uncertainty sigma (arcsec). This parameter should generally stay on the default value.
    :param Dec_Sigma: (*default*: ``0.12``) Dec Uncertainty sigma (arcsec). This parameter should generally stay on the default value.
    :param Roll_Sigma: (*default*: ``0.12``) Roll Uncertainty sigma (arcsec). This parameter should generally stay on the default value.
-   :param mode : (*default*: ``hl``) Mode for parameter file
-
+   :param mode: (*default*: ``hl``) Mode for parameter file
     
    --help         Prints brief help information
 
@@ -521,8 +522,8 @@ with no parameters on the call line.
        unix% marxrsp --chip 8 --rmf acis8_rmf.fits --marx ./ngc1399
        unix% marxrsp --chip 9 --rmf acis9_rmf.fits --marx ./ngc1399 
 
-   Example 3: Recompute only those events which were detected in a given (CHIPX,CHIPY) region. The command sequence
-   ::
+   Example 3: Recompute only those events which were detected in a given (CHIPX,CHIPY) region. The command sequence::
+
        unix% marxrsp --chip 7 --xmin 213 --xmax 313 --ymin 457 --ymax 557 --rmf acis7b_aim_pha_rmf.fits --marx therm/
 
    would process only those events which were detected in a 100x100 pixel square centered on the aimpoint of CCD 7.
@@ -638,12 +639,12 @@ Other scripts and helper programs
    coordinates with units of arcmin.
 
    :language: Unix executable
-   :param detector:  Name of detector to examine (ACIS-S, ACIS-I, HRC-S, or HRC-I)
+   :param detector:  Name of detector to examine (``ACIS-S``, ``ACIS-I``, ``HRC-S``, or ``HRC-I``)
 
    --sky    If specified, prints values in SKY coordinates with units of arcmin
 
 
-   Example 1: Into about the HRC::
+   Example 1: Info about the HRC::
 
     unix% detinfo HRC-I
             /path/to/your/marx/installation/marx/data/hrc/hrc_i_geom.txt

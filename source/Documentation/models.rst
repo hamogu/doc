@@ -599,20 +599,24 @@ taken from those documents.
 
 
 
+.. index::
+   single: HRMA
+
+.. _HRMA:
 
 HRMA model
 ----------
 
 |marx| implements two different models for the HRMA onboard Chandra.
-Selection between these two models is accomplished using the MirrorType
-parameter. The first of these models, the EA-MIRROR model, is a simpler
-representation of the HRMA based on effective area and point spread
+Selection between these two models is accomplished using the :par:`MirrorType`
+parameter. The first of these models, the ``EA-MIRROR`` model, is a simpler
+representation of the ``HRMA`` based on effective area and point spread
 function tables. This model does not include any of the detailed
 characterization of the mirror such as misalignments, tilts, etc.
-present in the either the HRMA model or SAOSAC. The EA-MIRROR is limited
-to simulation of on–axis, point sources. Use of the various spatial
-models listed in `spatial distribution of the simulated source`_ requires the HRMA model in
-|marx| . The remainder of this discussion refers to the HRMA model
+present in the either the ``HRMA`` model or SAOSAC. The ``EA-MIRROR`` is limited
+to simulation of on-axis point sources. Use of the various spatial
+models listed in `spatial distribution of the simulated source`_ requires the ``HRMA`` model in
+|marx| . The remainder of this discussion refers to the ``HRMA`` model
 which is the default model.
 
 HRMA Geometric Model
@@ -688,11 +692,14 @@ tables can be adjusted using the ScatFactor parameters. The WFOLD
 scattering model can be disabled in |marx| by setting the parameter
 :par:`HRMA_Use_WFold="no"`.
 
+.. _grating-modules:
+
 Grating Modules
 ---------------
 
 **Chandra** contains two distinct grating assemblies called the HETG and
-the LETG. The HETG is meant to be used for high energy X–rays and the
+the LETG. The parameter :par:`GratingType` selects the grating for a |marx| simulation.
+The HETG is meant to be used for high energy X–rays and the
 LETG is optimized for low energy X–rays. Actually, the HETG consists of
 two types of gratings: MEG for medium energy rays, and HEG for high
 energy rays. The LETG consists entirely of LEG type gratings. Each
@@ -706,8 +713,8 @@ gratings are being used, the ray will intersect the grating and undergo
 a diffraction process. Actually, a certain percentage of the rays will
 not strike a grating facet; instead some will be absorbed by the grating
 assembly. The percentage of rays that intersect with a facet is
-specified by the appropriate vignetting parameter, LEGVig if the LETG is
-being used, or HEGVig and MEGVig if the HETG is used.
+specified by the appropriate vignetting parameter, :par:`LEGVig` if the LETG is
+being used, or :par:`HEGVig` and :par:`MEGVig` if the HETG is used.
 
 |marx| currently knows very little about the actual location of
 individual grating facets. The assumption is that the HRMA and the
@@ -1127,7 +1134,7 @@ directory.
    observations. Instead, the misalignmens is treated statistically
    using :par:`legdTheta` parameter.
 
-
+.. _detectormodel::
 
 Detector Models
 ---------------
@@ -1236,6 +1243,8 @@ a mixture of calibration information and simple analytic forms to
 approximate these functions. More accurate redistribution functions can
 be applied to |marx| simulations using the :marxtool:`marxrsp` tool discussed :ref:`rsp`.
 
+.. _ACISCTI:
+
 ACIS
 ~~~~
 
@@ -1274,6 +1283,9 @@ focal plane temperature. At the time of this release, complete
 calibration data is available for a focal plane temperature of -110 C. A
 |marx| gain map will be released for -120 C when this data becomes
 available.
+
+More information on the ACIS energy resolution can be found at
+http://cxc.harvard.edu/proposer/POG/html/chap6.html#tth_sEc6.7 .
 
 HRC
 ~~~
