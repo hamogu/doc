@@ -1,3 +1,5 @@
+.. _sect-sourcemodels:
+
 Models for the X-ray source
 ===========================
 
@@ -5,7 +7,7 @@ Models for the X-ray source
 be either on or off–axis. The sources can have a flat energy spectrum or
 they can use an energy spectrum supplied by the user. For even more
 flexibility, |marx| has the ability to dynamically link to
-user-defined source models. The following wouces are current availabe:
+user-defined source models. The following wouces are current available:
 
 - ``POINT``: Point Source
 - ``GAUSS``: Radially symmetric Gaussian
@@ -318,6 +320,8 @@ different, e.g. if a different detector or dither is chosen.
 .. index::
    pair: Source Model; USER
 
+.. _sect-usersource:
+
 USER Source
 ^^^^^^^^^^^
 
@@ -567,6 +571,8 @@ available Chandra calibration information. Thus, only very few |marx|
 parameters are described in this Section. For reference a list of all
 parameters that control the spacecraft model can be found in :ref:`spacecraftpars`.
 
+
+.. _sect-coordsystem:
 
 The |marx| Coordinate System
 ------------------------------
@@ -1134,7 +1140,7 @@ directory.
    observations. Instead, the misalignmens is treated statistically
    using :par:`legdTheta` parameter.
 
-.. _detectormodel::
+.. _sect-detectormodel:
 
 Detector Models
 ---------------

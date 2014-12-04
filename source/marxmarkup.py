@@ -140,7 +140,8 @@ class MARXParIndex(Index):
             # b = 'default'
             # c = value for default from defautl file
             #     (I need to check how MARX determines the default)
-            entries.append([p[1], 0, docname, anchor, 'a', 'b', 'c'])
+            # entries.append([p[1], 0, docname, anchor, 'a', 'b', 'c'])
+            entries.append([p[1], 0, docname, anchor, '', '', ''])
 
         entries = sorted(entries)
         content = []
@@ -169,3 +170,5 @@ def setup(app):
     StandardDomain.roles['par'] = ParRole()
 
     app.add_index_to_domain('std', MARXParIndex)
+    StandardDomain.initial_data['labels']['parindex'] = ('std-parindex', '', 'Marx Parameters')
+    StandardDomain.initial_data['anonlabels']['parindex'] = ('std-parindex', '')

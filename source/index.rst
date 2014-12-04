@@ -37,6 +37,7 @@ Contents:
 Indices and tables
 ==================
 
+* :ref:`parindex`
 * :ref:`genindex`
 * :ref:`search`
 

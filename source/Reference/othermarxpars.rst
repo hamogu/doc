@@ -10,8 +10,168 @@ use.
 However, many parameters are only required for calibration purposes. Their defaults point to a file with calibration
 information that is shipped with |marx| or they set a parameter of the the Chandra geometry.
 Those files typically should not be changed from those default value. These parameters
-are listed here with a short explanation.
+are listed here with a short (or longer) explanation.
 
+Parameter file
+~~~~~~~~~~~~~~
+
+.. parameter:: mode
+   
+   (*default*: ``hl``)
+   Enter mode for parameter file.
+
+
+Output Vectors
+~~~~~~~~~~~~~~
+
+Although users are encouraged to use the default settings for the |marx|
+output, the available options are listed below for completeness:
+
+.. parameter:: OutputVectors
+   
+   (*default*: Produce all possible Output files)
+   This parameter specifies a list of output files that |marx| writes.
+   Each |marx| output file contains information on a given photon property
+   (arrival time, energy, etc.) and each is :math:`N` elements long where
+   :math:`N` is the number of *detected* photons.
+   
+   This parameter is set to a string where each desired output
+   file is represented as a string.
+
+   +--------------+------+------------------------------------------------+
+   | Filename     | Code | Description                                    |
+   +==============+======+================================================+
+   |b_energy.dat  | B    |Detected energy of event [keV]                  |
+   +--------------+------+------------------------------------------------+
+   |detector.dat  | D    |Chip ID (CCD for ACIS or MCP for HRC)           |
+   +--------------+------+------------------------------------------------+
+   |energy.dat    | E    |The true photon energy [keV]                    |
+   +--------------+------+------------------------------------------------+
+   |marx.par      | --   |Updated parameter file                          |
+   +--------------+------+------------------------------------------------+
+   |mirror.dat    | M    |Reflection shell of the HRMA                    |
+   +--------------+------+------------------------------------------------+
+   |obs.par       | --   |Information summary for FITS header             |
+   +--------------+------+------------------------------------------------+
+   |pha.dat       | P    |The pulse height of the detected photon [PHA]   |
+   +--------------+------+------------------------------------------------+
+   |time.dat      | T    |Photon arrival time [sec]                       |
+   +--------------+------+------------------------------------------------+
+   |xcos.dat      | 1    |The X–axis direction cosine of the photon       |
+   +--------------+------+------------------------------------------------+
+   |xpixel.dat    | x    |The X–axis detection pixel                      |
+   +--------------+------+------------------------------------------------+
+   |xpos.dat      | X    |The X–axis position of the photon [mm]          |
+   +--------------+------+------------------------------------------------+
+   |ycos.dat      | 2    |The Y–axis direction cosine of the photon       |
+   +--------------+------+------------------------------------------------+
+   |ypixel.dat    | y    |The Y–axis detection pixel                      |
+   +--------------+------+------------------------------------------------+
+   |ypos.dat      | Y    |The Y–axis position of the photon [mm]          |
+   +--------------+------+------------------------------------------------+
+   |zcos.dat      | 3    |The Z–axis direction cosine of the photon       |
+   +--------------+------+------------------------------------------------+
+   |zpos.dat      | Z    |The Z–axis position of the photon [mm]          |
+   +--------------+------+------------------------------------------------+
+   | **Additional HRC specific files**                                    |
+   +--------------+------+------------------------------------------------+
+   |region.dat    | r    | Detection region on the HRC detector           |
+   +--------------+------+------------------------------------------------+
+   |hrc_u.dat     | --   | The raw HRC U coordinate of the detected event |
+   +--------------+------+------------------------------------------------+
+   | hrc_v.dat    | --   | The raw HRC V coordinate of the detected event |
+   +--------------+------+------------------------------------------------+
+   | **Additional HETG specific files**                                   |
+   +--------------+------+------------------------------------------------+
+   | order.dat    | O    | The diffraction order of the photon            |
+   +--------------+------+------------------------------------------------+
+   | **Additional LETG specific files**                                   |
+   +--------------+------+------------------------------------------------+
+   | ocoarse1.dat | d    | The order of a photon diffracted by the coarse |
+   |              |      | wire support structure of the LETG             |
+   +--------------+------+------------------------------------------------+
+   | ocoarse2.dat | c    | The order of a photon diffracted by the coarse |
+   |              |      | wire support structure of the LETG             |
+   +--------------+------+------------------------------------------------+
+   | ocoarse3.dat | b    | The order of a photon diffracted by the coarse |
+   |              |      | wire support structure of the LETG             |
+   +--------------+------+------------------------------------------------+
+   | ofine.dat    | a    | The order of a photon diffracted by the fine   |
+   |              |      | wire support structure of the LETG             |
+   +--------------+------+------------------------------------------------+
+   | order.dat    | O    | The primary diffraction order of the photon    |
+   +--------------+------+------------------------------------------------+
+   | **Additional Aspect specific files**                                 |
+   +--------------+------+------------------------------------------------+
+   | sky_ra.dat   | S    | The Sky X pixel value                          |
+   +--------------+------+------------------------------------------------+
+   | sky_dec.dat  | S    | The Sky Y pixel value                          |
+   +--------------+------+------------------------------------------------+
+
+   The following table describes the format of the binary output files (Length
+   and Offset are given in bytes):
+
+   +--------+--------+-------------------------------------------------------+
+   | Offset | Length | Interpretation                                        |
+   +========+========+=======================================================+
+   | 0      | 4      | Magic number: 0x83 0x13 0x89 0x8D                     |
+   +--------+--------+-------------------------------------------------------+
+   | 4      | 1      | Data type:                                            |
+   |        |        | - "A" : 8 bit signed integer (character)              |
+   |        |        | - "I" : 16 bit signed integer                         |
+   |        |        | - "J" : 32 bit signed integer                         |
+   |        |        | - "E" : 32 bit float                                  |
+   |        |        | - "D" : 64 bit float                                  |
+   +--------+--------+-------------------------------------------------------+
+   | 5      | 15     | Data column name. If the length of the name is less   |
+   |        |        | than 15 characters, it will be padded with 0. If the  |
+   |        |        | name is 15 characters, there will be no padding.      |
+   +--------+--------+-------------------------------------------------------+
+   | 20     | 4      | Number of Rows                                        |
+   +--------+--------+-------------------------------------------------------+
+   | 24     | 4      | Number of Columns, if 0 it is a vector                |
+   +--------+--------+-------------------------------------------------------+
+   | 28     | 4      | Reserved                                              |
+   +--------+--------+-------------------------------------------------------+
+   | 32     | N      | Data                                                  |
+   +--------+--------+-------------------------------------------------------+
+
+For example, the command::
+
+    unix% marx OutputVectors="ETXYZP"
+
+would run a marx simulation but only print out vectors containing the
+energy, time, focal plane position, and detector pulse height for the
+detected photons. 
+
+These native binary vectors provide convenient access to the individual
+properties of detected photons. For example, to create an ASCII file
+containing only the times and pulse heights for a set of detected
+photons, we can use::
+
+    unix% marx --dump point/time.dat point/pha.dat > list.txt
+    unix% more list.txt
+    #            TIME             PHA
+        3.199424e+00             241
+        3.702556e+00             302
+        3.722314e+00             256
+        4.840378e+00             257
+        5.336663e+00             284
+        6.659723e+00             345
+        7.989861e+00             255
+        1.041432e+01             260
+        1.131393e+01             279
+        1.195770e+01             270
+        1.259386e+01             332
+        1.346374e+01             237
+        1.532549e+01             322
+
+In this example, the marx simulation directory was assumed to be named
+point. Alternatively, for IDL users, :marxtool:`read_marx_file` can be
+used to read these binary output vectors into internal IDL variables.
+These direct means of accessing the properties of detected photons can
+be much more efficient than reading individual columns from the
+equivalent FITS events file, especially for large simulations.
 
 
 
@@ -850,10 +1010,12 @@ The most important parameters that control the dither model are described in
 .. parameter:: DitherAmp_RA
 
    (*default*: `8`)  Amplitude for RA dither (arcsecs)
+   The default is set for ACIS observations. Set this to ``20`` for HRC observations.
 
 .. parameter:: DitherAmp_Dec
 
    (*default*: `8`)  Amplitude for Dec dither (arcsecs)
+   The default is set for ACIS observations. Set this to ``20`` for HRC observations.
 
 .. parameter:: DitherAmp_Roll
 

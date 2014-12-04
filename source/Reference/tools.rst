@@ -77,7 +77,7 @@ Tool                       Description
    in :ref:`running`.
 
 
-   :param parameters: Any |marx| parameter, e.g. :par:`GratingType="HETG"`, see :ref:`marxparsindex`.
+   :param parameters: Any |marx| parameter, e.g. :par:`GratingType="HETG"`, see :ref:`parindex`.
    :param file: For dump options; filename to print
 
    
@@ -347,6 +347,11 @@ with no parameters on the call line.
 .. marxpost:: marx2img [options] <MARXDIR> <FITSFILE>
 
    Converts MARX output to FITS images.
+
+   .. note:: The use of this tool is deprecated. Instead, :marxtool:`marx2fits`
+      should be used to generate an event file, which can be converted into a
+      image using standard CIAO tools like :ciao:`dmcopy`. In this way, the
+      header information of the resulting images matches real Chandra data much better.
 
    This tool converts the contents of a |marx| simulation output directory into a FITS
    image. By default, marx2img will use all detected photons to create the FITS image. Alternatively, 

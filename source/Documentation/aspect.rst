@@ -7,12 +7,12 @@ Simulating Aspect with |marx|
     Motion or change, and identity or rest, are the first and second
     secrets of nature.
 
-       – Ralph Waldo Emerson
+       -- Ralph Waldo Emerson
 
 Introduction
 ^^^^^^^^^^^^
 
-In the course of a normal science observation, the Chandra line–of–sight
+In the course of a normal science observation, the Chandra line-of-sight
 pointing position on the sky moves. This “dither” motion serves several
 purposes including sub-sampling of the point spread function as well as
 averaging over uncertainties in quantum efficiency from detector element
@@ -41,11 +41,11 @@ http://cxc.harvard.edu/contrib/jcm/ncoords.ps.
 
 If dither is selected for the simulation, images created from the CHIP,
 DET, or TDET pixel positions will reflect the motion of the Chandra
-line–of–sight. |marx| also emulates the aspect pipeline and calculates
-aspect–corrected Sky ``X`` and ``Y`` values. These sky pixel values are written
+line-of-sight. |marx| also emulates the aspect pipeline and calculates
+aspect-corrected Sky ``X`` and ``Y`` values. These sky pixel values are written
 to the standard output directory specified by the :par:`OutputDir` parameter in
 the native binary format files ``sky_ra.dat`` and ``sky_dec.dat``. If the
-:marxtool:`marx2fits` post–processing tool is used, the aspected–corrected Sky pixel
+:marxtool:`marx2fits` post-processing tool is used, the aspected-corrected Sky pixel
 values are written to the FITS events file in the ``X`` and ``Y`` columns. For
 simulations with no dither, the FP and Sky coordinate positions are
 equivalent.
