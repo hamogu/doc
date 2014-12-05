@@ -735,7 +735,7 @@ diffraction patterns. The LETG grating model in |marx| includes the
 multiple diffractions due to these support structures. Roughly 10% of
 the detected photons will be diffracted by one or both of these support
 structures. The reader is referred to the
-http://asc.harvard.edu/udocs/docs/POG/MPOG/index.html for more details.
+http://cxc.harvard.edu/proposer/POG/html/chap9.html for more details.
 
 Intersection with the Rowland Torus
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -802,11 +802,11 @@ Let :math:`t` be the solution to the equation :math:`0 = f(t)` and let
 
 .. math::
 
-   \begin{eqnarray}
-      0 &=& f(t) \\
-        &=& f(t_0 + \delta t) \\
-        &=& f(t_0) + \delta t f'(t_0) + \cdots
-   \end{eqnarray}
+   \begin{split}
+      0 = & f(t) \\
+        = & f(t_0 + \delta t) \\
+        = & f(t_0) + \delta t f'(t_0) + \cdots
+   \end{split}
 
 or
 
@@ -831,12 +831,12 @@ From :eq:`quartic`, it follows that
 
 .. math::
 
-   \begin{eqnarray}
-      a &=& 4{\hat{p}}\cdot{\vec{x}}_0 \\
-      b &=& 2|{\vec{x}}|^2 + 4({\hat{p}}\cdot{\vec{x}}_0)^2 - 4R^2(p_x^2 + p_z^2) \\
-      c &=& 4|{\vec{x}}_0|^2 {\hat{p}}\cdot{\vec{x}}_0 - 8R^2 p_z z_0 \\
-      d &=&  |{\vec{x}}_0|^4 - 4R^2 z_0^2
-   \end{eqnarray}
+   \begin{split}
+      a = & 4{\hat{p}}\cdot{\vec{x}}_0 \\
+      b = & 2|{\vec{x}}|^2 + 4({\hat{p}}\cdot{\vec{x}}_0)^2 - 4R^2(p_x^2 + p_z^2) \\
+      c = & 4|{\vec{x}}_0|^2 {\hat{p}}\cdot{\vec{x}}_0 - 8R^2 p_z z_0 \\
+      d = &  |{\vec{x}}_0|^4 - 4R^2 z_0^2
+   \end{split}
 
 where :math:`x_0` has been set to zero in accordance with the
 understanding that **the ray has been projected to the x = 0
@@ -866,11 +866,11 @@ where the components of :math:`\vec{v}'` satisfy
 
 .. math::
 
-   \begin{eqnarray}
-      v_x' &=& v_x \\
-      v_y' &=& v_y \cos\theta + v_z \sin\theta \\
-      v_z' &=& -v_y \sin\theta + v_z\cos\theta.
-   \end{eqnarray}
+   \begin{split}
+      v_x' = & v_x \\
+      v_y' = & v_y \cos\theta + v_z \sin\theta \\
+      v_z' = & -v_y \sin\theta + v_z\cos\theta.
+   \end{split}
 
 At this point :eq:`rotation` could be applied to points on the torus to
 obtain a rotated version of :eq:`eqtorus` and the preceding analysis
@@ -1196,7 +1196,7 @@ The UV/Ion shield configuration of the HRC-S array is slightly more
 complicated and includes four distinct regions each with a unique
 transmission efficiency. For an overview of the HRC–S shield
 configuration see:
-http://hea-www.harvard.edu/HRC/overview/overview.html.
+http://cxc.harvard.edu/proposer/POG/html/chap7.html.
 
 |marx| uses four individual data files to specify the transmission
 of these regions. The central region of the HRC-S UV/Ion shield includes
@@ -1316,8 +1316,7 @@ represented in |marx| by
 Here :math:`E` is the photon energy and :math:`a_0`, :math:`a_1`, and
 :math:`a_2` are constants which have been adjusted to approximately
 reproduce the preliminary XRCF measurements of the HRC redistribution
-function (see http://http://hea-www.harvard.edu/HRC/calib/hrcs_qe.html
-for more details).
+function.
 
 Detector Spatial Resolution
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -1348,7 +1347,7 @@ along the :math:`Z` axis. Above the Cr L and C K edges, the reflectivity
 of the filter is designed to be low, thus suppressing higher order
 photons. `Figure Drake Flat` shows a schematic of the HESF. More details
 on the HESF are available in the
-http://asc.harvard.edu/udocs/docs/POG/MPOG/index.html.
+http://cxc.harvard.edu/proposer/POG/html/chap7.html .
 
 .. figure:: drake.*
    :name: Figure Drake Flat

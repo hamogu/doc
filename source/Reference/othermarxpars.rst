@@ -14,7 +14,6 @@ are listed here with a short (or longer) explanation.
 
 Parameter file
 ~~~~~~~~~~~~~~
-
 .. parameter:: mode
    
    (*default*: ``hl``)
@@ -998,7 +997,7 @@ Flat Field Model Parameters
    (*default*: `10000`) Enter FlatField Aperture X location (mm)
 
 
-.. _internalditherpars:
+.. _sect-internalditherpars:
 
 Dither/Aspect Parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~

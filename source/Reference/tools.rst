@@ -17,17 +17,17 @@ parameters. These parameters are specified with a double-dash, i.e.
 
 
 
-===================== =====================================================================
-Tool                  Description
-===================== =====================================================================
-:marxtool:`marx2dpde` Converts |marx| output to SAOSAC DPDE format
-:marxtool:`marx2fits` Converts |marx| output to a FITS events list
-:marxtool:`marx2img`  Converts |marx| output to a FITS image
-:marxtool:`marxasp`   Creates an aspect solution file for the |marx| internal dither model
-:marxtool:`marxcat`   Concatenates the results of multiple |marx| simulations
-:marxtool:`marxrsp`   Folds a |marx| simulation through a FITS RMF file
-:marxtool:`pileup`    Simulates the effect of pileup in ACIS CCDs
-===================== =====================================================================
+====================== =====================================================================
+Tool                   Description
+====================== =====================================================================
+:marxtool:`marx2dpde`  Converts |marx| output to SAOSAC DPDE format
+:marxtool:`marx2fits`  Converts |marx| output to a FITS events list
+:marxtool:`marx2img`   Converts |marx| output to a FITS image
+:marxtool:`marxasp`    Creates an aspect solution file for the |marx| internal dither model
+:marxtool:`marxcat`    Concatenates the results of multiple |marx| simulations
+:marxtool:`marxrsp`    Folds a |marx| simulation through a FITS RMF file
+:marxtool:`marxpileup`    Simulates the effect of pileup in ACIS CCDs
+====================== =====================================================================
 
 There is also a set of small scripts and helper programs. Most of those are executable files, but some
 are written in a scripting language, such as IDL. 
@@ -52,6 +52,7 @@ Tool                       Description
 :marxtool:`get_hetg_spect` Extract exact HETG spectra for a given simulation.
 :marxtool:`get_letg_spect` Extract exact LETG spectra for a given simulation.
 :marxtool:`make_image`     Make an image from simulation variables.
+:marxtool:`marxflux`       Convert an `ISIS`_ spectrum to a spectral input for |marx|
 :marxtool:`plist`          Prints out parameter files in a readable format.
 :marxtool:`pset`           Sets parameter values in a parameter file.
 :marxtool:`pwhich`         Prints the current search path for parameter files.
@@ -165,7 +166,7 @@ Post–Processing Modules
 
 The |marx| package currently includes 7 post–processing routines to
 work with the contents of a marx output directory. 
-With the exceptions of the :marxtool:`marxasp` and :marxtool:`pileup` tools, each of these
+With the exceptions of the :marxtool:`marxasp` and :marxtool:`marxpileup` tools, each of these
 routines will print a brief summary of their calling options if executed
 with no parameters on the call line. 
 
@@ -293,8 +294,7 @@ with no parameters on the call line.
    Converts MARX output to SAOSAC DPDE format.
 
    This2dpde tool converts the contents of a |marx| simulation output directory into a Mission 
-   Support Team DPDE format, SAOSAC compatible rayfile. The DPDE format is described
-   in the MST SAOSAC documentation available online at: http://hea-www.harvard.edu/MST.
+   Support Team DPDE format, SAOSAC compatible rayfile. 
    Using marx2dpde, users can create rayfiles capable of being processed by the MST’s SAOSAC
    raytrace model. The connections between SAOSAC and MARX are described in more detail
    in :ref:`saosac`. Alternatively, the ``--dump`` option may be used with marx2dpde to print out the
@@ -533,7 +533,7 @@ with no parameters on the call line.
 
    would process only those events which were detected in a 100x100 pixel square centered on the aimpoint of CCD 7.
 
-.. marxpost:: pileup  [parameters]
+.. marxpost:: marxpileup  [parameters]
 
    Simulates the effect of pileup in ACIS CCDs.
 
@@ -563,7 +563,7 @@ with no parameters on the call line.
 
    Examples::
 
-    unix% pileup MarxOutputDir="point"
+    unix% marxpileup MarxOutputDir="point"
     Reading ACIS-I/S FEF File
             /usr/local/src/marx_4.0.8-dist/marx/data/caldb/acisfef.fits
     ***WARNING: Gaussian parameters appear invalid: a region with response <= 0 has been detected.
@@ -844,6 +844,29 @@ Other scripts and helper programs
     IDL> ypos=read_marx_file('./ngc1399/ypos.dat')
     IDL> zpos=read_marx_file('./ngc1399/zpos.dat')
     IDL> im=make_image(ypos,zpos,XBINSIZE=0.024,YBINSIZE=0.024)
+
+.. marxtool:: marxflux [options] isis-par-file flux-file
+
+   Convert a spectrum written to a file by `ISIS`_ to the |marx| spectrum input
+   format.
+
+   :language: ISIS-script
+   :param isis-par-file: may be created using ``save_par`` in `ISIS`_. This optional script may define the model if needed.
+   :param flux-file: Name of output file.
+
+   Options:
+
+      -v    Print version
+      -h    Help message
+      -e    Energy grid (keV). If the energy grid is not specified, ``'[0.03:10:0.001]'`` will be used.
+      -l    Wavelength grid (Angstroms)
+      -s    Script file
+      -b    Integrate the flux over bins
+
+
+   Example::
+   
+       marxflux --energy '[0.01:12.0:0.03]' powerlaw.p flux.dat
 
 
 .. marxtool:: plist pfiles ...

@@ -30,7 +30,6 @@ Simply copy the files from the indicated directory to the current one::
    arfrmf
 
    imaging/powerlaw/powerlaw
-   imaging/pileup/pileup
 
    LETGS
 

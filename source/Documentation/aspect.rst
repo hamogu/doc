@@ -131,7 +131,7 @@ for a simulation which used the |marx| internal dither model. This
 ASPSOL file can be used in conjunction with normal `CIAO`_ tool :ciao:`asphist` to
 produce an aspect histogram file. See :marxtool:`marxasp` for more details.
 
-Set :par:`DitherModel=INTERNAL` and use the parameters described in `internalditherpars`_ in 
+Set :par:`DitherModel=INTERNAL` and use the parameters described in :ref:`sect-internalditherpars` in 
 ``marx.par`` to control the internal dither model.
 
 
