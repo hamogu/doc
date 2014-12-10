@@ -75,7 +75,7 @@ Tool                       Description
    system. marx reads its inputs from an PROS/IRAF–style parameter file
    ``marx.par``. Alternatively, it can accept values for any of its parameters
    on the call line. Detailed instructions for running marx are presented
-   in :ref:`running`.
+   in :ref:`sect-runningmarx`.
 
 
    :param parameters: Any |marx| parameter, e.g. :par:`GratingType="HETG"`, see :ref:`parindex`.

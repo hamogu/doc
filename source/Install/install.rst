@@ -98,11 +98,9 @@ the next step.  For example, this may require temporarily becoming the
 
     make install
 
-to complete the installation.  As indicated above, the |marx|
-executable will be copied to ``/opt/marx/marx-fullversion/bin/``.  As
-such, it is recommended this directory be added to the user's
-``PATH`` environment variable.  The install step will create the
-following directories:
+to complete the installation. 
+
+The install step will create the following directories:
 
 ``/opt/marx/marx-fullversion/bin/``
     Directory where |marx|, :marxtool:`marx2fits`, and other |marx| -related executables are placed.
@@ -125,12 +123,23 @@ following directories:
 ``/opt/marx/marx-fullversion/lib/marx/``
     Contains miscellaneous |marx| -related tools.
 
+As indicated above, the |marx| executable will be copied to ``/opt/marx/marx-fullversion/bin/``.
+In addition, the |marx| installation contains some other tools described in
+:ref:`tools`.
+Binary executables for those tools are located in the same directory as |marx|
+itself. Tools that are written as scripts in python, ISIS or IDL can be found
+in ``/opt/marx/marx-version/lib/marx/``.
+Both directories should be added to the user's ``PATH`` environment variable.
+For e.g. a tcsh shell user add the following line to your ``~/.cshrc`` file::
+
+  set path = ( /opt/marx/marx-version/bin /opt/marx/marx-version/lib/marx $path )
+
 As the above indicates, the |marx| data files will be copied to the
-``/opt/marx/marx-fullversion/share/marx/data/`` directory.  |marx| will
+``/opt/marx/marx-version/share/marx/data/`` directory.  |marx| will
 automatically search this directory for calibration files.  Also note
 that the parameter files will be placed under
-``/opt/marx/marx-fullversion/share/marx/pfiles/``.  As a helpful reminder, this
-location is reported when \marx is invoked as ``marx --help``.
+``/opt/marx/marx-version/share/marx/pfiles/``.  As a helpful reminder, this
+location is reported when |marx| is invoked as ``marx --help``.
 
 The parameter files are **NOT** automatically loaded by |marx| unless the ``UPARM`` or ``PFILES`` environment variables are set appropriately.  For this
 reason, it is recommended that the user copy these files to the

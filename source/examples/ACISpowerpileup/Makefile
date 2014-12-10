@@ -4,36 +4,37 @@ include ${CONFIG}
 
 all: plawfit.png plawpileupfit.png plaw_evt2.fits
 
-run_marx.sh: ${CONFIG} inc/runmarx.inc inc/runmarx2fits.inc inc/runmarxasp.inc
+# convert pictures
+%.png: %.ps
+	convert -rotate 90 $< $@
+#
+# run first part of example
+#
+run_marx.sh: ${CONFIG} runmarx.inc runmarx2fits.inc runmarxasp.inc
 	touch ./run_marx.sh
 plaw_evt2.fits: ${CONFIG} plawflux.tbl run_marx.sh
 	./run_marx.sh
 plaw.p: ${CONFIG}
-	$(ISIS) ./isismodel.sl
+	$(ISISSCRIPT) ./isismodel.sl
 plawflux.tbl: ${CONFIG} plaw.p
-	$(MARXFLUX) -e '[0.3:12.0:0.003]' plaw.p plawflux.tbl
-#	./marxflux -e '[0.59:0.61:0.0001]' plaw.p plawflux.tbl
+	./run_marxflux.sh
 plaw_pha.fits: ${CONFIG} plaw_evt2.fits plaw_ciao.sh runciaotool.sh
 	./runciaotool.sh ./plaw_ciao.sh
 plawfit.ps: plaw_pha.fits isisfit.sl
-	$(ISIS) ./isisfit.sl
-plawfit.png: plawfit.ps
-	ps2png plawfit
+	$(ISISSCRIPT) ./isisfit.sl
 #
 # Pileup
 #
-run_marxpileup.sh: inc/runmarxpileup.inc inc/runmarx2fitspileup.inc
+run_marxpileup.sh: runmarxpileup.inc runmarx2fitspileup.inc
 	touch ./run_marxpileup.sh
 plaw_pileup_evt2.fits: run_marxpileup.sh plaw/energy.dat
 	./run_marxpileup.sh
 plaw_pileup_pha.fits: pileup_ciao.sh plaw_pileup_evt2.fits
 	./runciaotool.sh ./pileup_ciao.sh
-isispileup.sl: inc/isispileup*.inc
+isispileup.sl: isispileup*.inc
 	touch isispileup.sl
 plawpileupfit.ps: plaw_pileup_pha.fits isispileup.sl
-	$(ISIS) ./isispileup.sl
-plawpileupfit.png: plawpileupfit.ps
-	ps2png plawpileupfit
+	$(ISISSCRIPT) ./isispileup.sl
 #
 #
 #
@@ -44,6 +45,6 @@ distclean: clean
 	  plawfit.png plawfit.ps plawflux.tbl plaw \
 	  plaw_arf.fits plaw_asol1.fits plaw_asp.fits plaw_evt2.fits \
 	  plaw_pha.fits plaw_pileup_evt2.fits plaw_pileup_pha.fits \
-	  plaw_rmf.fits marxasp.par marx.par marxpileup.par
+	  plaw_rmf.fits marxasp.par marx.par marxpileup.par fit_search* plaw.p
 #
 .PHONY: all

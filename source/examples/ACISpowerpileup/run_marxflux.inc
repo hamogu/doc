@@ -1,0 +1,1 @@
+marxflux -e '[0.3:12.0:0.003]' plaw.p plawflux.tbl

@@ -20,25 +20,26 @@ such a file is to make use of a spectral modeling program such as `ISIS`_,
 `Sherpa`_ or `XSpec`_.   The rest of this tutorial is given in the context of
 `ISIS`_.
 
-In `ISIS`_ the absorbed powerlaw model is specified using::
+In `ISIS`_ the absorbed powerlaw model is specified using:
 
-    isis> fit_fun("phabs(1)*powerlaw(1)");
-    isis> set_par(1, 1);
-    isis> set_par(2, 0.001);
-    isis> set_par(3, 1.8);
-    isis> list_par;
+.. include:: isismodel.sl
+   :code:
+
+The model parameters lists by `ISIS`_ should look like this::
+
     phabs(1)*powerlaw (1)
      idx  param             tie-to  freeze         value         min         max
       1  phabs(1).nH            0     0                1           0      100000  10^22
       2  powerlaw(1).norm       0     0            0.001           0        0.01  
       3  powerlaw(1).PhoIndex   0     0              1.8           1           3  
-    isis> save_par ("plaw.p");
+
 
 The next step is to convert the parameter file ``plaw.p`` to the
 spectrum file that |marx| expects.  The :marxtool:`marxflux` script may be used to
-create a file called :download:`plawflux.tbl` in the appropriate format via::
+create a file called :download:`plawflux.tbl` in the appropriate format via:
 
-     unix% ./marxflux -e '[0.3:14.0:0.003]' plaw.p plawflux.tbl
+.. include:: run_marxflux.inc
+   :code:
 
 This script requires `ISIS`_ to be installed and linked to at least
 version 2.1 of the `S-Lang`_ library.  (|marx| is distributed with a
@@ -205,7 +206,7 @@ interval on the powerlaw index is from 1.59 to 1.62.
 Suspecting that this observation suffers from pileup, we enable the
 `ISIS`_ pileup kernel, which introduces a few additional parameters:
 
-.. include:isispileup2.inc
+.. include:: isispileup2.inc
    :code:
 
 which gives::
@@ -225,6 +226,7 @@ off-axis angle and spectral shape, we will allow it to vary during the
 fit:
 
 .. include:: isispileup2b.inc
+   :code:
 
 As before, the ``fit_counts`` command may be used to compute the best
 fit parameters.  However, the parameter space in the context of the
@@ -239,6 +241,7 @@ minimum and maximum parameter values.  Before starting, let's set
 the powerlaw normalization's maximum value to something reasonable:
 
 .. include:: isispileup3.inc
+   :code:
 
 The above produces::
 
@@ -260,6 +263,7 @@ the fits in parallel by distributing the computations across the
 available CPU cores.
 
 .. include:: isispileup3b.inc
+   :code:
 
 This gives::
 
