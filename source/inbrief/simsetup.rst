@@ -31,6 +31,7 @@ parameter file search path.
 ``marx.par``.  An alternative parameter file may be specified by
 prefixing the file name with ``@@`` and using the resulting expression
 as argument on the command line, e.g.,
+::
 
     unix% marx  @@/home/user/simulations/marx_cluster.par
 
@@ -189,10 +190,6 @@ Focal plane detectors
    the last simulated element, either the HRMA or the gratings
    if included. This option is useful for producing rayfiles which
    can be run through |marx| again e.g. using different detectors.
-
-   The Chandra flight focal plane layout is shown schematically in Figure :ref:`fig-chipmap`.
-
-   .. _fig-chipmap:
 
    .. figure:: ../Reference/chipmap.*
       :height: 250 px       
@@ -424,7 +421,7 @@ conversion of an integer pixel coordinate to a real-valued one).  The
 user has some control over the form of the randomization blur via the
 :marxtool:`marx2fits` ``--pixadj`` option.
 
-Figure :ref:`fig-ditherexp` shows an example of a simulated
+Figure :ref:`dither <fig-ditherexp>` shows an example of a simulated
 ACIS-I observation of a cluster of galaxies with and without
 aspect motion included.
 
@@ -432,6 +429,7 @@ aspect motion included.
 
 .. figure:: dither_exp.*
    :alt: Example of ACIS-I simulation with and without dither
+   :align: center
 
    Simulation showing the effects of the internal dither model in |marx|.
    The panel on the left shows a simulated ACIS-I observation of
@@ -440,7 +438,7 @@ aspect motion included.
    with |marx|'s INTERNAL dither model turned on.
    Note how the aspect motion has blurred the ACIS chip gaps
    but *not* the cluster image since aspect correction has been
-   applied to the Sky coordinates displayed here.}
+   applied to the Sky coordinates displayed here.
 
 
 The functional form of the motion model is described in

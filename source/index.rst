@@ -23,15 +23,11 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
-   Install/install
-   ReleaseNotes/news
-   Documentation/docs
+   inbrief/overview
    examples/examples
-   Caveats/caveats
-   FAQ/faqs
+   indetail/docs
 
-   Reference/tools
-   Reference/othermarxpars
+   Reference/reference
 
 
 Indices and tables

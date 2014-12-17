@@ -15,7 +15,7 @@ In this section, we will discuss how to use the :marxtool:`marxpileup` tool in
 |marx| to simulate the effects on Chandra data of photon pileup in the
 ACIS CCDs. As a post-processing module, the :marxtool:`marxpileup` tool is designed to
 work with existing |marx| simulations. Users first create a simulation
-using marx :ref:`sect-simsetup` and then, if necessary, run
+using marx :ref:`sect-runningmarx` and then, if necessary, run
 pileup on the results of that simulation to study pileup effects. In
 this manner, users simulating faint or extended sources which are less
 susceptible to pileup can produce |marx| simulations more quickly. We
