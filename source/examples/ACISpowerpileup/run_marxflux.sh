@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. ../config/config.inc
+. ../config.inc
 PATH="$MARXLIB:$PATH"
 
 . ./run_marxflux.inc

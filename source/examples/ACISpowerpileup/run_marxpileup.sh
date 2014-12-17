@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. ../config/config.inc
+. ../config.inc
 PATH="$MARXPREFIX/bin:$PATH"
 
 . ./runmarxpileup.inc

@@ -42,6 +42,7 @@ Any |marx| parameters may be set on the command line via the syntax::
 
 The program will prompt for a parameter's value if VALUE is not
 specified, e.g.,
+::
 
     unix% marx DetectorType=
     Reading HRMA optical constants:
@@ -198,12 +199,12 @@ Focal plane detectors
       :align: center
       :name: Chip map
 
-       Layout of Chandra flight focal plane detectors.
-       The chips are numbered with their standard Chandra identifications.
-       Note, the ACIS-I nominal aimpoint falls on chip 3 while the aimpoint
-       for the ACIS-S array corresponds to chip 7. For the HRC-S, the
-       nominal aimpoint is near the center of MCP 1. The sizes of the MCPs
-       and CCDs are drawn roughly to scale, the detector separations and chip gaps are not.
+      Layout of Chandra flight focal plane detectors.
+      The chips are numbered with their standard Chandra identifications.
+      Note, the ACIS-I nominal aimpoint falls on chip 3 while the aimpoint
+      for the ACIS-S array corresponds to chip 7. For the HRC-S, the
+      nominal aimpoint is near the center of MCP 1. The sizes of the MCPs
+      and CCDs are drawn roughly to scale, the detector separations and chip gaps are not.
 
    |marx| automatically places the SIM in the appropriate position
    such that the center of the source coincides with the
@@ -560,7 +561,7 @@ we can use::
 
 In this example, the |marx| simulation directory was assumed
 to be named "point". Alternatively, for IDL users, the routine
-:marxtool:`READ_MARX_FILE can be used to read these binary output vectors
+:marxtool:`read_marx_file` can be used to read these binary output vectors
 into internal IDL variables.
 These direct means of accessing the properties of detected photons
 can be much more efficient than reading individual columns from

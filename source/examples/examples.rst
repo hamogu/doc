@@ -31,10 +31,6 @@ Simply copy the files from the indicated directory to the current one::
 
    ACISpowerpileup/powerlaw
 
-   LETGS
-
-   HETG/thermal/thermal
-   HETG/powerlaw/powerlaw
 
 
 
