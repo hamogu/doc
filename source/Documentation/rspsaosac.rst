@@ -90,7 +90,7 @@ description of all options.
 
 
 Note, marxrsp cannot be used to process the output products of the
-:marxtool:`pileup` tool. marxrsp uses the binary output vector ``energy.dat`` to compute
+:marxtool:`marxpileup` tool. marxrsp uses the binary output vector ``energy.dat`` to compute
 the new PHA value for an event. However, the events produced by the
 pileup tool are potentially the sum of multiple photons and therefore
 their true energies are unknown.

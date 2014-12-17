@@ -4,12 +4,16 @@
 Further |marx| parameters
 ==========================
 |marx| accepts a larger number of parameters. Only a small fraction of those is needed by the average |marx| user and those
-parameters are explained in detail in this manual. For each parameter, :ref:`genindex` links to the section that explains its
-use. 
+parameters are explained in detail in this manual. For each parameter,
+:ref:`genindex` links to the section that explains its use. 
 
 However, many parameters are only required for calibration purposes. Their defaults point to a file with calibration
 information that is shipped with |marx| or they set a parameter of the the Chandra geometry.
-Those files typically should not be changed from those default value. These parameters
+Those files typically should not be changed from those default value. 
+Other parameters are only of historical interest (e.g. :par:`dNumRays`
+optimizes |marx| for computers with less then 50 MB of memory).
+
+These parameters
 are listed here with a short (or longer) explanation.
 
 Parameter file
@@ -18,6 +22,40 @@ Parameter file
    
    (*default*: ``hl``)
    Enter mode for parameter file.
+
+
+Simulation control
+~~~~~~~~~~~~~~~~~~
+.. parameter:: dNumRays
+
+   (*default*: 50000)
+   This parameter determines the number of rays per iteration which will be used.
+   This parameter is only of historical interest. It was used for computers
+   with less than about 50 MB of memory.
+
+.. parameter:: DumpToRayFile
+
+   (*default*: ``no``) Dump output to |marx| rayfile?
+
+.. parameter:: SourceDistance
+
+   (*default* 0) Source distance in meters (`0` means infinite).
+   |marx| can also simulate photons from a source at a finite
+   distance. This functionality is useful for XRCF simulations
+   where the X-ray source was not at infinity.
+   Non-astronomical sources can be specified using the
+   ``SourceDistance`` parameter which sets the distance
+   between the source and the front aperture of the HRMA in meters.
+
+
+.. parameter:: DetOffsetY
+
+   (*default*: 0) Offset in mm from the nominal on-axis, in-focus SIM position.
+
+   For simulating flight behavior, the user should note that
+   ``DetOffsetY=0`` always as Y axis translation of the flight
+   SIM is not permitted.
+
 
 
 Output Vectors
@@ -972,6 +1010,7 @@ HESF Model Parameters
 
    (*default*: `0`) Enter the angle of HESF 4 (degrees)
 
+.. _sect-flatfieldparameters:
 
 Flat Field Model Parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -154,7 +154,7 @@ Building marxrsp
 ~~~~~~~~~~~~~~~~
 
 The above procedure will compile the majority of the programs in the
-|marx| suite. The exceptions are the :marxtool:`marxrsp` and :marxtool`rspdump` tools which
+|marx| suite. The exceptions are the :marxtool:`marxrsp` and :marxtool:`rspdump` tools which
 allows users to work with user provided FITS response matrix file (RMF).
 In order to compile :marxtool:`marxrsp` and :marxtool:`rspdump`, you will need to obtain and
 install the CFITSIO library if you do not already have it installed on

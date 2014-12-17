@@ -7,7 +7,7 @@ Models for the X-ray source
 be either on or off–axis. The sources can have a flat energy spectrum or
 they can use an energy spectrum supplied by the user. For even more
 flexibility, |marx| has the ability to dynamically link to
-user-defined source models. The following wouces are current available:
+user-defined source models. The following sources are currently available:
 
 - ``POINT``: Point Source
 - ``GAUSS``: Radially symmetric Gaussian
@@ -608,7 +608,7 @@ taken from those documents.
 .. index::
    single: HRMA
 
-.. _HRMA:
+.. _sect-HRMA:
 
 HRMA model
 ----------
@@ -977,7 +977,7 @@ angle. Let :math:`{\vec{p}_{\perp}}` denote the projection of
 
 .. figure:: diffract.*
    :align: center
-   :name: Figure Diffrection in a plane
+   :name: Figure Diffraction in a plane
 
    Diffraction in the :math:`(n, d)` plane. Here :math:`\theta` is the angle the projection of the incoming
    ray onto the :math:`\hat{d}\hat{n}` plane  makes with respect to the normal, and :math:`\theta` is the angle between the normal and

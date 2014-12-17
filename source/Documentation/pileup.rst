@@ -11,11 +11,11 @@ Simulating ACIS Pileup with |marx|
 Introduction
 ------------
 
-In this section, we will discuss how to use the :marxtool:`pileup` tool in
+In this section, we will discuss how to use the :marxtool:`marxpileup` tool in
 |marx| to simulate the effects on Chandra data of photon pileup in the
-ACIS CCDs. As a post-processing module, the :marxtool:`pileup` tool is designed to
+ACIS CCDs. As a post-processing module, the :marxtool:`marxpileup` tool is designed to
 work with existing |marx| simulations. Users first create a simulation
-using marx :ref:`running` and then, if necessary, run
+using marx :ref:`sect-simsetup` and then, if necessary, run
 pileup on the results of that simulation to study pileup effects. In
 this manner, users simulating faint or extended sources which are less
 susceptible to pileup can produce |marx| simulations more quickly. We
@@ -114,7 +114,7 @@ is referred to :ciao:`acis_pileup`.
 Overview of the pileup Tool
 ---------------------------
 
-The :marxtool:`pileup` tool implements the pileup algorithm developed by John Davis
+The :marxtool:`marxpileup` tool implements the pileup algorithm developed by John Davis
 (MIT). This same algorithm has been implemented into the `ISIS`_,
 `SHERPA`_, and `XSPEC`_ spectral fitting packages. While this implementation
 of the pileup algorithm emulates most of the qualitative effects of ACIS
