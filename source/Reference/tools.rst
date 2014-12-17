@@ -942,15 +942,7 @@ Other scripts and helper programs
    :param reserv: Reserved space
    :param magic: Magic number
 
-   Example 1: Calling Sequence::
-
-       IDL>y=read_marx_file()
-       % Compiled module: READ_MARX_FILE.
-       CALLING SEQUENCE:
-       array=read_marx_file(inpfile[,type,name,rlen,clen,reserv,magic])
-       IDL>
-
-   Example 2::
+   Example::
 
        IDL> ypos=read_marx_file(’./ngc1399/ypos.dat’)
        
