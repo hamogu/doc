@@ -1,5 +1,9 @@
 .. _sect-runningmarx:
 
+--------------------------
+Running |marx| simulations
+--------------------------
+
 The |marx| Parameter File
 =========================
 
@@ -13,8 +17,6 @@ In practice, most typical science simulations can be defined and
 controlled with less than 10.
 Template |marx| parameter files are included as part of the distribution
 and can be found in the top level of the source directory.
-Section~\ref{chap:parameters} reproduces the user configurable
-portion of a typical |marx| parameter file.
 The tool :marxtool:`plist` can be used to print the contents
 of ``marx.par`` in a more readable format while :marxtool:`pset` can
 be used to set the values of specific parameters.
@@ -577,13 +579,11 @@ event quantities such as pixel position, pulse height, time, etc.
 In addition, columns are created in the FITS binary events table
 for the various "simulation" variables (true photon energy,
 dispersed order, mirror reflection shell, etc.).
-This format conforms to the standards defined in the CXC ACIS L1 and
-HRC L1 Event ICDs \cite{acis1_99}\cite{hrc1_99}.
 |marx| event files can be used transparently
 with the `CIAO`_ extraction tools as well as XSELECT in the
-`FTOOLS <http://heasarc.gsfc.nasa.gov/docs/software/ftools>`
+`FTOOLS <http://heasarc.gsfc.nasa.gov/docs/software/ftools>`_
 software suite available from
-`HEASARC <http://heasarc.gsfc.nasa.gov>`.
+`HEASARC <http://heasarc.gsfc.nasa.gov>`_.
 
 Combining multiple |marx| Simulations
 =====================================

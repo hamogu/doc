@@ -268,15 +268,36 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'default'
+html_theme = 'marxwebtheme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-#html_theme_options = {}
+html_theme_options = {"stickysidebar": "true",
+    # footerbgcolor (CSS color): Background color for the footer line.
+    # footertextcolor (CSS color): Text color for the footer line.
+    #"sidebarbgcolor" : "#CCF4EC",
+    # sidebarbtncolor (CSS color): Background color for the sidebar collapse button (used when collapsiblesidebar is true).
+    #"sidebarlinkcolor":"#3F62AD",
+    #"sidebartextcolor":"#4b6661",
+    # relbarbgcolor (CSS color): Background color for the relation bar.
+    # relbartextcolor (CSS color): Text color for the relation bar.
+    # relbarlinkcolor (CSS color): Link color for the relation bar.
+    # bgcolor (CSS color): Body background color.
+    #"textcolor": '#4b6661',
+    #"linkcolor": '#3F62AD',
+    # visitedlinkcolor (CSS color): Body color for visited links.
+    # headbgcolor (CSS color): Background color for headings.
+    #"headtextcolor" : '#4b6661',
+    # headlinkcolor (CSS color): Link color for headings.
+    # codebgcolor (CSS color): Background color for code blocks.
+    # codetextcolor (CSS color): Default text color for code blocks, if not set differently by the highlighting style.
+                    #  "bodyfont": '"Helvetica Neue", Helvetica, Arial, sans-serif',
+#    "headfont" : '"Helvetica Neue", Helvetica, Arial, sans-serif',
+    }
 
 # Add any paths that contain custom themes here, relative to this directory.
-#html_theme_path = []
+html_theme_path = [ '.']
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
@@ -297,7 +318,7 @@ html_theme = 'default'
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = ['marxwebtheme/_static']
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied

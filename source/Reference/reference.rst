@@ -5,6 +5,6 @@
 .. toctree::
    :maxdepth: 1
 
-   faq
+   faqs
    tools
    othermarxpars

@@ -16,5 +16,7 @@ See the :ref:`examples` for links to useful |marx| examples.
 
    pileup
    aspect
-   rspsaosac
+   rsp
+   saosac
    models
+   hardwaremodel
