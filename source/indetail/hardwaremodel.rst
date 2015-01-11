@@ -67,7 +67,7 @@ function tables. This model does not include any of the detailed
 characterization of the mirror such as misalignments, tilts, etc.
 present in the either the ``HRMA`` model or SAOSAC. The ``EA-MIRROR`` is limited
 to simulation of on-axis point sources. Use of the various spatial
-models listed in `spatial distribution of the simulated source`_ requires the ``HRMA`` model in
+models listed in :ref:`sect-sourcemodels` requires the ``HRMA`` model in
 |marx| . The remainder of this discussion refers to the ``HRMA`` model
 which is the default model.
 
