@@ -10,12 +10,10 @@ from docutils.parsers.rst import directives
 
 from sphinx import addnodes
 from sphinx.roles import XRefRole
-from sphinx.domains import Domain, ObjType, Index
+from sphinx.domains import ObjType, Index
 from sphinx.directives import ObjectDescription
-from sphinx.util.nodes import make_refnode
-from sphinx.util.compat import Directive
-from sphinx.util.docfields import Field, GroupedField, TypedField
-from sphinx.domains.std import GenericObject, Target, StandardDomain
+from sphinx.util.docfields import TypedField
+from sphinx.domains.std import GenericObject, StandardDomain
 
 
 class MARXtool(ObjectDescription):
@@ -51,7 +49,7 @@ class MARXtool(ObjectDescription):
         # reqired parameters, keywords, optional arguments etc.
         # This would be very hard, since we would have to cover the syntax
         # of shell, IDL, S-Lang, ...
-        # For our output all we want to attach it to the name in
+        # For our output all we want is to attach it to the name in
         # reasonable formatting.
         arglist = sig[len(name):]
 
@@ -122,7 +120,7 @@ class ParRole(XRefRole):
 
 class MARXParIndex(Index):
     """
-    Index subclass to provide the Python module index.
+    Index subclass to provide the MARX Parameter index.
     """
 
     name = 'parindex'
@@ -138,12 +136,13 @@ class MARXParIndex(Index):
             # can use this for more info, e.g.
             # a = one line description of par
             # b = 'default'
-            # c = value for default from defautl file
+            # c = value for default from default file
             #     (I need to check how MARX determines the default)
             # entries.append([p[1], 0, docname, anchor, 'a', 'b', 'c'])
             entries.append([p[1], 0, docname, anchor, '', '', ''])
-
-        entries = sorted(entries)
+        # sort alphabetically, without "key" upper and lower case would
+        # be separate
+        entries = sorted(entries, key=lambda x: x[0][0].upper())
         content = []
         # key can be anything!
         for k, g in groupby(entries, key=lambda x: x[0][0].upper()):
