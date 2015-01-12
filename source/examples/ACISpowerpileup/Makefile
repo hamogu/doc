@@ -18,8 +18,8 @@ plaw.p: ${CONFIG}
 	$(ISISSCRIPT) ./isismodel.sl
 plawflux.tbl: ${CONFIG} plaw.p
 	./run_marxflux.sh
-plaw_pha.fits: ${CONFIG} plaw_evt2.fits plaw_ciao.sh runciaotool.sh
-	./runciaotool.sh ./plaw_ciao.sh
+plaw_pha.fits: ${CONFIG} plaw_evt2.fits plaw_ciao.sh ../runciaotool.sh
+	../runciaotool.sh ./plaw_ciao.sh
 plawfit.ps: plaw_pha.fits isisfit.sl
 	$(ISISSCRIPT) ./isisfit.sl
 #
@@ -30,7 +30,7 @@ run_marxpileup.sh: runmarxpileup.inc runmarx2fitspileup.inc
 plaw_pileup_evt2.fits: run_marxpileup.sh plaw/energy.dat
 	./run_marxpileup.sh
 plaw_pileup_pha.fits: pileup_ciao.sh plaw_pileup_evt2.fits
-	./runciaotool.sh ./pileup_ciao.sh
+	../runciaotool.sh ./pileup_ciao.sh
 isispileup.sl: isispileup*.inc
 	touch isispileup.sl
 plawpileupfit.ps: plaw_pileup_pha.fits isispileup.sl

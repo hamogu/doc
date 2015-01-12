@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. ../config/config.inc
+. ../config.inc
 PATH="$MARXPREFIX/bin:$PATH"
 
 cp $MARXPREFIX/share/marx/pfiles/*.par .
