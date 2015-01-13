@@ -1,5 +1,5 @@
 #-*-sh-*--------------------------------------------------------------------
-# MIT MARX Simulator Parameter file       Flight / Version 4.4 (Jan 2009)
+# MIT MARX Simulator Parameter file       Flight / Version 5.0 (Jan 2012)
 #----------------------------------------------------------------------------
 #
 # Simulation setup and control
@@ -105,11 +105,10 @@ UserSourceArgs,s,a,"pnts.dat",,,"Enter user source parameter"
 #
 # SAOSAC Source parameters
 # 
-#      This option allows SAOSAC FITS raytrace files to read.
+#      This option allows SAOSAC FITS raytrace files to be used.
 #
 SAOSACFile,s,a,"saosac.fits",,,"Enter marx input source/output ray filename"
-SAOSAC_Color_Rays,b,a,no,,,"Color SAOSAC rays?"
-SAOSAC_Scale_Wgts,b,h,no,,,"Should SAOSAC ray weights be rescaled?"
+SAOSAC_Color_Rays,b,a,no,,,"This option is no longer supported"
 #---------------------------------------------------------------------------
 #
 # Dither/Aspect Parameters
@@ -305,10 +304,11 @@ LETG_Shell1_Vig,r,h,1.0,,,"Enter grating vignetting for shell 1"
 LETG_Shell3_Vig,r,h,1.0,,,"Enter grating vignetting for shell 3"
 LETG_Shell4_Vig,r,h,1.0,,,"Enter grating vignetting for shell 4"
 LETG_Shell6_Vig,r,h,1.0,,,"Enter grating vignetting for shell 6"
-LETG_Shell1_Theta,r,a,-7.0e-2,,,"Enter dispersion angle for shell 1 (degrees)"
-LETG_Shell3_Theta,r,a,-7.0e-2,,,"Enter dispersion angle for shell 3 (degrees)"
-LETG_Shell4_Theta,r,a,-7.0e-2,,,"Enter dispersion angle for shell 4 (degrees)"
-LETG_Shell6_Theta,r,a,-7.0e-2,,,"Enter dispersion angle for shell 6 (degrees)"
+LETG_Shell1_Theta,r,a,0.07,,,"Enter dispersion angle for shell 1 (degrees)"
+LETG_Shell3_Theta,r,a,0.07,,,"Enter dispersion angle for shell 3 (degrees)"
+LETG_Shell4_Theta,r,a,0.07,,,"Enter dispersion angle for shell 4 (degrees)"
+LETG_Shell6_Theta,r,a,0.07,,,"Enter dispersion angle for shell 6 (degrees)"
+LETG_ACIS_dTheta,r,a,-0.0867,,,"Enter aspect/focalplane misaligment induced dtheta for LETG/ACIS (degrees)"
 LETG_Shell1_dTheta,r,a,0.617,,,"Enter shell 1 grating alignment error (sigma in arcmin)"
 LETG_Shell3_dTheta,r,a,0.617,,,"Enter shell 3 grating alignment error (sigma in arcmin)"
 LETG_Shell4_dTheta,r,a,0.617,,,"Enter shell 4 grating alignment error (sigma in arcmin)"
@@ -337,7 +337,7 @@ hegdPoverP,r,h,146e-6,0,1.0,"Enter HEG dP/P"
 hegBarHeight,r,h,0.4896,0.0,,"Enter HEG bar height (um)"
 hegBarWidth,r,h,0.1177,0.0,,"Enter HEG bar width (um)"
 hegNumOrders,i,h,23,0,100,"Enter HEG num orders (2n+1)"
-hegTheta,r,h,-5.18,-90,90,"Enter HEG dispersion angle (degrees)"
+hegTheta,r,h,-5.205,-90,90,"Enter HEG dispersion angle (degrees)"
 hegdTheta,r,h,1.5,,,"Enter HEG alignment error (sigma in arcmin)"
 #---------------------------------------------------------------------------
 #
@@ -354,7 +354,7 @@ megdPoverP,r,h,162e-6,0,1.0,"Enter MEG dP/P"
 megBarHeight,r,h,0.3780,0.0,,"Enter MEG bar height (um)"
 megBarWidth,r,h,0.2161,0.0,,"Enter MEG bar width (um)"
 megNumOrders,i,h,23,0,100,"Enter MEG num orders (2n+1)"
-megTheta,r,h,4.75,,,"Enter MEG dispersion angle (degrees)"
+megTheta,r,h,4.755,,,"Enter MEG dispersion angle (degrees)"
 megdTheta,r,h,1.5,-90,90,"Enter MEG alignment error (sigma in arcmin)"
 #---------------------------------------------------------------------------
 #
@@ -370,11 +370,11 @@ legPeriod,r,h,0.991216,0.1,,"Enter LEG period (um)"
 legdPoverP,r,h,8.67592e-5,0,1.0,"Enter LEG dP/P"
 legBarHeight,r,h,0.4615,0.0,,"Enter LEG bar height (um)"
 legBarWidth,r,h,0.5566,0.0,,"Enter LEG bar width (um)"
-legTheta,r,h,-0.7,-90,90,"Enter LEG dispersion angle (degrees)"
+legTheta,r,h,0.07,-90,90,"Enter LEG dispersion angle (degrees)"
 legdTheta,r,h,1.4,,,"Enter LEG alignment error (sigma in arcmin)"
 legNumOrders,i,h,41,0,100,"Enter LEG num orders (2n+1)"
 legFineNumOrders,i,h,19,0,100,"Enter LETG Fine Grating num orders (2n+1)"
-legCoarseNumOrders,i,h,11,0,100,"Enter LETG Coarse Grating num orders (2n+1)"
+legCoarseNumOrders,i,h,121,0,127,"Enter LETG Coarse Grating num orders (2n+1)"
 legFineBarHeight,r,h,2.5,0.0,,"Enter LEG fine bar height (um)"
 legFineBarWidth,r,h,2.5,0.0,,"Enter LEG fine bar width (um)"
 legFinePeriod,r,h,25.4,0.1,,"Enter LEG fine period (um)"
@@ -431,7 +431,24 @@ ACIS-I3-FilterFile,f,h,"acis/acis_i_xray_trans_1198.dat",,,"Enter ACIS Chip 3 OB
 # HRC-I setup
 #
 #---------------------------------------------------------------------------
-HRC-I-BlurSigma,r,h,0.0077,0,,"Enter HRC-I pixel Blur (RMS mm)"
+# The blur parameters were extracted from
+#   <http://cxc.harvard.edu/twiki/bin/view/HrcCal/DetectorPSF>.
+# The (Xctr,Yctr) are offset at runtime such that (G1Xctr,G1Yctr)=(0,0).
+#
+HRC-I-BlurG1FWHM,r,h,13.8994,0,,"HRC-I Gauss1 FWHM (1/4 pixels)"
+HRC-I-BlurG1Xctr,r,h,64.1124,0,,"HRC-I Gauss1 Xctr (1/4 pixels)"
+HRC-I-BlurG1Yctr,r,h,64.5285,0,,"HRC-I Gauss1 Yctr (1/4 pixels)"
+HRC-I-BlurG1Amp,r,h,15.7528,0,,"HRC-I Gauss1 Amp"
+HRC-I-BlurG2FWHM,r,h,4.25636 ,0,,"HRC-I Gauss2 FWHM (1/4 pixels)"
+HRC-I-BlurG2Xctr,r,h,61.35,0,,"HRC-I Gauss2 Xctr (1/4 pixels)"
+HRC-I-BlurG2Yctr,r,h,64.178,0,,"HRC-I Gauss2 Yctr (1/4 pixels)"
+HRC-I-BlurG2Amp,r,h,5.19162,0,,"HRC-I Gauss2 Amp"
+HRC-I-BlurL1FWHM,r,h,10.8269,0,,"HRC-I Lorentz1 FWHM (1/4 pixels)"
+HRC-I-BlurL1Xctr,r,h,73.3361,0,,"HRC-I Lorentz1 Xctr (1/4 pixels)"
+HRC-I-BlurL1Yctr,r,h,63.9927,0,,"HRC-I Lorentz1 Yctr (1/4 pixels)"
+HRC-I-BlurL1Amp,r,h,0.978579,0,,"HRC-I Lorentz1 Amp"
+HRC-I-BlurL1Rmax,r,h,256,0,,"HRC-I Lorentz1 Rmax (1/4 pixels)"
+#
 HRC-I-QEFile,f,h,"hrc/mcp_qe_i.v2.2.dat",,,"Enter HRC-I QE File"
 HRC-I-UVISFile,f,h,"hrc/uvis_i.v4.dat",,,"Enter HRC-I UV/IS file for region 0"
 #---------------------------------------------------------------------------
@@ -439,7 +456,20 @@ HRC-I-UVISFile,f,h,"hrc/uvis_i.v4.dat",,,"Enter HRC-I UV/IS file for region 0"
 # HRC-S setup
 #
 #---------------------------------------------------------------------------
-HRC-S-BlurSigma,r,h,0.0077,0,,"Enter HRC-S pixel Blur (RMS mm)"
+HRC-S-BlurG1FWHM,r,h,13.900,0,,"HRC-S Gauss1 FWHM (1/4 pixels)"
+HRC-S-BlurG1Xctr,r,h,64.110,0,,"HRC-S Gauss1 Xctr (1/4 pixels)"
+HRC-S-BlurG1Yctr,r,h,64.530,0,,"HRC-S Gauss1 Yctr (1/4 pixels)"
+HRC-S-BlurG1Amp,r,h,15.750,0,,"HRC-S Gauss1 Amp"
+HRC-S-BlurG2FWHM,r,h,4.2560,0,,"HRC-S Gauss2 FWHM (1/4 pixels)"
+HRC-S-BlurG2Xctr,r,h,67.420,0,,"HRC-S Gauss2 Xctr (1/4 pixels)"
+HRC-S-BlurG2Yctr,r,h,64.110,0,,"HRC-S Gauss2 Yctr (1/4 pixels)"
+HRC-S-BlurG2Amp,r,h,5.1920,0,,"HRC-S Gauss2 Amp"
+HRC-S-BlurL1FWHM,r,h,10.820,0,,"HRC-S Lorentz1 FWHM (1/4 pixels)"
+HRC-S-BlurL1Xctr,r,h,53.030,0,,"HRC-S Lorentz1 Xctr (1/4 pixels)"
+HRC-S-BlurL1Yctr,r,h,63.880,0,,"HRC-S Lorentz1 Yctr (1/4 pixels)"
+HRC-S-BlurL1Amp,r,h,0.9790,0,,"HRC-S Lorentz1 Amp"
+HRC-S-BlurL1Rmax,r,h,256.000,0,,"HRC-S Lorentz1 Rmax (1/4 pixels)"
+#
 HRC-S-QEFile0,f,h,"hrc/mcp_qe_s.v3.dat",,,"Enter HRC QE File for MCP 0"
 HRC-S-QEFile1,f,h,"hrc/mcp_qe_s.v3.dat",,,"Enter HRC QE File for MCP 1"
 HRC-S-QEFile2,f,h,"hrc/mcp_qe_s.v3.dat",,,"Enter HRC QE File for MCP 2"

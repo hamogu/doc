@@ -4,4 +4,3 @@ plot_open("apedmeg1.ps/CPS");
 group_data (9, 2);
 plot_data (9);
 plot_close ();
-%exit(0);

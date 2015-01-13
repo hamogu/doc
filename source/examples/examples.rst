@@ -30,7 +30,7 @@ Simply copy the files from the indicated directory to the current one::
    arfrmf
 
    ACISpowerpileup/powerlaw
-
+   aped/aped
 
 
 

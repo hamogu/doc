@@ -5,10 +5,6 @@
 
 .. _distribution: ftp://space.mit.edu/pub/cxc/marx/v5.0/marx-dist-5.0.0.tar.gz
 
-.. _manual: ftp://space.mit.edu/pub/cxc/marx/v4.0/marx_4.0_manual.pdf
-
-.. _findzo: http://space.mit.edu/cxc/analysis/findzo/
-
 .. _cfitsio: http://heasarc.gsfc.nasa.gov/docs/software/fitsio/c/c_user/cfitsio.html 
 
 .. _ISIS: http://space.mit.edu/cxc/isis/

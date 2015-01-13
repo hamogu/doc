@@ -1,3 +1,5 @@
+.. _sect-ex-ACISpower:
+
 Simulating a user-defined CCD spectrum with ACIS
 =================================================
 The purpose of this example is to show how to use |marx| to simulate an ACIS

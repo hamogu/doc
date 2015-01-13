@@ -1,5 +1,11 @@
 Welcome to MARX's documentation!
 ================================
+
+.. note:: Upcoming MARX release!
+   MARX 5.1 will be released in January 2015, and will include the calibration
+   updates from the current `CIAO`_ and CalDB versions. This new version should be
+   used for proposal planning as soon as it is available.
+
 **2012-01-27** |marx| 5.0 was released.  See :ref:`installing`
 for links to the |marx| source code.  See :ref:`highlights` for important
 information about this release.
@@ -18,7 +24,6 @@ If you publish any work that made use of |marx|, please cite the
 paper `Raytracing
 with MARX: x-ray observatory design, calibration, and support (Davis et al. 2012, SPIE 8443, 84431A) <http://adsabs.harvard.edu/abs/2012SPIE.8443E..1AD>`_.
 
-Contents:
 
 .. toctree::
    :maxdepth: 2
