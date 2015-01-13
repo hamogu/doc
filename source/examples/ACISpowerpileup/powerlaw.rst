@@ -1,4 +1,4 @@
-.. _sect-ex-ACISpower:
+.. _sect-ex-ACISCCD:
 
 Simulating a user-defined CCD spectrum with ACIS
 =================================================
