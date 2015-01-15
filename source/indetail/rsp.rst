@@ -45,7 +45,7 @@ RMFs available for the HRC.
    A simulated ACIS pulse height spectrum computed using a marx simulation, the
    :marxtool:`marxrsp` tool, and RMF files for a FI and BI CCD. The upper curve shows the PHA spectrum
    for the BI RMF while the lower curve represents a typical FI RMF near the ACIS-I aimpoint.
-   The input spectrum was the same thermal plasma spectrum used in the examples in :ref:`samplemarxsimulations`.
+   The input spectrum was the same thermal plasma spectrum used in the examples in :ref:`sect-ex-ACISCCD`.
 
 
 
@@ -57,7 +57,7 @@ Like all post-processing tools in the |marx| suite, :marxtool:`marxrsp` operates
 on an existing simulation directory created using marx. The user
 specifies a simulation directory and an RMF to use in calculating the
 pulse height spectrum. For example, to fold the Raymond-Smith thermal
-plasma spectrum simulated in Section [chap:examples] through an ACIS RMF
+plasma spectrum simulated in :ref:`sect-ex-ACISCCD` through an ACIS RMF
 called ``acis7b_aim_pha_rmf.fits``, we would use the syntax::
 
     unix% marxrsp --rmf acis7b_aim_pha_rmf.fits --marx therm/
@@ -72,7 +72,7 @@ new ``pha.dat`` binary vector will then be written back out to the
 pulse height spectrum calculated using |marx|’s internal
 redistribution function, will be renamed to ``pha.dat.BAK``.
 Figure `figrmf`_ shows the pulse height spectra obtained from folding
-the thermal spectrum simulation from  :ref:`samplemarxsimulations` through
+the thermal spectrum simulation from  :ref:`sect-ex-ACISCCD` through
 RMFs for an ACIS frontside and backside illuminated CCD.
 
 By default, marxrsp will process all events in the specified simulation

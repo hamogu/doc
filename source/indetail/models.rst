@@ -148,6 +148,8 @@ Each availble model is now described in more detail.
 .. index::
    pair: Source Model; POINT
 
+.. _sect-models-POINT:
+
 POINT Source
 ^^^^^^^^^^^^
 
@@ -236,6 +238,8 @@ This distribution is used to model galaxy clusters.
 
 .. index::
    pair: Source Model; DISK
+
+.. _sect-models-DISK:
 
 DISK Source
 ^^^^^^^^^^^

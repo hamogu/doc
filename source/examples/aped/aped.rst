@@ -1,3 +1,5 @@
+.. _sect-ex-aped:
+
 Simulating a thermal plasma with the HETGS grating
 ==================================================
 
@@ -7,7 +9,7 @@ an HETG grating spectrum of a star whose spectrum is represented by an
 
 Creating the spectral file for |marx|
 -------------------------------------
-As in :ref:`sect-ex-ACISpower`, we will use
+As in :ref:`sect-ex-ACISCCD`, we will use
 :marxtool:`marxflux` again to generate the spectral file from the
 parameter file describing the model.  But in this case, the plasma
 model must be created before `ISIS`_ can compute the model flux. So, the

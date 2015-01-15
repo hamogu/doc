@@ -31,6 +31,7 @@ Simply copy the files from the indicated directory to the current one::
 
    ACISpowerpileup/powerlaw
    aped/aped
+   hetgplaw/hetgplaw
 
 
 
