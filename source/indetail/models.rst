@@ -5,9 +5,10 @@ Models for the X-ray source
 
 |marx| provides support for both extended and point sources, which can
 be either on or off–axis. The sources can have a flat energy spectrum or
-they can use an energy spectrum supplied by the user. For even more
-flexibility, |marx| has the ability to dynamically link to
-user-defined source models. The following sources are currently available:
+they can use an energy spectrum supplied by the user and in the next section we
+describe those options. Then, we explain the different models for the spatial
+distribution that these source can have on the sky. 
+The following sources are currently available:
 
 - ``POINT``: Point Source
 - ``GAUSS``: Radially symmetric Gaussian
@@ -19,7 +20,11 @@ user-defined source models. The following sources are currently available:
 - ``RAYFILE``: Input from a |marx| rayfile
 - ``USER``: Dynamically linked user–supplied model
 
-These sources are discussed in more detail below. First, it is important
+
+For even more flexibility, |marx| has the ability to dynamically link to
+user-defined source models. 
+
+First, it is important
 to have an understanding of what a source means in the context of
 |marx|. It is particularly important to understand how
 |marx| interacts with a source model for the proper implementation of
@@ -90,25 +95,42 @@ range with a normalization given by :par:`SourceFlux`. Alternatively, the FILE
 type will use a tabulated spectral energy distribution read from an
 external ASCII file. The following parameters describe the source spectrum:
 
-.. parameter:: SourceFlux
-
-   (*default*: `1.0e-3`) Enter incoming ray flux (photons/sec/cm2)
-
 .. parameter:: SpectrumType
 
    (*default*: `FLAT`) Select spectrum type. Can be ``FLAT`` or ``FILE``.
 
+.. parameter:: SourceFlux
+
+   (*default*: `1.0e-3`) Enter incoming ray flux (photons/sec/cm2). For
+   :par:`SpectrumType="FLAT"` this number must be positive. If
+   :par:`SpectrumType="FILE"` this number can be positive to renormalize the
+   spectrum file to the given source flux. If it is negative, then the
+   normalization from the :par:`SpectrumFile` will be used. 
+
 .. parameter:: SpectrumFile
 
-   (*default*: `flux.dat`) Input spectrum filename (only used if :par:`SpectrumType="FILE"`)
+   (*default*: `flux.dat`) Input spectrum filename (only used if
+   :par:`SpectrumType="FILE"`). The file has to consist of two columns of data
+   with no header line. The first column contains the energy of the upper bin
+   edge in keV, the second the source flux in photons/s/cm^2/keV in that bin
+   (the flux in the first row is ignored, because there is no row before
+   which would define the lower energy edge of the bin).
+   Various tools exist to help in generating this file:
+   
+       - :marxtool:`marxflux` can be used to generate a file with the right format
+         from an `ISIS`_ model,
+       - :marxtool:`xspec2marx` helps with converting from
+         `XSPEC`_ output,
+       -  and there are also instructions how to generate a file in the
+          `right format with Sherpa <http://cxc.harvard.edu/sherpa/threads/marx/>`_.
 
 .. parameter:: MinEnergy
 
-   (*default*: `1.486`) MIN ray energy (only used if :par:`SpectrumType="FLAT"`)
+   (*default*: `1.486`) MIN ray energy in keV (only used if :par:`SpectrumType="FLAT"`)
 
 .. parameter:: MaxEnergy
 
-   (*default*: `1.486`) MAX ray energy (only used if :par:`SpectrumType="FLAT"`)
+   (*default*: `1.486`) MAX ray energy in keV (only used if :par:`SpectrumType="FLAT"`)
 
 
 
@@ -117,9 +139,9 @@ Spatial distribution of the simulated source
 
 The distribution function :math:`f_p({\hat{p}})` characterizes the
 angular distribution of the flux and, hence, the angular distribution of
-the source. |marx| assumes that this distribution function specifies
-an on-axis source and that the source can be moved off-axis via the
-:par:`SourceOffsetZ` and :par:`SourceOffsetY` parameters.
+the source. The nominal aimpoint of the observation (given by :par:`RA_Nom` and
+:par:`Dec_Nom`) can differ from the source position (given by :par:`SourceRA`
+and :par:`SourceDEC`) to simulate off-axis sources.
 
 By convention, :math:`f_p({\hat{p}})` is assumed to be normalized to
 unity, i.e.,
