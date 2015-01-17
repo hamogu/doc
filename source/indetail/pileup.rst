@@ -59,27 +59,19 @@ pileup process can affect ACIS data in a number of ways including:
    standard data analysis which often begins by discarding such "bad"
    grades.
 
-+-------------------------------------------------+-------------------------+
-| .. image:: evt_phot1.*                          | .. image:: evt_total.*  |
-|    :height: 150                                 |    :height: 300         |
-|    :align: center                               |                         |
-|                                                 |                         |
-| .. image:: evt_phot2.*                          |                         |
-|    :height: 150                                 |                         |
-|    :align: center                               |                         |
-+-------------------------------------------------+-------------------------+
-| A schematic representation of a  "piled"  event. In this simple           |
-| illustration, two events are detected in the same location within an      |
-| ACIS frametime. The left top panel shows the 3x3 pixel pattern of pulse   |
-| heights the first incident photon generates on its own and the left       |
-| bottom panel shows the pattern for the second, individual incident        |
-| photon. Finally, the right  panel shows the composite,  "piled"  pulse    |
-| height pattern which would actually be detected. The pulse heights are    |
-| shown here in units of keV. Note that the magnitude of the  "piled"       |
-| distribution is essentially the sum of the two component                  |
-| distributions. Hence, instead of detecting two roughly 3 keV photons,     |
-| we would have detected a single 6 keV photon.                             |
-+---------------------------------------------------------------------------+
+.. figure:: ../../build_figures/schematic_pileup.*
+   :align: center
+   :scale: 75%
+   :alt:
+
+   A schematic representation of a  "piled"  event. In this simple
+   illustration, two events (red and blue) are detected in the same location within an
+   ACIS frametime. The pulse heights are
+   shown here in units of keV. Note that the magnitude of the  "piled"
+   distribution is essentially the sum of the two component 
+   distributions. Hence, instead of detecting two roughly 3 keV photons,
+   we would have detected a single 6 keV photon.
+
 
 .. figure:: evt_grid.*
    :name: evtsplit
