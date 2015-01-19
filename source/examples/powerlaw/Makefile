@@ -1,5 +1,5 @@
 # -*- sh -*-
-CONFIG=../config/config.inc
+CONFIG=../config.inc
 include ${CONFIG}
 
 all: plawfit.png plawpileupfit.png plaw_evt2.fits

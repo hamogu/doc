@@ -2,7 +2,7 @@
 CONFIG=../config.inc
 include ${CONFIG}
 
-all: aped_evt2.fits apedflux.png apedmeg1.png MEG_drywet_osort.png
+all: aped_evt2.fits apedflux.png apedmeg1.png #MEG_drywet_osort.png
 # apedfit.png
 
 # convert pictures
@@ -23,5 +23,5 @@ apedflux.png: apedflux.tbl makeplots.sl
 clean:
 	/bin/rm -f *~
 distclean: clean
-	/bin/rm -f *.ps *.png *.fig aped_*.fits apedflux.tbl *.par
-	/bin/rm -rf aped
+	/bin/rm -f *.ps *.png *.fig aped_*.fits apedflux.tbl *.par aped.p
+	/bin/rm -rf aped autoeps

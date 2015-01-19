@@ -8,7 +8,7 @@ PAPER         =
 BUILDDIR      = build
 BUILDFIGDIR   = build_figures
 
-# This one is needed in a sub-make
+# This is needed in a sub-make
 export BUILDFIGDIR
 
 # User-friendly check for sphinx-build
@@ -57,10 +57,14 @@ help:
 clean:
 	rm -rf $(BUILDDIR)
 	rm -rf $(BUILDFIGDIR)
+	$(MAKE) -C source/examples distclean
 
 figures:
-	mkdir -p $(BUILDFIGDIR)
+	-mkdir $(BUILDFIGDIR)
 	$(MAKE) -C source/figures BUILDFIGDIR=$(abspath $(BUILDFIGDIR))
+
+examples:
+	$(MAKE) -C source/examples BUILDEXDIR=$(BUILDEXDIR)
 
 html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
