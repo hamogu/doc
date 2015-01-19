@@ -586,6 +586,19 @@ directory.
    observations. Instead, the misalignmens is treated statistically
    using :par:`legdTheta` parameter.
 
+There was a long standing issue of a relative rotation between the LETG and the
+ACIS detector. The root of this problem was tracked down (with the help of
+|marx|) to a rotation offset between the aspect coordinate system and the focal
+plane detector system. This offset was masked by compensating rotations of the
+detectors from astrometric analysis, and manifested itself as a small rotation
+of the LEG dispersion arm on the ACIS detector. Changes were added to CIAO 4.3
+that effectively adds an additional rotation to the LETG when used with ACIS. 
+
+.. parameter:: LETG_ACIS_dTheta
+
+   (*default*: -0.0867) Enter aspect/focalplane misaligment induced dtheta for LETG/ACIS (degrees)
+
+
 .. _sect-detectormodel:
 
 Detector Models

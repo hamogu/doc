@@ -142,7 +142,7 @@ class MARXParIndex(Index):
             entries.append([p[1], 0, docname, anchor, '', '', ''])
         # sort alphabetically, without "key" upper and lower case would
         # be separate
-        entries = sorted(entries, key=lambda x: x[0][0].upper())
+        entries = sorted(entries, key=lambda x: x[0].upper())
         content = []
         # key can be anything!
         for k, g in groupby(entries, key=lambda x: x[0][0].upper()):
