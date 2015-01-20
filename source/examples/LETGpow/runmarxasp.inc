@@ -1,0 +1,1 @@
+marxasp MarxDir="letgplaw" OutputFile="letgplaw_asol1.fits"
