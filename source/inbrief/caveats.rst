@@ -88,66 +88,61 @@ differ mainly in the region around the Si K edge (~1.8 keV).  As such,
 a comparison of a |marx| spectrum with the expected spectrum
 of the input model will show strong systematic residuals near 1.8 keV.
 
-To properly account for this effect, :ciao:`tg_resolve_events` should use
-an order-sorting table derived from ``acisD2000-01-29fef_phaN0005.fits``.
-Such a table can be found
-\href{caldb/acisD2000-01-29osipN0007.fits}{here}.  To make use of it,
-run *both* :ciao:`tg_resolve_events` and :ciao:`mkgarf` with the ``osipfile``
-parameter set to the name of the file.
+.. todo::
+
+   To properly account for this effect, :ciao:`tg_resolve_events` should use
+   an order-sorting table derived from ``acisD2000-01-29fef_phaN0005.fits``.
+   Such a table can be found
+   \href{caldb/acisD2000-01-29osipN0007.fits}{here}.  To make use of it,
+   run *both* :ciao:`tg_resolve_events` and :ciao:`mkgarf` with the ``osipfile``
+   parameter set to the name of the file.
 
 
-High energy residuals in simulations involving the LETG
-=======================================================
-XXXXXXXXXXXXXXXXXXXXXXx
-Diffraction from the the support structure low energy grating facets
-blend together at short wavelengths making it difficult to separate
-diffraction from the s
+LETG+HRC Line Widths
+====================
 
+In standard Chandra pipeline processing, the motion of the observatory
+over the course of an observation is computed and stored in the aspect
+solution (ASOL) file.  The tool :marxtool:`marxasp` replicates this behavior and
+produces an aspect solution file for a given |marx| simulation. A
+number of factors contribute to the accuracy or inaccuracy of Chandra
+aspect reconstructions. In :marxtool:`marxasp`, these noise terms are represented
+empirically using the ``sigma`` parameters in ``marxasp.par``. The
+default values for these noise terms have been calibrated to be
+consistent with HETG+ACIS observations and will give erroneously
+narrow line widths when used with LETG+HRC simulations. Users wishing
+to simulate LETG+HRC instrument combinations should adjust these
+values before running :marxtool:`marxasp`.  For example, a calling sequence of the
+form::
 
-#% \h1{LETG+HRC Line Widths}
+   unix% marxasp RA_Sigma=0.34 Dec_Sigma=0.34 Roll_Sigma=0.34 ......
 
-#% In standard Chandra pipeline processing, the motion of the observatory
-#% over the course of an observation is computed and stored in the aspect
-#% solution (ASOL) file.  The tool \marxasp replicates this behavior and
-#% produces an aspect solution file for a given \marx simulation. A
-#% number of factors contribute to the accuracy or inaccuracy of Chandra
-#% aspect reconstructions. In \marxasp, these noise terms are represented
-#% empirically using the \em{sigma} parameters in \tt{marxasp.par}. The
-#% default values for these noise terms have been calibrated to be
-#% consistent with HETG+ACIS observations and will give erroneously
-#% narrow line widths when used with LETG+HRC simulations. Users wishing
-#% to simulate LETG+HRC instrument combinations should adjust these
-#% values before running \marxasp.  For example, a calling sequence of the
-#% form:
+will produce an ASOL file consistent with current pipeline processing
+for LETG+HRC datasets.
 
-#% #v+
-#%   unix% marxasp RA_Sigma=0.34 Dec_Sigma=0.34 Roll_Sigma=0.34 ......
-#% #v-
+ISIS Pileup Fitting Kernel
+==========================
 
-#% will produce an ASOL file consistent with current pipeline processing
-#% for LETG+HRC datasets.
+The default parameters for the pileup fitting kernel in `ISIS`_, but also in
+`Sherpa`_ and `XSpec`_ have been
+calibrated for point source extractions. Specifically, the values
+correspond to a circular extraction region 4 ACIS pixels in radius.
+Although |marx| can be used to include the effects of photon
+pileup for any arbitrary spatial and spectral source model, the
+fitting kernel may need to be adjusted for larger extraction
+regions. In particular, the ``psffrac`` parameter represents the
+fraction of the Chandra PSF contained within the extraction region and
+may need to be increased for larger regions. Note, however, that for
+real data, larger extraction regions will include a higher fraction of
+unpiled background photons complicating the fitting of the piled
+source spectrum.  As such, it is recommended that this value be
+allowed to vary during the spectral fit.  See the `ISIS`_ manual for
+more discussion of the pileup fitting kernel.
 
-#% \h1{ISIS Pileup Fitting Kernel}
+Chandra Aimpoint Drift
+======================
 
-#% The default parameters for the pileup fitting kernel in \isis have been
-#% calibrated for point source extractions. Specifically, the values
-#% correspond to a circular extraction region 4 ACIS pixels in radius.
-#% Although \marx can be used to include the effects of photon
-#% pileup for any arbitrary spatial and spectral source model, the
-#% \isis fitting kernel may need to be adjusted for larger extraction
-#% regions. In particular, the \tt{psffrac} parameter represents the
-#% fraction of the Chandra PSF contained within the extraction region and
-#% may need to be increased for larger regions. Note, however, that for
-#% real data, larger extraction regions will include a higher fraction of
-#% unpiled background photons complicating the fitting of the piled
-#% source spectrum.  As such, it is recommended that this value be
-#% allowed to vary during the spectral fit.  See the \isis manual for
-#% more discussion of the pileup fitting kernel.
+|marx| does not currently take into account of temporal drift in 
+Chandra's HRMA aimpoint. Fortunately the effect of the drift is 
+generally negligible and should not be a concern for Chandra proposers. 
 
-#% \h1{Chandra Aimpoint Drift}
-
-#% \marx does not currently take into account of temporal drift in 
-#% Chandra's HRMA aimpoint. Fortunately the effect of the drift is 
-#% generally negligible and should not be a concern for Chandra proposers. 
-
-#i jdweb_end.tm

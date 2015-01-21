@@ -27,8 +27,6 @@ Simply copy the files from the indicated directory to the current one::
 .. toctree::
    :maxdepth: 1
  
-   arfrmf
-
    ACISpowerpileup/powerlaw
    aped/aped
    hetgplaw/hetgplaw

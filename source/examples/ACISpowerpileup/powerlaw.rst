@@ -88,13 +88,91 @@ solution file that matches the simulation:
 .. include:: runmarxasp.inc
    :code:
 
+.. _ex-ciao:
+
+Creating CIAO-based ARFs and RMFs for MARX Simulations
+------------------------------------------------------
+Armed with the simulated event file ``plaw_evt2.fits`` and the aspect
+solution file ``plaw_asol1.fits``, a PHA file, ARF and RMF may be
+made using the standard `CIAO`_ tools. First, extract the PHA data. The :ciao:`asphist` CIAO
+tool may be used to create an aspect histogram from an aspect solution
+file, as seen in this Bourne shell script:
+
+.. literalinclude:: plaw_ciao.sh
+   :language: bash
+   :lines: 5-23
+
+While |marx| strives to accurately model of the Chandra Observatory, there
+are some differences that need to be taken into account when
+processing |marx| generated data with `CIAO`_.  As described in :ref:`caveats`
+page, |marx| does not incorporate the
+non-uniformity maps for the ACIS detector, nor does it employ the
+spatially varying CTI-corrected pha redistribution matrices (RMFs).
+As such there will be systematic differences between the |marx| ACIS
+effective area and that of the :ciao:`mkarf` CIAO tool when run in its
+default mode.  Similarly, the mapping from energy to pha by |marx| will
+be different from that predicted by :ciao:`mkacisrmf`.
+
+
+Creating an ARF to match a marx simulation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+As mentioned above, |marx| does not implement the ACIS QE uniformity
+maps.  The following commands show how to set the :ciao:`mkarf` parameters 
+to produce an ARF that is consistent with the |marx| effective area (this
+continues the Bourne shell script):
+
+.. literalinclude:: plaw_ciao.sh
+   :language: bash
+   :lines: 25-35
+   :emphasize-lines: 25, 34
+
+Notice the settings ``detsubsys="ACIS-7;uniform;bpmask=0"`` and ``maskfile=NONE
+pbkfile=NONE dafile=NONE`` that are different from the way a normal Chandra
+observation would be processed.
+
+
+Creating an RMF to match a marx simulation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+|marx| maps energies to phas using the FEF gaussian parametrization utilized by
+the :ciao:`mkrmf` CIAO tool.  The newer :ciao:`mkacisrmf` tool uses a more
+complicated convolution model that does not appear to permit a fast,
+memory-efficient random number generation algorithm that |marx| would
+require.  In contrast, a gaussian-distributed random number generator
+is all that is required to produce pha values that are consistent with
+:ciao:`mkrmf` generated responses.
+
+The Chandra CALDB includes several FEF files.  The one that
+|marx| currently employs is
+``acisD2000-01-29fef_phaN0005.fits``, and is located in
+the ``$CALDB/data/chandra/acis/cpf/fefs/`` directory.  This file must
+be specified as the ``infile`` :ciao:`mkrmf` parameter.
+
+For a point source simulation, look at the :marxtool:`marx2fits` generated event
+file and find the average chip coordinates.  The CIAO :ciao:`dmstat` tool
+may be used for this purpose.  The ``CCD_ID`` and the mean chip
+coordinates are important for the creation of the filter that will be
+passed to :ciao:`mkrmf` to select the appropriate FEF tile.  For simplicity
+suppose that the mean point source detector location is at (308,494)
+on ACIS-7.  Then run :ciao:`mkrmf` using (continuing the shell script form above):
+
+.. literalinclude:: plaw_ciao.sh
+   :language: bash
+   :lines: 36-
+   :emphasize-lines: 42,44-46
+
+Notice, how the FEF file is set explicitly to 
+``fef="$CALDB/data/chandra/acis/cpf/fefs/acisD2000-01-29fef_phaN0005.fits"``
+and that the correct tile of that FEF file is chosen with 
+``fef[ccd_id=7,chipx_hi>=221,chipx_lo<=221,chipy_hi>=532,chipy_lo<=532]``
+
+See the `CIAO`_ threads for other ways of running :ciao:`mkrmf`.  The important
+thing is to specify the correct FEF and tile.
+
 Analyzing the simulated data
 -----------------------------
 
-Armed with the simulated event file ``plaw_evt2.fits`` and the aspect
-solution file ``plaw_asol1.fits``, a PHA file, ARF and RMF may be
-made using the standard `CIAO`_ tools.  A Bourne shell script that does
-this may be found in :download:`plaw_ciao.sh`.  These files may
+The PHA, ARF, and RMF files may
 be used in a spectral modelling program such as `ISIS`_ to see whether or
 not one can reach the desired science goal from the simulated
 observation.  For this example, the goal is to verify that the marx
