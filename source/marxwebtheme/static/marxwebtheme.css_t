@@ -9,7 +9,7 @@
  * modified the default.css from the sphinx theme directly, instead of just
  * inhertiting from it.
  *
- * :copyright: Copyright 2014 Moritz Guenther / MIT
+ * :copyright: Copyright 2014 Massachusettes Insititute of Technology
  * :license: MIT
  *
  */
@@ -329,6 +329,14 @@ img {
 
 img.align-center, .figure.align-center, object.align-center {
     background-color: #ddd;
+}
+
+/* unless they are logos (e.g. in the sidebar) */
+img.img-logo {
+    background-color: transparent;
+    margin: 0px;
+    margin-top: 5 px;
+    padding: 0px;
 }
 
 div.body p.caption {
