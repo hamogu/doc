@@ -1,14 +1,9 @@
 Welcome to MARX's documentation!
 ================================
 
-.. note:: Upcoming MARX release!
-   MARX 5.1 will be released in January 2015, and will include the calibration
-   updates from the current `CIAO`_ and CalDB versions. This new version should be
-   used for proposal planning as soon as it is available.
-
-**2012-01-27** |marx| 5.0 was released.  See :ref:`installing`
-for links to the |marx| source code.  See :ref:`highlights` for important
-information about this release.
+.. note:: 
+   MARX 5.1 will be released in spring 2015. The current version 5.0 
+   should be used for proposal preparation.
 
 |marx| is a suite of programs created and maintained by the
 `MIT/CXC/HETG group <http://space.mit.edu/cxc/>`_ group and is designed
