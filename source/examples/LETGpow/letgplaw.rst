@@ -24,45 +24,34 @@ will use the `Sherpa`_ program in this example.
 We chose the specific physical model (a positive powerlaw with an
 unrealistically high flux) because we want
 to construct a really detailed picture of the features seen in the PSF and we
-need a large number of photons over a wide range of energies.
+need a large number of photons over a wide range of energies. 
+`Sherpa`_ needs an RMF that defines the energy
+bins. This can either be an observed RMF as in 
+`the Sherpa example <http://cxc.harvard.edu/sherpa/threads/marx/>`_ or a
+dummy RMF created with the following code run on the `Sherpa`_ command line:
 
 .. literalinclude:: spectralmodel.py
    :language: python 
 
-.. note:: More precise: Use a RMF
+.. note:: A faster way, slightly less precise
 
-   Technically speaking, the code above is not exactly right, because ``pl.x``
+   If you do not need a very high precision, you can use the following simpler
+   code snippet.  Technically speaking, ``pl.x``
    gives the mid-point of each energy bin and not the higher end point. For
    narrow bins and a continuous energy distribution that difference is
    negligible. However, for line dominated spectra it might become
-   important. In this case, the `Sherpa`_ needs an RMF that defines the energy
-   bins. This can either be an observed RMF as in 
-   `the Sherpa example <http://cxc.harvard.edu/sherpa/threads/marx/>`_ or a
-   dummy RMF created as follows:
+   important. 
 
    .. code-block:: python
 
-      import sherpa
-      #### Make a dummy response ####
-      energies = np.arange(0.03, 12., .01)
-      one = np.ones(len(energies)-1)
-      dummyrsp = sherpa.astro.data.DataRMF('dummy rsp', len(energies)-1,
-                                            energies[:-1], energies[1:], 
-                                            one, one, one, one, energies[:1], energies[1:])
-      dummyrmf = sherpa.astro.instrument.RMF1D(dummyrsp)
+      # Run this in Sherpa
+      dataspace1d(0.03, 12., .01)
+      set_source(xsphabs.a * xspowerlaw.p)
+      save_arrays("source_flux.tbl", [pl.x, pl.y], ["keV","photons/s/cm**2"], ascii=True, clobber=True)
 
-      # load dummy data (all ones)
-      load_arrays(1, np.arange(len(one)), one, DataPHA)
-      # load dummy response
-      set_rmf(dummyrmf)
-
-      # set source properties
-      set_source(xsphabs.a * powerlaw.p)
-
-      pl = get_source_plot()
-      fluxdensity = pl.y
-      energy = pl.xhi
-      save_arrays("source_flux.tbl", [energy,fluxdensity], ["keV","photons/s/cm**2/keV"], ascii=True)
+   Note that this simple way of doing it will lead to an arbitrary flux
+   normalization, so you need to set :par:`SourceFlux` to a positive value to
+   renormalize the spectrum in |marx|.
 
 
 Running marx
@@ -73,8 +62,8 @@ prefer to use tools such as :marxtool:`pset` to update the ``marx.par``
 file and then run |marx|.  Here, the parameters will be explicitly
 passed to |marx| via the command line:
 
-.. include:: runmarx.inc
-   :code:
+.. literalinclude:: runmarx.inc
+   :language: shell
 
 Note the use of a *negative* value of the :par:`NumRays` parameter.
 This tells |marx| that the simulation is to continue until the absolute
@@ -88,16 +77,16 @@ specified by the :par:`Output Dir` parameter.  After the simulation has
 completed, a standard Chandra event file may be created using the :marxtool:`marx2fits`
 program:
 
-.. include:: runmarx2fits.inc
-   :code:
+.. literalinclude:: runmarx2fits.inc
+   :language: shell
 
 The fits file ``letgplaw_evt1.fits`` can be further processed
 with standard `CIAO`_ tools.  As some of these tools require the aspect
 history, the :marxtool:`marxasp` program is used to create an aspect
 solution file that matches the simulation:
 
-.. include:: runmarxasp.inc
-   :code:
+.. literalinclude:: runmarxasp.inc
+   :language: shell 
 
 It is interesting to look at the event file with a viewer such as
 `ds9`_.  Here we use :ciao:`dmimg2jpg`, which displays an RGB image of the events
@@ -146,8 +135,8 @@ standard `CIAO`_ tools using the simulated event file
 ``letgplaw_asol1.fits`` as inputs. Here is a Bourne shell script that does
 this:
 
-.. include:: letgplaw_ciao.sh
-   :code:
+.. literalinclude:: letgplaw_ciao.sh
+   :language: shell
 
 In particular, this script constructs an order-sorted level 1.5 file from
 which plus and minus first order events are extracted, and creates the
@@ -171,7 +160,8 @@ chi-square around 1::
        xp.PhoIndex    -1.77876
        xp.norm        0.00114488
 
-All parameters are similar to what we put into the simulation.
+Absorption and photons index are similar to what we put in the simulation, but
+the norm is way off. Maybe we should have used the RMF after all.
 
 .. figure:: m1_fit.*
    :align: center

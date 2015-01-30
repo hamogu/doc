@@ -22,6 +22,9 @@ asphist infile="$asolfile" outfile="$asphistfile" evtfile="$evtfile" \
 dmextract infile="$evtfile[sky=Circle($X,$Y,$R)][bin $phagrid]" \
   outfile="$phafile" verbose=1 mode=h clobber=yes
 
+# Select a CCD.
+ccdid=7;
+
 detname="ACIS-$ccdid;UNIFORM;bpmask=0"
 grating="NONE"
 # For ACIS-I, use engrid="0.3:11.0:0.003". This reflects a limitation of mkrmf.
@@ -37,7 +40,6 @@ mkarf mirror="hrma" detsubsys="$detname" grating="$grating" \
 # Mean chip position
 chipx=221;
 chipy=532;
-ccdid=7;
 
 fef="$CALDB/data/chandra/acis/fef_pha/acisD2000-01-29fef_phaN0005.fits"
 

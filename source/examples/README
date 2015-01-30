@@ -11,7 +11,8 @@ Run the example with ``make`` to generate the figures for the documentation.
 
 Pre-requisites for running examples
 -----------------------------------
-Currently, that's a little inconsistent. Some PATH are hardcoded, e.g. in /config/config.inc
+Currently, that's a little inconsistent. Some PATH are hardcoded, e.g. in /config/config.inc or in
+runciatool.sh
 but other lines in the makefile expect that the marx executables and the marx scripts as well as 
 isis are in your path.
 
@@ -23,3 +24,4 @@ Other TO-DO items
 The figures are generated with the current MARX version with ``make``. Hoewever, textual
 output from MARX or ISIS is hardcoded in the rst files. This can lead to incosistent results.
 -> Capture STOUT and include the output in the rst files with ..include .
+

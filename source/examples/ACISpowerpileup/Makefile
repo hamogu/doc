@@ -12,8 +12,9 @@ all: plawfit.png plawpileupfit.png plaw_evt2.fits
 #
 run_marx.sh: ${CONFIG} runmarx.inc runmarx2fits.inc runmarxasp.inc
 	touch ./run_marx.sh
+# Wrap this in run_ciaotool because it uses "pset"
 plaw_evt2.fits: ${CONFIG} plawflux.tbl run_marx.sh
-	./run_marx.sh
+	../runciaotool.sh ./run_marx.sh
 plaw.p: ${CONFIG}
 	$(ISISSCRIPT) ./isismodel.sl
 plawflux.tbl: ${CONFIG} plaw.p
@@ -29,7 +30,7 @@ run_marxpileup.sh: runmarxpileup.inc runmarx2fitspileup.inc
 	touch ./run_marxpileup.sh
 plaw_pileup_evt2.fits: run_marxpileup.sh plaw/energy.dat
 	./run_marxpileup.sh
-plaw_pileup_pha.fits: pileup_ciao.sh plaw_pileup_evt2.fits
+plaw_pileup_pha.fits: pileup_ciao.sh plaw_pileup_evt2.fits ../runciaotool.sh
 	../runciaotool.sh ./pileup_ciao.sh
 isispileup.sl: isispileup*.inc
 	touch isispileup.sl

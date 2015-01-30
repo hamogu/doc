@@ -1,6 +1,6 @@
 # -*- sh -*-
 
-SUBDIRS = ACISpowerpileup aped hetgplaw
+SUBDIRS = ACISpowerpileup aped hetgplaw LETGpow
 SUBCLEAN = $(addsuffix .clean,$(SUBDIRS))
 SUBDISTCLEAN = $(addsuffix .distclean,$(SUBDIRS))
 

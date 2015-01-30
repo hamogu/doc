@@ -44,4 +44,4 @@ clean:
 distclean: clean
 	/bin/rm -rf hetg_plaw hetg_pldisk *.png *.ps *.eps *.fits *.par plawflux_hetg.tbl
 #
-.PHONY: all
+.PHONY: all clean distclean

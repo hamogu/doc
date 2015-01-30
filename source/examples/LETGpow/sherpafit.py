@@ -14,5 +14,6 @@ fit()
 set_preferences(['window.display', False])
 
 plot_fit_delchi()
+log_scale(X_AXIS)
 print_window('m1_fit.png', ['clobber', True])
 print_window('m1_fit.eps', ['clobber', True])
