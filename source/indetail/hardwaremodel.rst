@@ -364,7 +364,7 @@ Consider a ray with wavelength :math:`\lambda` and direction
 :math:`{\hat{p}}` incident upon a diffraction grating of period
 :math:`d` located at position :math:`{\vec{x}}` and normal
 :math:`\hat{n}`. The grating lines are assumed to oriented in the
-direction :math:`\hat{l}`. See `Figure Diffraction Coordinate System`_. It can be shown
+direction :math:`\hat{l}`. See Figure :ref:`Fig-Diffraction`. It can be shown
 that a ray diffracting into order :math:`m` will move in a direction
 :math:`{\hat{p}}'` determined by the conditions:
 
@@ -386,10 +386,12 @@ The first of the following equations is a simple result of taking the cross prod
 this equation with :math:`\hat{l}`. The second one follows from taking the dot
 product of the equation with :math:`\hat{l}`.
 
+.. _Fig-Diffraction:
 
 .. figure:: grating.*
    :align: center
-   :name: Figure Diffraction Coordinate System
+   
+   Diffraction Coordinate System
 
    Figure showing the orthogonal coordinate system local to an individual grating
    facet. The vector :math:`\hat{n}` is normal to the facet and :math:`\hat{l}` is in the direction of the grating lines. The
@@ -397,6 +399,7 @@ product of the equation with :math:`\hat{l}`.
 
 Since :math:`\hat{n}`, :math:`\hat{l}`, and :math:`\hat{d}` form a
 right-handed orthonormal coordinate system, it trivially follows that
+
 
 .. math::
    :label: diffracted
@@ -419,11 +422,14 @@ angle. Let :math:`{\vec{p}_{\perp}}` denote the projection of
 :math:`{\hat{p}}` onto the :math:`(\hat{d},\hat{n})` plane, and let
 :math:`\theta` be the angle between :math:`{\vec{p}_{\perp}}` and
 :math:`\hat{n}`. Define :math:`{{\vec{p}_{\perp}}\,\!\!\!\!'}` and
-:math:`\theta'` in a similar fashion (see `Figure Diffraction in a plane`).
+:math:`\theta'` in a similar fashion (see Figure :ref:`Fig-Diffraction-plane`).
+
+.. _Fig-Diffraction-plane:
 
 .. figure:: diffract.*
    :align: center
-   :name: Figure Diffraction in a plane
+
+   Diffraction in a plane
 
    Diffraction in the :math:`(n, d)` plane. Here :math:`\theta` is the angle the projection of the incoming
    ray onto the :math:`\hat{d}\hat{n}` plane  makes with respect to the normal, and :math:`\theta` is the angle between the normal and
@@ -492,7 +498,7 @@ rotated vectors,
      \hat{d}_{\theta} &= -\hat{l} \sin\theta + \hat{d}\cos\theta,
    \end{aligned}
 
-should be used in ([diffracted]) to yield
+should be used in :eq:`diffracted` to yield
 
 .. math::
 

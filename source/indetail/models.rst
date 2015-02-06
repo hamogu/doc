@@ -1,7 +1,7 @@
 .. _sect-sourcemodels:
 
-Models for the X-ray source
-===========================
+The spectrum and the spatial shape of the X-ray source
+======================================================
 
 |marx| provides support for both extended and point sources, which can
 be either on or off–axis. The sources can have a flat energy spectrum or

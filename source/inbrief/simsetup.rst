@@ -67,6 +67,19 @@ are not instrument or source related. These include such things
 as length of exposure, timed versus ray generation execution,
 and output location and format.
 
+.. parameter:: RandomSeed
+
+   |marx| is a Monte-Carlo simulation program, where all parameters (e.g. the
+    energy or position of a photon, the scattering of a mirror or the
+    diffraction in a grating) are drawn from a distribution of possible
+    outcomes by means of a random number. This means that two |marx| simulations with the same input
+    parameters will give different results, unless they use the same sequence of
+    random numbers. Set this parameter to a positive number to
+    obtain the same sequence of random numbers. The default is ``-1``, which
+    sets the starting number of the random number generator to the current time
+    when the simulation is run.
+
+
 Exposure Time
 -------------
 
@@ -92,8 +105,17 @@ method most users will employ most of the time.
 
    This parameter sets the exact number of rays to run through the simulator
    in *ray generation mode*. Note, that this value is *not* the
-   number of detected rays which will be produced. This parameter
+   number of detected rays which will be produced (some rays maybe absorbed or
+   scattered outside of the detector). This parameter
    specifies the number of input rays. 
+
+.. parameter:: TStart
+
+   The sets the year of the observation, e.g. ``2014.5`` would be the first of
+   July 2014. Some of the calibration files contain a time dependence, e.g. the
+   ACIS detector contamination increases with time. Set this parameter to the
+   time of the observation to reproduce a specific dataset or to the current
+   year for proposal planning.
 
 Output Directory
 ----------------
@@ -352,7 +374,7 @@ installed with |marx| to convert `XSPEC`_ output to the right format.
 
 In FILE mode, the :par:`SourceFlux` parameter can be used
 to set the overall normalization of the input spectral energy
-distribution. Setting :par:SourceFlux to a positive, non-zero
+distribution. Setting :par:`SourceFlux` to a positive, non-zero
 value will cause |marx| to renormalize the spectrum read from
 the ASCII file to the specified total flux.
 If :par:`SourceFlux=-1` (or any number less than 0), |marx|

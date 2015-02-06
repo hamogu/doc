@@ -4,6 +4,27 @@
 Current caveats for MARX
 ************************
 
+General Caveats for Monte-Carlo simulations
+===========================================
+|marx| is a Monte-Carlo tool, that means it uses random numbers when simulating
+the X-ray flux and the response for Chandra. For example, if the source
+spectrum indicates a constant flux between 1 and 10 keV, |marx| will create
+photons randomly from this interval. If only a small number of photons is used
+in a simulation, it is possible (though not very likely) that a lot more
+photons are softer than 5 keV. For a large number of photons, the result will
+eventually converge to a constant spectrum.
+
+Random numbers are used for all interactions in |marx|, not only when selecting
+the energy of the photons, but also to see where in the aperture it enters
+Chandra, how it bounces of the mirrors, how it defracts from the gratings, etc.
+Thus, even if the physical model for a source is perfect, the simulated
+spectrum and a Chandra observation will differ.
+
+Furthermore, this means that two |marx| simulations with the same input
+parameters will give different results, unless they use the same sequence of
+random numbers (set the parameter :par:`RandomSeed` to a positive number to
+obtain the same sequence of random numbers).
+
 Use of the EDSER Subpixel Algorithm with SAOTrace/Chart Rays
 ============================================================
 

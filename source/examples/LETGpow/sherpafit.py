@@ -2,7 +2,6 @@
 
 load_pha('letgplaw_pha2.fits')
 load_arf('legLEG_-1_garf.fits')
-load_arf('legLEG_-1_garf.fits')
 load_rmf('leg-1_rmf.fits')
 set_source(xsphabs.a * xspowerlaw.xp)
 

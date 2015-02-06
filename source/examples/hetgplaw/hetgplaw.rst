@@ -8,11 +8,7 @@ The purpose of this example, contributed by
 |marx| to simulate an HETG observation of a point and a
 simple extended source with a user-specified spectrum. This example, like many
 of the other examples, uses |marx|, `ISIS`_ and `CIAO`_, which should be 
-installed on your system to run this example. (Note that in some installations
-it can happen that `CIAO`_ and `ISIS`_ have conflicts.  In these cases it is
-useful to only setup `CIAO`_ only when needed and open a new terminal after
-that.)
-
+installed on your system to run this example. 
 
 Create the spectral file
 ------------------------
@@ -83,6 +79,17 @@ simulations:
 .. include:: run_marx2fits.inc
    :code:
 
+.. note:: Combining |marx| simulations
+
+    The tool :marxtool:`marxcat` allows simulations to be combined, e.g., we
+    could do the following to make a combination of the point and disk events::
+
+        [unix] marxcat hetg_plaw hetg_pldisk hetg_plboth
+
+    and then create fits and asol files as above.
+    This allows more complex spatial-spectral simulations to be done with |marx|.
+
+
 We can look at the simulation output event files with `ds9`_ to check that they
 are as expected before continuuing with ciao-processing. Figure
 :ref:`fig-ex-hetgplaw` shows both simulations.
@@ -106,17 +113,6 @@ are as expected before continuuing with ciao-processing. Figure
    
 We can also use `ds9`_ to record the center of the
 disk (simulation 2) in X,Y coordinates (4096.5, 4096.5) for further processing.
-
-
-.. note:: Combining |marx| simulations
-
-    The tool :marxtool:`marxcat` allows simulations to be combined, e.g., we
-    could do the following to make a combination of the point and disk events::
-
-        [unix] marxcat hetg_plaw hetg_pldisk hetg_plboth
-
-    and then create fits and asol files as above.
-    This allows more complex spatial-spectral simulations to be done with |marx|.
 
 
 Extract HETG spectra

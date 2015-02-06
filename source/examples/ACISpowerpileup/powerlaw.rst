@@ -44,9 +44,10 @@ create a file called :download:`plawflux.tbl` in the appropriate format via:
    :code:
 
 This script requires `ISIS`_ to be installed and linked to at least
-version 2.1 of the `S-Lang`_ library.  (|marx| is distributed with a
-script called :marxtool:`xspec2marx` that may be used to create such a file
-for `XSpec`_). 
+version 2.1 of the `S-Lang`_ library.  (For `XSpec`_ users, |marx| is distributed with a
+script called :marxtool:`xspec2marx` that may be used to create such a file,
+and `Sherpa`_ users find instructions here:
+http://cxc.harvard.edu/sherpa/threads/marx/ ). 
 
 The ``plawflux.tbl`` file is input to |marx| using the following
 ``marx.par`` parameters::
@@ -121,7 +122,7 @@ Creating an ARF to match a marx simulation
 As mentioned above, |marx| does not implement the ACIS QE uniformity
 maps.  The following commands show how to set the :ciao:`mkarf` parameters 
 to produce an ARF that is consistent with the |marx| effective area (this
-continues the Bourne shell script):
+continues the Bourne shell script from the last paragraph):
 
 .. literalinclude:: plaw_ciao.sh
    :language: bash

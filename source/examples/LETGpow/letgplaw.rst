@@ -63,7 +63,7 @@ file and then run |marx|.  Here, the parameters will be explicitly
 passed to |marx| via the command line:
 
 .. literalinclude:: runmarx.inc
-   :language: shell
+   :language: bash
 
 Note the use of a *negative* value of the :par:`NumRays` parameter.
 This tells |marx| that the simulation is to continue until the absolute
@@ -78,7 +78,7 @@ completed, a standard Chandra event file may be created using the :marxtool:`mar
 program:
 
 .. literalinclude:: runmarx2fits.inc
-   :language: shell
+   :language: bash
 
 The fits file ``letgplaw_evt1.fits`` can be further processed
 with standard `CIAO`_ tools.  As some of these tools require the aspect
@@ -86,7 +86,7 @@ history, the :marxtool:`marxasp` program is used to create an aspect
 solution file that matches the simulation:
 
 .. literalinclude:: runmarxasp.inc
-   :language: shell 
+   :language: bash
 
 It is interesting to look at the event file with a viewer such as
 `ds9`_.  Here we use :ciao:`dmimg2jpg`, which displays an RGB image of the events
@@ -136,7 +136,7 @@ standard `CIAO`_ tools using the simulated event file
 this:
 
 .. literalinclude:: letgplaw_ciao.sh
-   :language: shell
+   :language: bash
 
 In particular, this script constructs an order-sorted level 1.5 file from
 which plus and minus first order events are extracted, and creates the
