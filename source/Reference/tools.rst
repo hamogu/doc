@@ -73,8 +73,12 @@ Tool                       Description
    The marx tool comprises the central engine of the suite and actually
    performs the ray trace through the various components of the Chandra
    system. marx reads its inputs from an PROS/IRAF–style parameter file
-   ``marx.par``. Alternatively, it can accept values for any of its parameters
-   on the call line. Detailed instructions for running marx are presented
+   ``marx.par`` that is expected in the current directory. Marx can also accept
+   values for any of its parameters on the call line. This overrides values in
+   ``marx.par`` and is useful to run a grid of marx models from a script where
+   only a few parameters change and the rest is taken from ``marx.par``.
+   
+   Detailed instructions for running marx are presented
    in :ref:`sect-runningmarx`.
 
 
