@@ -36,8 +36,8 @@ mkgrmf grating_arm="MEG" order=-1 outfile="${root}meg-1_rmf.fits" srcid=1 detsub
 
 fullgarf phafile="$pha2file"  pharow=9 evtfile="$evtfile" \
    asol="$asol1file" engrid="grid(${root}meg1_rmf.fits[cols ENERG_LO,ENERG_HI])" \
-   maskfile=NONE dafile=NONE dtffile=NONE badpix=NONE maskfile=NONE rootname="$root"
+   maskfile=NONE dafile=NONE dtffile=NONE badpix=NONE rootname="$root"
 
 fullgarf phafile="$pha2file"  pharow=10 evtfile="$evtfile" \
    asol="$asol1file" engrid="grid(${root}meg1_rmf.fits[cols ENERG_LO,ENERG_HI])" \
-   maskfile=NONE dafile=NONE dtffile=NONE badpix=NONE maskfile=NONE rootname="$root"
+   maskfile=NONE dafile=NONE dtffile=NONE badpix=NONE rootname="$root"
