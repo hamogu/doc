@@ -43,23 +43,23 @@ Running marx
 The next step is to run |marx| in the desired configuration.  For this
 example, ACIS-S and the HETG are used:
 
-.. include:: runmarx.inc
-   :code:
+.. literalinclude:: runmarx.inc
+   :language: bash
 
 This will run the simulation and place the results in a subdirectory
 called ``aped``.  The results may be converted to a standard Chandra
 level-2 fits file by the :marxtool:`marx2fits` program:
 
-.. include:: runmarx2fits.inc
-   :code:
+.. literalinclude:: runmarx2fits.inc
+   :language: bash
 
 The resulting fits file ``aped_evt2.fits`` may be further processed
 with standard `CIAO`_ tools, as described below.  As some of these tools
 require the aspect history, the :marxtool:`marxasp` program will be used to
 create an aspect solution file that matches the simulation:
 
-.. include:: runmarxasp.inc
-   :code:
+.. literalinclude:: runmarxasp.inc
+   :language: bash
 
 Creating a type-II PHA file
 ----------------------------
@@ -81,8 +81,8 @@ position of the zeroth order in sky coordinates is (4017.88, 4141.43).
 The following Bourne shell script runs the above set of tools to
 create a PHA2 file called ``aped_pha2.fits``:
 
-.. include:: aped_ciao.sh
-   :code:
+.. literalinclude:: aped_ciao.sh
+   :language: bash
 
 An important by-product of this script is the ``evt1a`` file, which
 includes columns for the computed values of the wavelengths and orders

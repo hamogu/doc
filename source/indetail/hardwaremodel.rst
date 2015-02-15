@@ -101,8 +101,7 @@ the photon. The mirror shells are assumed to be coated with iridium and
 the iridium optical constants as provided by the Henke Tables are used
 to compute the reflectivity of the mirrors as a function of energy.
 Comparison of the resulting HRMA effective area with that produced by
-SAOSAC raytraces agree to less than 1% over the energy range 0.03–10 keV
-(see Section [chap:calib]).
+SAOSAC raytraces agree to less than 1% over the energy range 0.03–10 keV.
 
 HRMA Scattering Model
 ^^^^^^^^^^^^^^^^^^^^^^
