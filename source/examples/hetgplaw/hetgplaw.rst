@@ -29,8 +29,8 @@ This gives a high resolution spectrum across the whole 1 to 40 A
 (0.31 to 12.4 keV) range suitable for use with the HETG as well as, e.g.,
 future microcalorimeter instruments.
 
-.. include:: run_marxflux.inc
-   :code:
+.. literalinclude:: run_marxflux.inc
+   :language: bash
 
 The file :download:`plawflux_hetg.tbl` can now be used by |marx| to define the spectrum.
 
@@ -51,8 +51,8 @@ lines to do a second simulation with a :ref:`sect-models-DISK`.
 In the working directory paste these sets of lines to the unix prompt to run
 a first simulation using a point source:
 
-.. include:: run_marx_point.inc
-   :code:
+.. literalinclude:: run_marx_point.inc
+   :language: bash
 
 |marx| runs, ending with something similar to (since |marx| is a Monte-Carlo
 based simulation, the exact number of detected photons can vary)::
@@ -61,6 +61,7 @@ based simulation, the exact number of detected photons can vary)::
    Total photons: 3495031, Total Photons detected: 255172, (efficiency: 0.073010)
      (efficiency this iteration  0.073986)  Total time: 50000.000492
 
+.. code-block:: bash
 
     # Create the fits event file and the aspect solution file:
     marx2fits hetg_plaw hetg_plaw_evt2.fits
@@ -70,21 +71,21 @@ Now, do another simulation keeping most things the same as above
 by starting with the ``mysim.par`` as it is left from above
 but changing a few things to use a :ref:`sect-models-DISK`:
 
-.. include:: run_marx_disk.inc
-   :code:
+.. literalinclude:: run_marx_disk.inc
+   :language: bash
 
 Next, we create the fits event file and the aspect solution files for both
 simulations:
 
-.. include:: run_marx2fits.inc
-   :code:
+.. literalinclude:: run_marx2fits.inc
+   :language: bash
 
 .. note:: Combining |marx| simulations
 
     The tool :marxtool:`marxcat` allows simulations to be combined, e.g., we
     could do the following to make a combination of the point and disk events::
 
-        [unix] marxcat hetg_plaw hetg_pldisk hetg_plboth
+        marxcat hetg_plaw hetg_pldisk hetg_plboth
 
     and then create fits and asol files as above.
     This allows more complex spatial-spectral simulations to be done with |marx|.
@@ -123,8 +124,8 @@ little signal in the higher orders, so they would not help to constrain the fit
 significantly. Extraction of the HEG grating works in a similar way, see the
 `CIAO`_ documentation for details.
 
-.. include:: hetg_ciao.sh
-   :code:
+.. literalinclude:: hetg_ciao.sh
+   :language: bash
 
 Perform spectral analysis
 -------------------------

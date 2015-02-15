@@ -396,6 +396,8 @@ functions are described in more detail below.
 user_open_source
 ~~~~~~~~~~~~~~~~~~~
 
+.. highlight:: c
+
 The ``user_open_source`` function has the prototype::
 
       int user_open_source (char **argv, int argc,
