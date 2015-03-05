@@ -14,7 +14,7 @@
 
 .. _evt2img: http://space.mit.edu/cxc/software/slang/modules/hist/evt2img.html
 
-.. _ds9: http://hea-www.harvard.edu/RD/ds9/
+.. _ds9: http://ds9.si.edu/
 .. _XSpec: http://heasarc.nasa.gov/xanadu/xspec/
 .. _Sherpa: http://cxc.harvard.edu/sherpa/
 

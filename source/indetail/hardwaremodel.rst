@@ -518,9 +518,9 @@ geometrical parameters that specify the bar shape, the chemical
 composition and thickness of the layers that make up the plating base of
 the grating, etc. An extensive effort has been made to quantitatively
 understand the relationship of these quantities to the grating
-efficiency. (see the http://space.mit.edu/HETG/report.html).
+efficiency (see the http://space.mit.edu/HETG/report.html).
 
-In early versions of |marx| , a simple, uniform rectangular bar
+In early versions of |marx| a simple, uniform rectangular bar
 model was used to calculate the diffraction efficiency of the HETG and
 LETG grating facets. Based on comparison to synchrotron measurements,
 the rectangular grating bar model appears to be accurate to
@@ -619,7 +619,7 @@ Detector Geometry
 ^^^^^^^^^^^^^^^^^
 
 The physical placement of the detectors in the Chandra focal plane is
-based on reference data given in the CXC coordinates documents . These
+based on reference data given in the CXC coordinates documents. These
 data include locations and tilts in three dimensions for each CCD in the
 ACIS-I and ACIS-S arrays as well as all four MCPs in the HRC-I and
 HRC-S. The detector geometric model in |marx| reproduces the tilts of
