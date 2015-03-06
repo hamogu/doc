@@ -176,7 +176,7 @@ your particular system. The sample Makefile reproduced here shows an
 example of building marxrsp using the CFITSIO library installed as part
 of the LHEASOFT package on a machine running Linux.
 
-::
+.. code-block:: bash
 
     #---*- sh -*----------------------------------------------------------------
     # ANSI C compiler.  The default is to use your CC environment variable

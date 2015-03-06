@@ -5,7 +5,7 @@ MARX Frequently Asked Questions
 I have a question about marx that is not addressed here. Where can I get additional help?
 ============================================================================================
 |marx| specific questions should be sent to |marx-email|.  If
-your question is related to `CIAO`_, then you should contact the `CXC helpdesk <http://asc.harvard.edu/helpdesk/index.html>`_
+your question is related to `CIAO`_, then you should contact the `CXC helpdesk <http://asc.harvard.edu/helpdesk/index.html>`_.
 
 
 Do you distribute marx binaries?
