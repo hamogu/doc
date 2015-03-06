@@ -30,8 +30,8 @@ hetg_plaw_evt2.fits: hetg_pldisk_evt2.fits
 %_reg1a.fits: %_pha2.fits
 	# This is made by the same script that generates hetg_pldisk_pha2.fits
 	touch $@
-hetg.eps hetg.png: hetg_plaw_evt2.fits hetg_plaw_reg1a.fits hetg_pldisk_evt2.fits hetg_pldisk_reg1a.fits
-	ds9 -log -cmap heat hetg_plaw_evt2.fits -regions hetg_plaw_reg1a.fits -scale mode 99.9 hetg_pldisk_evt2.fits -regions hetg_pldisk_reg1a.fits -tile row -saveimage $@ -exit
+hetg.eps hetg.png: hetg_plaw_evt2.fits hetg_plaw_reg1a.fits hetg_pldisk_evt2.fits hetg_pldisk_reg1a.fits ../runciaotool.sh
+	../runciaotool.sh ds9 -log -cmap heat hetg_plaw_evt2.fits -regions hetg_plaw_reg1a.fits -scale mode 99.9 hetg_pldisk_evt2.fits -regions hetg_pldisk_reg1a.fits -tile row -saveimage $@ -exit
 
 hetgmeg1.ps: hetg_plaw_pha2.fits isisfit.sl hetg_plawMEG_-1_garf.fits hetg_plawMEG_1_garf.fits hetg_plawmeg-1_rmf.fits hetg_plawmeg1_rmf.fits
 	$(ISISSCRIPT) ./isisfit.sl
