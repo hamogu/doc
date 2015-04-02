@@ -1,4 +1,4 @@
-FIGURES = schematic_pileup
+FIGURES = schematic_pileup evt_grid
 
 
 BUILDFIGDIR = ../../figures/

@@ -61,8 +61,8 @@ pileup process can affect ACIS data in a number of ways including:
 
 .. figure:: ../../build_figures/schematic_pileup.*
    :align: center
-   :scale: 75%
-   :alt:
+   :scale: 60%
+   :alt: Two events (symbolized by red and blue bars in a bar chart are stacked on top if each other.
 
    A schematic representation of a  "piled"  event. In this simple
    illustration, two events (red and blue) are detected in the same location within an
@@ -73,24 +73,27 @@ pileup process can affect ACIS data in a number of ways including:
    we would have detected a single 6 keV photon.
 
 
-.. figure:: evt_grid.*
+.. figure:: ../../build_figures/evt_grid.*
    :name: evtsplit
    :alt: Schematic representation of a  "split"  event
    :align: center
+   :scale: 60%
 
    A schematic representation of a small portion (8x8 pixels
    square) of a CCD in which two events have been detected.
-   The highest amplitude event (indicated by an X) is the pixel
+   The highest amplitude event (blue) is the pixel
    of interest. Since the standard event-detection routine classifies
    events in a 3x3 square pixel neighborhood, rates in all other pixels
-   marked with an X must also be considered. In addition, some events
-   two pixels away, like the one marked with an O, could pile via
+   marked in blue must also be considered. In addition, some events
+   two pixels away, like the red event, could pile via
    splitting onto the event of interest. In this example, both events
-   have been shown as split - the X event to the right, and the
-   O event to the left. The X event would be assigned too much
-   charge, in this case. Thus, the rates in pixels marked with a +
-   must be considered when assessing the pileup rate in event X (but
-   not all events in this border will actually pile with event X; the
+   deposit electrons in more than one pixel - the blue event in two pixels 
+   and the red event in three. The peak of the blue event has the highest signal 
+   and this would define the "center" of the 3x3 pixel island that is transmitted
+   to the ground. Clearly, the blue event would be assigned too much
+   charge, in this case. Thus, the rates in pixels marked in yellow
+   must be considered when assessing the pileup rate in the blue event (but
+   not all events in this border will actually pile with the blue event; the
    actual number depends on the details of the branching ratios into each
    grade).
 

@@ -17,9 +17,6 @@ event2 = np.array([[0.0, 0.0, 0.0],
                    [0.8, 1.3, 0.0],
                    [0.4, 0.0, 0.0]])
 
-fig = plt.figure()
-ax = fig.add_subplot(111, projection='3d')
-
 xpos = np.arange(3)
 ypos = xpos.copy()
 xpos, ypos = np.meshgrid(xpos, ypos)
@@ -33,6 +30,10 @@ dy = dx.copy()
 
 ind = event1.flatten() > 0
 
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
 ax.bar3d(xpos[ind], ypos[ind], z0[ind], dx[ind], dy[ind], event1.flatten()[ind], color='b', zsort='average', alpha=None)
 ind = event2.flatten() > 0
 ax.bar3d(xpos[ind], ypos[ind], event1.flatten()[ind], dx[ind], dy[ind], event2.flatten()[ind], color='r', zsort='average', alpha = None)
@@ -43,4 +44,6 @@ ax.set_zlabel('PHA [keV]')
 ax.set_xlabel('pixel')
 ax.set_ylabel('pixel')
 ax.set_title('Piled-up event')
+fig.subplots_adjust(0,0,1,1)
+
 savefig(fig, sys.argv[1])
