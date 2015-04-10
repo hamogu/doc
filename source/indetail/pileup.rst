@@ -62,7 +62,7 @@ pileup process can affect ACIS data in a number of ways including:
 .. figure:: ../../build_figures/schematic_pileup.*
    :align: center
    :scale: 60%
-   :alt: Two events (symbolized by red and blue bars in a bar chart are stacked on top if each other.
+   :alt: Two events (symbolized by red and blue bars in a bar chart) are stacked on top if each other.
 
    A schematic representation of a  "piled"  event. In this simple
    illustration, two events (red and blue) are detected in the same location within an
