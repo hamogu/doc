@@ -2,8 +2,9 @@ Welcome to MARX's documentation!
 ================================
 
 .. note:: 
-   MARX 5.1 will be released in spring 2015. The current version 5.0 
-   should be used for proposal preparation.
+   MARX 5.1 was be released in April 2015. This release includes significant
+   updates to the Chandra calibration files. See :ref:`installing` for
+   installation instructions.
 
 |marx| is a suite of programs created and maintained by the
 `MIT/CXC/HETG group <http://space.mit.edu/cxc/>`_ group and is designed

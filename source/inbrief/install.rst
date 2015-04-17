@@ -19,18 +19,18 @@ been installed.
 
 Next uncompress and untar the file::
 
-    gzip -d marx-dist-5.0.0.tar.gz
-    tar xf marx-dist-5.0.0.tar
+    gzip -d marx-dist-5.1.0.tar.gz
+    tar xf marx-dist-5.1.0.tar
 
 (Some versions of tar can also uncompress the file, permitting the
 above to be accomplished in one step).  At this point the tar file is
 no longer needed so it may be removed::
 
-    rm marx-dist-5.0.0.tar
+    rm marx-dist-5.1.0.tar
 
 Now change to the newly created directory to start the build process::
 
-    cd marx-dist-5.0.0
+    cd marx-dist-5.1.0
 
 The next step is to run the ``configure`` script, which will probe your
 system to see what tools are available for compiling |marx|.  Before
@@ -64,18 +64,22 @@ this choice the resulting |marx| executable will be placed in
 ``/opt/marx/marx-fullversion/bin/``.
 
 Now run the ``configure`` script
-specifying this value as the ``--prefix`` argument::
+specifying this value as the ``--prefix`` argument:
 
-    ./configure --prefix=/opt/marx/5.1.0
+.. parsed-literal::
+
+    ./configure --prefix=/opt/marx/|version|
 
 If all has gone well, the last bit of output from the above command
-should resemble::
+should resemble:
+
+.. parsed-literal::
 
     You are compiling MARX with the following compiler configuration:
        CC = gcc
           .
           .
-       MARX parameter files will be installed in /opt/marx/5.0.0/share/marx/pfiles/.
+       MARX parameter files will be installed in /opt/marx/|version|/share/marx/pfiles/.
             
        To continue the build process, run 'make'.
 
@@ -103,25 +107,25 @@ to complete the installation.
 
 The install step will create the following directories:
 
-``/opt/marx/marx-fullversion/bin/``
+``/opt/marx/marx-version/bin/``
     Directory where |marx|, :marxtool:`marx2fits`, and other |marx| -related executables are placed.
 
-``/opt/marx/marx-fullversion/share/marx/data/``
+``/opt/marx/marx-version/share/marx/data/``
     Directory under which the |marx| calibration data files are located.
 
-``/opt/marx/marx-fullversion/share/marx/pfiles/``
+``/opt/marx/marx-version/share/marx/pfiles/``
     The parameter files used by |marx| are located here.
 
-``/opt/marx/marx-fullversion/share/doc/marx/``
+``/opt/marx/marx-version/share/doc/marx/``
     Directory containing |marx| -related documentation.
 
-``/opt/marx/marx-fullversion/lib/``
+``/opt/marx/marx-version/lib/``
     Static versions of libraries distributed with and used by |marx| are put here.
 
-``/opt/marx/marx-fullversion/include/``
+``/opt/marx/marx-version/include/``
     The C header files of the |marx| libraries are put here.
 
-``/opt/marx/marx-fullversion/lib/marx/``
+``/opt/marx/marx-version/lib/marx/``
     Contains miscellaneous |marx| -related tools.
 
 As indicated above, the |marx| executable will be copied to ``/opt/marx/marx-fullversion/bin/``.

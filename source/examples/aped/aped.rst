@@ -99,33 +99,17 @@ with the result::
 
     Current Spectrum List:
      id    instrument part/m  src    use/nbins   A   R     totcts   exp(ksec)  target
-      1     HETG-ACIS  heg-3   1    8192/ 8192   -   -  3.6800e+02    78.988  POINT
+      1     HETG-ACIS  heg-1   1    8192/ 8192   -   -  1.3249e+04    78.988  POINT
     file:  aped_pha2.fits
-      2     HETG-ACIS  heg-2   1    8192/ 8192   -   -  9.7600e+02    78.988  POINT
+      2     HETG-ACIS  heg+1   1    8192/ 8192   -   -  1.1891e+04    78.988  POINT
     file:  aped_pha2.fits
-      3     HETG-ACIS  heg-1   1    8192/ 8192   -   -  1.3292e+04    78.988  POINT
+      3     HETG-ACIS  meg-1   1    8192/ 8192   -   -  2.6507e+04    78.988  POINT
     file:  aped_pha2.fits
-      4     HETG-ACIS  heg+1   1    8192/ 8192   -   -  1.1962e+04    78.988  POINT
+      4     HETG-ACIS  meg+1   1    8192/ 8192   -   -  2.6388e+04    78.988  POINT
     file:  aped_pha2.fits
-      5     HETG-ACIS  heg+2   1    8192/ 8192   -   -  5.9900e+02    78.988  POINT
-    file:  aped_pha2.fits
-      6     HETG-ACIS  heg+3   1    8192/ 8192   -   -  2.4300e+02    78.988  POINT
-    file:  aped_pha2.fits
-      7     HETG-ACIS  meg-3   1    8192/ 8192   -   -  2.4840e+03    78.988  POINT
-    file:  aped_pha2.fits
-      8     HETG-ACIS  meg-2   1    8192/ 8192   -   -  6.9100e+02    78.988  POINT
-    file:  aped_pha2.fits
-      9     HETG-ACIS  meg-1   1    8192/ 8192   -   -  2.7136e+04    78.988  POINT
-    file:  aped_pha2.fits
-     10     HETG-ACIS  meg+1   1    8192/ 8192   -   -  2.6811e+04    78.988  POINT
-    file:  aped_pha2.fits
-     11     HETG-ACIS  meg+2   1    8192/ 8192   -   -  5.2500e+02    78.988  POINT
-    file:  aped_pha2.fits
-     12     HETG-ACIS  meg+3   1    8192/ 8192   -   -  1.8150e+03    78.988  POINT
-    file:  aped_pha2.fits
-    
 
-A plot of the MEG-1 spectrum, which corresponds to ``id=9`` in the
+
+A plot of the MEG-1 spectrum, which corresponds to ``id=3`` in the
 above list may be created using:
 
 .. include:: isismeg1.sl
@@ -134,7 +118,7 @@ above list may be created using:
 .. figure:: apedmeg1.*
    :align: center
 
-   Plot of the MEG+1 counts spectrum
+   Plot of the MEG-1 counts spectrum
 
 In making the above plot, the ``group_data`` function was used to
 rebin the data by combining adjacent wavelength channels.
