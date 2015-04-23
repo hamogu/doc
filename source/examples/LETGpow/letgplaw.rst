@@ -73,7 +73,7 @@ the spectrum. The value of ``-1``
 as given above means that the integrated flux is to be taken from the file. 
 The results of the
 simulation will be written to a subdirectory called ``letgplaw``, as
-specified by the :par:`Output Dir` parameter.  After the simulation has
+specified by the :par:`OutputDir` parameter.  After the simulation has
 completed, a standard Chandra event file may be created using the :marxtool:`marx2fits`
 program:
 
@@ -154,14 +154,17 @@ following commands (positive order works similarly):
 This command sequence produced the following parameter values and a reduced
 chi-square around 1::
 
-    Reduced statistic     = 1.38457
-    Change in statistic   = 9.32606e+07
+    Reduced statistic     = 1.08292
+    Change in statistic   = 2.84957e+07
        a.nH           0
-       xp.PhoIndex    -1.77876
-       xp.norm        0.00114488
+       xp.PhoIndex    1.75727
+       xp.norm        0.10434
 
-Absorption and photons index are similar to what we put in the simulation, but
-the norm is way off. Maybe we should have used the RMF after all.
+The reduced chi-squared value indicates that we found an acceptable fit and all
+parameter values are close to the original input values (the nH is so small in
+the input that the fit may give a zero value as fit result). Note that your
+results may vary slightly if you run this example, because |marx| is a
+Monte-Carlo simulation based on random numbers.
 
 .. figure:: m1_fit.*
    :align: center

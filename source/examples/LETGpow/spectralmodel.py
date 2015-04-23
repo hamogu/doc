@@ -19,7 +19,7 @@ a.nH = 0.001
 p.PhoIndex = 1.8
 p.norm = 0.1
 
-set_analysis("energy", factor=1)
+set_analysis("energy", factor=0)
 
 pl = get_source_plot()
 fluxdensity = pl.y
