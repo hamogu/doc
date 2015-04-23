@@ -162,8 +162,8 @@ chi-square around 1::
 
 The reduced chi-squared value indicates that we found an acceptable fit and all
 parameter values are close to the original input values (the nH is so small in
-the input, that the fit may give a zero value as fit result). Note that your
-results may vary slightly, if you run this example, because |marx| is a
+the input that the fit may give a zero value as fit result). Note that your
+results may vary slightly if you run this example, because |marx| is a
 Monte-Carlo simulation based on random numbers.
 
 .. figure:: m1_fit.*
