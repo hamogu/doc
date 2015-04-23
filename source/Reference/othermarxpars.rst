@@ -3,18 +3,28 @@
 
 Further |marx| parameters
 ==========================
-|marx| accepts a larger number of parameters. Only a small fraction of those is needed by the average |marx| user and those
-parameters are explained in detail in this manual. For each parameter,
-:ref:`genindex` links to the section that explains its use. 
 
-However, many parameters are only required for calibration purposes. Their defaults point to a file with calibration
-information that is shipped with |marx| or they set a parameter of the the Chandra geometry.
-Those files typically should not be changed from those default value. 
-Other parameters are only of historical interest (e.g. :par:`dNumRays`
-optimizes |marx| for computers with less then 50 MB of memory).
+|marx| accepts a large number of parameters. Only a small fraction of those is
+needed by the average |marx| user and those parameters are explained in detail
+in this manual. For each parameter, :ref:`genindex` links to the section that
+explains its use.
 
-These parameters
-are listed here with a short (or longer) explanation.
+However, many parameters are only required for calibration purposes.  These
+parameters are listed here with a short (or longer) explanation.  Their
+defaults point to a file with calibration information that is shipped with
+|marx| or they set a parameter of the the Chandra geometry.  Those parameters
+typically should not be changed from their default value.  Other parameters are
+only of historical interest (e.g. :par:`dNumRays` optimizes |marx| for
+computers with less then 50 MB of memory).
+
+Parameters can be set on the command line. All parameters not set in this way
+will be read from a parameter file. These files are plain text files and it
+should be easy to edit them in any text editor. If required, there is a
+`detailed description of the format
+<http://cxc.harvard.edu/ciao/ahelp/parameter.html#Contents_of_a_Parameter_File>`_.
+See the description of :marxtool:`marx` for different ways to select a
+parameter file.
+
 
 Parameter file
 ~~~~~~~~~~~~~~
