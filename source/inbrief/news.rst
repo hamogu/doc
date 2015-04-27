@@ -6,18 +6,19 @@ Highlights for each version of |marx|
 
 Marx 5.1
 ========
-This page is devoted to a description of some of the changes since
-version 5.0.  The changes consist mainly of some minor enhancements,
-calibration updates, and bug fixes.  If you are upgrading from version
-4.x, you should also read the release notes for version 5.0 below.
 
-Enhanced support for dithered SAOTrace files
---------------------------------------------
+|marx| version 5.1 is a maintenance release. Since more than
+two years have gone by since release 5.0, there are major changes in the
+Chandra calibration data that |marx| uses, particularly in the soft energy
+response of ACIS. In addition there are several minor changes, some of which are
+listed below (see the commit log of the `git repository
+<https://github.com/Chandra-MARX/marx>`_ for complete details):
 
-Bug Fixes
----------
-|marx| now compiles with ``clang``, the compiler shipped with Max OS X.
-(Apple installs an alias ``gcc`` which points to ``clang``.)
+- |marx| now compiles with ``clang``, the compiler that is shipped with Max OS X-code.
+  (Apple sets an alias called ``gcc``, but this really points to ``clang``.)
+- Enhanced support for dithered `SAOTrace`_ rays on input.
+- :marxtool:`marx2fits` writes more header keywords in the output fits files,
+  which enables more `CIAO`_ tools to work with those files.
 
 Marx 5.0
 ========
