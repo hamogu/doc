@@ -38,3 +38,10 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`search`
 
+Developer documentation
+=======================
+
+.. toctree::
+   :maxdepth: 2
+
+   developer/release

@@ -1,0 +1,54 @@
+=======================
+Developer documentation
+=======================
+
+This section collects notes and documentation for the |marx| developer(s). 
+
+.. note::
+   The |marx| documentation is build and deployed locally on MIT servers,
+   thus these instructions will not be relevant for people outside the MIT/CXC
+   group.
+
+Making a release
+================
+
+Source repro
+------------
+(Commands are shown here as an example for a release called ``5.1.0``.)
+
+#) git checkout master
+#) *if necessary*: Update the copyright statements in the individual files.
+   ``grep -rli 'Copyright (C) 2002-2013 Massachusetts Institute of
+#Technology' * | xargs -i@ sed -i 's/Copyright (C) 2002-2013 Massachusetts
+#Institute of Technology/Copyright (C) 2002-2015 Massachusetts Institute of
+#Technology/g' @``; note separate copyright in ``jdmath/COPYRIGHT``.
+#) Update version string in e.g. the start-up message or |marx| or in the
+   comments in ``marx.par``. The best way to do this is properly to grep for
+   ``5.0.0`` (or whatever the previous version was called).
+#) ``git tag v5.1.0``
+#) ``git push --tags reproname`` Push tag to all repositories that should have a copy.
+#) ``git archive --format=tar --prefix=marx-5.1.0/ v5.1.0 | gzip >  marx-dist-5.1.0.tar.gz``
+#) ``scp marx-dist-5.1.0.tar.gz space:/space/ftp/pub/cxc/marx/v5.1`` (make directory as required)
+
+
+Documentation repro
+-------------------
+
+#) update ``copyright``, ``version``, and ``release`` in ``conf.py`` (note that the same variables need to be set again further down in the file for LaTeX output).
+#) Update any notes on the front page ``index.rst`` etc.
+#) ``make clean``
+#) Install marx and set path in ``source/examples/config.inc`` to it, so that
+   the examples are build with the new version.
+#) ``make figures``
+#) ``make examples``
+#) ``make html``. Fix any errors that come up.
+#) ``scp -r build/html/* space:/space/web/ASC/marx-5.1`` (Create directory on
+   space as required.)
+
+Get the word out
+----------------
+
+#) Announce release to cxc at mit.edu
+#) Announce release on marx-users at space.mit.edu
+#) Ask T. Gorcas to include release in next Chandra electronic announcement
+#) Ask CIAO time to advertise release through the CIAO Twitter, facebook, Google+ feeds.
