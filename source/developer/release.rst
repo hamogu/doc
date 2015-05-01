@@ -17,11 +17,11 @@ Source repro
 (Commands are shown here as an example for a release called ``5.1.0``.)
 
 #) git checkout master
-#) *if necessary*: Update the copyright statements in the individual files.
-   ``grep -rli 'Copyright (C) 2002-2013 Massachusetts Institute of
-#Technology' * | xargs -i@ sed -i 's/Copyright (C) 2002-2013 Massachusetts
-#Institute of Technology/Copyright (C) 2002-2015 Massachusetts Institute of
-#Technology/g' @``; note separate copyright in ``jdmath/COPYRIGHT``.
+#) *if necessary*: Update the copyright statements in the individual files::
+
+      grep -rli 'Copyright (C) 2002-2013 Massachusetts Institute of Technology' * | xargs -i@ sed -i 's/Copyright (C) 2002-2013 Massachusetts Institute of Technology/Copyright (C) 2002-2015 Massachusetts Institute of Technology/g' @
+
+  Note separate copyright in ``jdmath/COPYRIGHT``.
 #) Update version string in e.g. the start-up message or |marx| or in the
    comments in ``marx.par``. The best way to do this is properly to grep for
    ``5.0.0`` (or whatever the previous version was called).
