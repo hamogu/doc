@@ -16,9 +16,24 @@ listed below (see the commit log of the `git repository
 
 - |marx| now compiles with ``clang``, the compiler that is shipped with Max OS X-code.
   (Apple sets an alias called ``gcc``, but this really points to ``clang``.)
-- Enhanced support for dithered `SAOTrace`_ rays on input.
+- Enhanced support for dithered `SAOTrace`_ rays on input. In particular, that
+  means that the parameter :par:`SAOSAC_Color_Rays` is no longer
+  needed. Setting it currently has no effect and this parameter will be removed
+  in the next version.
 - :marxtool:`marx2fits` writes more header keywords in the output fits files,
   which enables more `CIAO`_ tools to work with those files.
+- The HRC blur model has been improved. Simulations with HRC-I and HRC-S will
+  give slightly different PSF shapes. In order to describe the HRC blur
+  properly, new parameters have been added to ``marx.par``. These parameters
+  should not be changed by the user; instead we strongly recommend to just copy
+  and modify the version of ``marx.par`` that comes with the installation
+  which includes those new parameters.
+- |marx| now includes the LEG misalignment compared to the ACIS chips. Handling
+  this required changes to the default values of the :par:`hegTheta`,
+  :par:`megTheta`, and :par:`legTheta`. These parameters
+  should not be changed by the user; instead we strongly recommend to just copy
+  and modify the version of ``marx.par`` that comes with the installation
+  which includes those updated values.
 
 Marx 5.0
 ========

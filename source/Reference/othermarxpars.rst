@@ -30,6 +30,9 @@ Parameter file
 ~~~~~~~~~~~~~~
 .. parameter:: mode
 
+.. parameter:: DataDirectory
+
+
 Simulation control
 ~~~~~~~~~~~~~~~~~~
 .. parameter:: dNumRays
@@ -59,6 +62,7 @@ Simulation control
    ``DetOffsetY=0`` always as Y axis translation of the flight
    SIM is not permitted.
 
+.. parameter:: SAOSAC_Color_Rays
 
 
 Output Vectors
@@ -234,6 +238,10 @@ HRMA Setup
 
 .. parameter:: HRMA_Use_Blur
 
+.. parameter:: HRMA_Use_Scale_Factors
+
+.. parameter:: HRMA_Use_Struts
+
 .. parameter:: HRMA_Ideal
 
 .. parameter:: WFold_P1_File
@@ -313,8 +321,6 @@ HRMA Setup
 EA mirror setup
 ~~~~~~~~~~~~~~~
 
-.. parameter:: MirrorF           
-
 .. parameter:: MirrorRadius1
 
 .. parameter:: MirrorRadius3
@@ -339,9 +345,15 @@ Grating Setup and Control
 Further parameters for the grating setup and control are discussed in detail in :ref:`Gratingefficiency` and
 in :ref:`misalignments`.
 
-.. parameter:: RowlandDiameter
+.. parameter:: HEGRowlandDiameter
+
+.. parameter:: MEGRowlandDiameter
+
+.. parameter:: LEGRowlandDiameter
 
 .. parameter:: GratingOptConsts
+
+.. parameter:: Use_This_Order
 
 
 HETG Efficiency Table Model Parameters
@@ -405,6 +417,9 @@ HETG Efficiency Table Model Parameters
 
 LETG Efficiency Table Model Parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. parameter:: LETG_Eff_Scale_Factor
+
 .. parameter:: LETG_Sector1_File
 
 .. parameter:: LETG_Sector3_File
@@ -446,6 +461,20 @@ LETG Efficiency Table Model Parameters
 .. parameter:: LETG_Shell6_dTheta
 
 .. parameter:: LETG_Shell1_Period
+
+.. parameter:: LETG_Shell3_Period
+
+.. parameter:: LETG_Shell4_Period
+
+.. parameter:: LETG_Shell6_Period
+
+.. parameter:: LETG_Shell1_dPoverP
+
+.. parameter:: LETG_Shell3_dPoverP
+
+.. parameter:: LETG_Shell4_dPoverP
+
+.. parameter:: LETG_Shell6_dPoverP
 
 
 HEG Rectangular Grating Bar Model Parameters
@@ -504,6 +533,9 @@ MEG Rectangular Grating Bar Model Parameters
 
 LEG Rectangular Grating Bar Model Parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. parameter:: DetExtendFlag
+
 .. parameter:: LEGVig
 
 .. parameter:: legGold
@@ -530,7 +562,19 @@ LEG Rectangular Grating Bar Model Parameters
 
 .. parameter:: legFineNumOrders
 
+.. parameter:: legFinePeriod
+
+.. parameter:: legFineBarWidth
+
+.. parameter:: legFineBarHeight
+
 .. parameter:: legCoarseNumOrders
+
+.. parameter:: legCoarsePeriod
+
+.. parameter:: legCoarseBarHeight
+
+.. parameter:: legCoarseBarWidth
 
 
 ACIS Model Parameters
@@ -542,6 +586,10 @@ ACIS Model Parameters
 .. parameter:: ACIS_Gain_Map_File
 
 .. parameter:: ACIS_eV_Per_PI
+
+
+ACIS-S Model Parameters
+~~~~~~~~~~~~~~~~~~~~~~~
 
 .. parameter:: ACIS-S0-QEFile
 
@@ -568,15 +616,97 @@ ACIS Model Parameters
 .. parameter:: ACIS-S5-FilterFile
 
 
-HRC Model Parameters
-~~~~~~~~~~~~~~~~~~~~
-.. parameter:: HRC-I-BlurSigma  
+
+ACIS-I Model Parameters
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. parameter:: ACIS-I0-QEFile
+
+.. parameter:: ACIS-I0-FilterFile
+
+.. parameter:: ACIS-I1-QEFile
+
+.. parameter:: ACIS-I1-FilterFile
+
+.. parameter:: ACIS-I2-QEFile
+
+.. parameter:: ACIS-I2-FilterFile
+
+.. parameter:: ACIS-I3-QEFile
+
+.. parameter:: ACIS-I3-FilterFile
+
+
+HRC-I Model Parameters
+~~~~~~~~~~~~~~~~~~~~~~
+
+The blur parameters were extracted from
+http://cxc.harvard.edu/twiki/bin/view/HrcCal/DetectorPSF .
+The (Xctr,Yctr) are offset at runtime such that (G1Xctr,G1Yctr)=(0,0).
+
+.. parameter:: HRC-I-BlurG1FWHM
+
+.. parameter:: HRC-I-BlurG1Xctr
+
+.. parameter:: HRC-I-BlurG1Yctr
+
+.. parameter:: HRC-I-BlurG1Amp
+
+.. parameter:: HRC-I-BlurG2FWHM
+
+.. parameter:: HRC-I-BlurG2Xctr
+
+.. parameter:: HRC-I-BlurG2Yctr
+
+.. parameter:: HRC-I-BlurG2Amp
+
+.. parameter:: HRC-I-BlurL1FWHM
+
+.. parameter:: HRC-I-BlurL1Xctr
+
+.. parameter:: HRC-I-BlurL1Yctr
+
+.. parameter:: HRC-I-BlurL1Amp
+
+.. parameter:: HRC-I-BlurL1Rmax
 
 .. parameter:: HRC-I-QEFile
 
 .. parameter:: HRC-I-UVISFile
 
-.. parameter:: HRC-S-BlurSigma
+
+HRC-S Model Parameters
+~~~~~~~~~~~~~~~~~~~~~~
+
+The blur parameters were extracted from
+http://cxc.harvard.edu/twiki/bin/view/HrcCal/DetectorPSF .
+The (Xctr,Yctr) are offset at runtime such that (G1Xctr,G1Yctr)=(0,0).
+
+.. parameter:: HRC-S-BlurG1FWHM
+
+.. parameter:: HRC-S-BlurG1Xctr
+
+.. parameter:: HRC-S-BlurG1Yctr
+
+.. parameter:: HRC-S-BlurG1Amp
+
+.. parameter:: HRC-S-BlurG2FWHM
+
+.. parameter:: HRC-S-BlurG2Xctr
+
+.. parameter:: HRC-S-BlurG2Yctr
+
+.. parameter:: HRC-S-BlurG2Amp
+
+.. parameter:: HRC-S-BlurL1FWHM
+
+.. parameter:: HRC-S-BlurL1Xctr
+
+.. parameter:: HRC-S-BlurL1Amp
+
+.. parameter:: HRC-S-BlurL1Yctr
+
+.. parameter:: HRC-S-BlurL1Rmax
 
 .. parameter:: HRC-S-QEFile0
 
