@@ -2,7 +2,7 @@ Welcome to MARX's documentation!
 ================================
 
 .. note:: 
-   MARX 5.1 was be released in April 2015. This release includes significant
+   MARX 5.1 was released in April 2015. This release includes significant
    updates to the Chandra calibration files. See :ref:`installing` for
    installation instructions.
 

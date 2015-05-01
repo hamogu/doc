@@ -530,7 +530,7 @@ tabulated facet data from sub–assembly and XRCF data.
 
 .. parameter:: UseGratingEffFiles
 
-   (*default: `yes`*) Use grating efficiency tables?  These efficiency
+   Use grating efficiency tables?  These efficiency
    tables have been provided by the HETG IPI team and include grating
    efficiencies for orders -11 to 11. In the case of the LETG tables,
    orders from -25 to 25 are included. Individual tables have been
@@ -541,7 +541,7 @@ tabulated facet data from sub–assembly and XRCF data.
 
 .. parameter:: Use_Unit_Efficiencies 
 
-   (*default: `no`*) If `yes`, rays which intersect the HETG or LETG will
+   If `yes`, rays which intersect the HETG or LETG will
    still be diffracted but no efficiency filter will be applied. Hence all
    orders will have an equal probability of being populated. This mode is
    useful for studying the characteristics of higher order dispersed
@@ -577,16 +577,11 @@ function of angle (including the mis-aligned MEG facets) have been
 provided by the HETG IPI team and reside in the ``MARX_DATA_DIR``
 directory. 
 
-
-
-
 .. parameter:: Use_HETG_Sector_Files
-
-   (*default: `yes`*) Use HETG Sector Files?
 
 .. parameter:: Use_LETG_Sector_Files 
    
-   (*default: `no`*) Sector files are currently unavailable for
+   Sector files are currently unavailable for
    the LETG, so this option is off by default when simulating LETG
    observations. Instead, the misalignmens is treated statistically
    using :par:`legdTheta` parameter.
@@ -600,8 +595,6 @@ of the LEG dispersion arm on the ACIS detector. Changes were added to CIAO 4.3
 that effectively adds an additional rotation to the LETG when used with ACIS. 
 
 .. parameter:: LETG_ACIS_dTheta
-
-   (*default*: -0.0867) Enter aspect/focalplane misaligment induced dtheta for LETG/ACIS (degrees)
 
 
 .. _sect-detectormodel:

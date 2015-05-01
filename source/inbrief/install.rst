@@ -58,10 +58,10 @@ in the ``INSTALL`` file.  For simplicity, here it is assumed that :marxtool:`mar
 will not be installed.
 
 Assume that you want |marx| installed in its own tree under
-``/opt/marx/marx-fullversion/``.  This value is known as the
+``/opt/marx/marx-version/``.  This value is known as the
 *installation-prefix*.  It is important to understand that with
 this choice the resulting |marx| executable will be placed in
-``/opt/marx/marx-fullversion/bin/``.
+``/opt/marx/marx-version/bin/``.
 
 Now run the ``configure`` script
 specifying this value as the ``--prefix`` argument:
@@ -96,7 +96,7 @@ Assuming all has gone well, execute the ``make`` command::
 
 The final step in the installation process is to actually install the
 compiled executables.  If you do not have write permission to the
-installation-prefix directory (``/opt/marx/marx-fullversion`` in this case),
+installation-prefix directory (``/opt/marx/marx-version`` in this case),
 then you will need to obtain the appropriate privileges to complete
 the next step.  For example, this may require temporarily becoming the
 ``root`` user.  Now run::
@@ -128,7 +128,7 @@ The install step will create the following directories:
 ``/opt/marx/marx-version/lib/marx/``
     Contains miscellaneous |marx| -related tools.
 
-As indicated above, the |marx| executable will be copied to ``/opt/marx/marx-fullversion/bin/``.
+As indicated above, the |marx| executable will be copied to ``/opt/marx/marx-version/bin/``.
 In addition, the |marx| installation contains some other tools described in
 :ref:`tools`.
 Binary executables for those tools are located in the same directory as |marx|
@@ -256,7 +256,7 @@ This sequence will build NeXT executables and place them in the
     unix% ./configure
     unix% make
 
-These binaries will be placed in “./bin/linux”. This process can be
+These binaries will be placed in ``./bin/linux``. This process can be
 repeated as needed.
 
 

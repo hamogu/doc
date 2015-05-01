@@ -69,7 +69,7 @@ and output location and format.
 
 .. parameter:: RandomSeed
 
-   |marx| is a Monte-Carlo simulation program, where all parameters (e.g. the
+    |marx| is a Monte-Carlo simulation program, where all parameters (e.g. the
     energy or position of a photon, the scattering of a mirror or the
     diffraction in a grating) are drawn from a distribution of possible
     outcomes by means of a random number. This means that two |marx| simulations with the same input
@@ -133,7 +133,6 @@ file. This file should *not* be modified.
 
 .. parameter:: OutputDir
 
-   (*default*: ``point``)
    This parameter specifies the directory where |marx| output is written.
    If the directory specified does not exist, |marx| will create it.
    Alternatively, if the specified directory does exist, its
@@ -156,7 +155,6 @@ to be used in the simulation as well as which of |marx| mirror models to use.
 
 .. parameter:: MirrorType
 
-   (*default*: ``HRMA``)
    This parameter can be one of three values: ``HRMA``, ``EA-MIRROR``, or ``FLATFIELD``.
    The ``HRMA`` model is a full raytrace using an accurate physical model of the
    HRMA's parabolic and hyperbolic components. Mode details can be found in
@@ -180,7 +178,7 @@ to be used in the simulation as well as which of |marx| mirror models to use.
 
 .. parameter:: GratingType
 
-   One of three options: ``HETG``, ``LETG``, or ``NONE``.
+   This parameter can be one of three options: ``HETG``, ``LETG``, or ``NONE``.
    Chandra carries two sets of diffraction gratings: the Low Energy
    Transmission Grating (LETG) and the High Energy Transmission Grating
    (HETG) (see :ref:`grating-modules` for a full description).
@@ -248,7 +246,6 @@ Focal plane detectors
 
 .. parameter:: DetIdeal
 
-   (*default*: ``no``)
    The quantum efficiency of the specified detector can
    be suppressed using the ``DetIdeal`` parameter. If ``DetIdeal="yes"``,
    the focal plane geometry of the selected detector is preserved, but
@@ -266,7 +263,7 @@ along the optical axis is also possible to adjust the focus.
 
 .. parameter:: DetOffsetX
 
-   (*default*: 0) Offset in mm from the nominal on-axis, in-focus SIM position.
+   Offset in mm from the nominal on-axis, in-focus SIM position.
 
    In the |marx| coordinate system (which is the same as the
    Chandra coordinate system), the X axis corresponds to the
@@ -282,7 +279,7 @@ along the optical axis is also possible to adjust the focus.
 
 .. parameter:: DetOffsetZ
 
-   (*default*: 0) Offset in mm from the nominal on-axis, in-focus SIM position.
+   Offset in mm from the nominal on-axis, in-focus SIM position.
 
    This parameter can be used to translate
    the SIM in the direction perpendicular to the grating
@@ -304,35 +301,30 @@ Source Position
 
 .. parameter:: SourceRA
 
-   (*default*: 40)
    RA of source in the sky in decimal degrees. 
    Corresponds on the ``RA_TARG`` FITS header keyword in a standard
    Chandra Level 2 events file.
 
 .. parameter:: SourceDEC
 
-   (*default*: 60)
    RA of source in the sky in decimal degrees. 
    Corresponds on the ``DEC_TARG`` FITS header keyword in a standard
    Chandra Level 2 events file.
 
 .. parameter:: RA_Nom
 
-   (*default*: 40)
    RA of nominal aimpoint in the sky in decimal degrees. 
    Corresponds on the ``RA_NOM`` FITS header keyword in a standard
    Chandra Level 2 events file.
 
 .. parameter:: Dec_Nom
 
-   (*default*: 60)
    RA of nominal aimpoint in the sky in decimal degrees. 
    Corresponds on the ``DEC_NOM`` FITS header keyword in a standard
    Chandra Level 2 events file.
 
 .. parameter:: Roll_Nom
 
-   (*default*: 45)
    Roll angle in the sky in decimal degrees. 
    Corresponds on the ``ROLL_NOM`` FITS header keyword in a standard
    Chandra Level 2 events file.
@@ -553,7 +545,6 @@ integration time has been reached, the simulation will terminate.
 
 .. parameter:: Verbose
 
-   (*default*: ``yes``)
    The diagnostic messages can be quieted by setting the parameter
    ``Verbose="no"``.
 

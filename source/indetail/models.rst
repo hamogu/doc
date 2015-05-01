@@ -97,11 +97,11 @@ external ASCII file. The following parameters describe the source spectrum:
 
 .. parameter:: SpectrumType
 
-   (*default*: `FLAT`) Select spectrum type. Can be ``FLAT`` or ``FILE``.
+   Select spectrum type. Can be ``FLAT`` or ``FILE``.
 
 .. parameter:: SourceFlux
 
-   (*default*: `1.0e-3`) Enter incoming ray flux (photons/sec/cm2). For
+   Incoming ray flux (photons/sec/cm2). For
    :par:`SpectrumType="FLAT"` this number must be positive. If
    :par:`SpectrumType="FILE"` this number can be positive to renormalize the
    spectrum file to the given source flux. If it is negative, then the
@@ -109,7 +109,7 @@ external ASCII file. The following parameters describe the source spectrum:
 
 .. parameter:: SpectrumFile
 
-   (*default*: `flux.dat`) Input spectrum filename (only used if
+   Input spectrum filename (only used if
    :par:`SpectrumType="FILE"`). The file has to consist of two columns of data
    with no header line. The first column contains the energy of the upper bin
    edge in keV, the second the source flux in photons/s/cm^2/keV in that bin
@@ -126,11 +126,11 @@ external ASCII file. The following parameters describe the source spectrum:
 
 .. parameter:: MinEnergy
 
-   (*default*: `1.486`) MIN ray energy in keV (only used if :par:`SpectrumType="FLAT"`)
+   MIN ray energy in keV (only used if :par:`SpectrumType="FLAT"`)
 
 .. parameter:: MaxEnergy
 
-   (*default*: `1.486`) MAX ray energy in keV (only used if :par:`SpectrumType="FLAT"`)
+   MAX ray energy in keV (only used if :par:`SpectrumType="FLAT"`)
 
 
 
@@ -161,7 +161,7 @@ In |marx| the following parameter selects model for the spatial distribution of 
 
 .. parameter:: SourceType
 
-   (*default*: ``"POINT"``) The following values are allowed: ``"POINT"``, ``"LINE"``, ``"GAUSS"``, ``"BETA"``, 
+   The following values are allowed: ``"POINT"``, ``"LINE"``, ``"GAUSS"``, ``"BETA"``, 
    ``"DISK"``, ``"IMAGE"``, ``"SAOSAC"``, ``"RAYFILE"``, ``"USER"``. Depending on the source model chosen,
    further parameters (such as the radius of the disk) may be required.
 
@@ -205,11 +205,11 @@ for :math:`\theta < \theta_0` and zero otherwise.
 
 .. parameter:: S-LinePhi
 
-   (*default*: `0`) Line source orientation angle  :math:`\phi_0` (degrees)
+   Line source orientation angle  :math:`\phi_0` (degrees)
 
 .. parameter:: S-LineTheta
 
-   (*default*: `1800`) Line source length :math:`\theta_0` (arcsec)
+   Line source length :math:`\theta_0` (arcsec)
 
 
 .. index::
@@ -227,9 +227,6 @@ where :math:`\theta_0` determines the width of the Gaussian
 distribution:
 
 .. parameter:: S-GaussSigma
-
-   (*default*: `60`) Enter gauss source sigma (arcsec)
-
 
 .. index::
    pair: Source Model; BETA
@@ -251,11 +248,11 @@ This distribution is used to model galaxy clusters.
 
 .. parameter:: S-BetaCoreRadius
 
-   (*default*: `10`) Enter core radius :math:`\theta_c` (arcsec)
+   Core radius :math:`\theta_c` (arcsec)
 
 .. parameter:: S-BetaBeta
 
-   (*default*: `0.7`) Enter :math:`\beta` value
+   :math:`\beta` value
 
 
 .. index::
@@ -280,11 +277,11 @@ useful for modeling a supernova remnant.
 
 .. parameter:: S-DiskTheta0
 
-   (*default*: `0`) Enter min disk :math:`\theta_0` (arcsec)
+   Min disk :math:`\theta_0` (arcsec)
 
 .. parameter:: S-DiskTheta1
 
-   (*default*: `60`) Enter max disk :math:`\theta_1` (arcsec)
+   Max disk :math:`\theta_1` (arcsec)
 
 
 .. index::
@@ -300,10 +297,7 @@ However, it does **not** extract the position or orientation on the sky.
 |marx| will just assume that the image is centered on the optical axis and that the axes directions
 are aligned with the detector axes.
 
-
 .. parameter:: S-ImageFile
-
-   (*default*: `image.fits`) Enter fits filename for IMAGE source
 
 
 .. index::
@@ -313,16 +307,9 @@ SAOSAC Source
 ^^^^^^^^^^^^^
 The ``SAOSAC`` source allows SAOSAC raytrace files to be used as input for |marx|. SAOSAC is a high-fidelity raytracer
 for the Chandra mirrors, with a much higher level of detail than the module supplied with |marx|.
-Only in very rare cases is this needed for the end-user. Mode details can be found in :ref:`saosac`.
-
+Only in very rare cases is this needed for the end-user. More details can be found in :ref:`saosac`.
 
 .. parameter:: SAOSACFile
-
-   (*default*: `saosac.fits`) Enter marx input source/output ray filename
-
-.. parameter:: SAOSAC_Color_Rays
-
-   (*default*: `no`) Color SAOSAC rays?
 
 
 .. index::
@@ -339,8 +326,6 @@ different, e.g. if a different detector or dither is chosen.
 
 
 .. parameter:: RayFile
-
-   (*default*: `marx.output`) Enter marx input source/output ray filename
 
 
 .. index::
@@ -360,12 +345,8 @@ changes with time, complex extended objects, etc. can be simulated.
 
 .. parameter:: UserSourceFile
 
-   (*default*: `../doc/examples/user-source/pnts.so`) Dynamically linked source filename
-
 .. parameter:: UserSourceArgs
-
-   (*default*: `pnts.dat`) Enter user source parameter
-
+   
 A user-defined source model must be created by the user using a language
 such as C and then compiled as a shared object. During run-time,
 |marx|  will dynamically link to this shared object and use it to
