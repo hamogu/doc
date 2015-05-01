@@ -596,7 +596,7 @@ with no parameters on the call line.
    :param MarxOutputDir: (*default*: ``point``) MARX output directory
    :param Alpha: (*default*: ``0.5``) Grade migration factor
    :param FrameTime: (*default*: ``3.2``) ACIS frame time (sec)
-   :param FrameTransferTime: (*default*: 0.041) ACIS frame transfer time (sec)
+   :param FrameTransferTime: (*default*: ``0.041``) ACIS frame transfer time (sec)
    :param Verbose: (*default*: ``2``) Verbosity level
    :param mode: (*default*: ``hl``) Mode for parameter file
 

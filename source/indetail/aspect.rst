@@ -66,11 +66,9 @@ in ``marx.par`` controls which type of dither model is used:
 
 .. parameter:: DitherModel
 
-   (*default*: `NONE`) Dither Model [`NONE`, `INTERNAL`, `FILE`]
+   Dither Model [`NONE`, `INTERNAL`, `FILE`]
 
 .. parameter:: AspectBlur
-
-   (*default*: 0.07) This parameters represents the uncertainty in the Chandra pointing (in arcsec)
 
 
 .. figure:: dither_combo.*
@@ -158,8 +156,6 @@ Set :par:`DitherModel=FILE` and the file to
 be used is determined with the DitherFile parameter:
 
 .. parameter:: DitherFile 
-
-   (*default*: `acis_asol.fits`) Aspect solution file
 
 If the input file
 is not a valid ASPSOL file, |marx| will exit with an error message.

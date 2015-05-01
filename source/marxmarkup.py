@@ -4,6 +4,7 @@
 
 import re
 from itertools import groupby
+import csv
 
 from docutils import nodes
 from docutils.parsers.rst import directives
@@ -101,10 +102,44 @@ def ciao_reference_role(role, rawtext, text, lineno, inliner,
 
 
 class Parameter(GenericObject):
+    '''MARX parameter
+
+    This class masked use of the ``config.par`` variable called
+    ``marxmarkup_marxparpath``. It parses the ``marx.par`` file at that
+    location and automatically adds the default value to the parameter
+    description. (If no description is given for the parameter, then it also
+    adds the description from ``marx.par``.
+    '''
     # use this line to make them show up in general index
     # indextemplate = 'pair: %s; MARX parameter'
     # use this line to NOT have them in general index
     indextemplate = ''
+    marxpar = None
+
+    def read_marxpar(self):
+        parfile = self.env.config['marxmarkup_marxparpath']
+        if parfile is not None:
+            # This is a class attribute so that all parameters can share this
+            # dictionary. Otherwise, the marx.par would have to be read and
+            # parsed again for every single Parameter instance.
+            self.__class__.marxpar = {}
+            with open(parfile, 'r') as f:
+                for row in csv.reader(f):
+                    if not row[0][0] == '#':
+                        self.__class__.marxpar[row[0]] = (row[3], row[6])
+
+    def before_content(self):
+        # This is a little hacky way of modifying the content, but I did
+        # not find anything better.
+        if self.marxpar is None:
+            self.read_marxpar()
+
+        if self.names[0] in self.marxpar:
+            pardesc = self.marxpar[self.names[0]]
+            if len(self.content) == 0:
+                self.content.data = ['(*default*: ``{0}``) {1}'.format(*pardesc)]
+            else:
+                self.content[0] = '(*default*: ``{0}``) '.format(pardesc[0]) + self.content[0]
 
 
 class ParRole(XRefRole):
@@ -121,13 +156,34 @@ class ParRole(XRefRole):
 class MARXParIndex(Index):
     """
     Index subclass to provide the MARX Parameter index.
+
+    MARXParIndex reads a the ``config.par`` variable called
+    ``marxmarkup_marxparpath`` and parses the ``marx.par`` file at that
+    location. Short descriptions of the parameters and their default values are
+    read from this file and included in the generated parameter index.
+    Furthermore, the parameter index tests that all documented parameters have
+    a counterpart in ``marx.par`` and the all parameters in ``marx.par`` are
+    documented in the source at some point.
     """
 
     name = 'parindex'
     localname = 'MARX Parameter Index'
     shortname = 'MARX Parameters'
 
+    def read_marxpar(self):
+        parfile = self.domain.env.config['marxmarkup_marxparpath']
+        if parfile is None:
+            self.marxpar = None
+        else:
+            self.marxpar = {}
+            with open(parfile, 'r') as f:
+                for row in csv.reader(f):
+                    if not row[0][0] == '#':
+                        self.marxpar[row[0]] = (row[3], row[6])
+
     def generate(self, docnames=None):
+        if not hasattr(self, "marxpar"):
+            self.read_marxpar()
         entries = []
         objects = self.domain.data['objects']
         parameters = [o for o in objects if o[0] == 'parameter']
@@ -139,7 +195,15 @@ class MARXParIndex(Index):
             # c = value for default from default file
             #     (I need to check how MARX determines the default)
             # entries.append([p[1], 0, docname, anchor, 'a', 'b', 'c'])
-            entries.append([p[1], 0, docname, anchor, '', '', ''])
+            if self.marxpar is None:
+                entries.append([p[1], 0, docname, anchor, '', '', ''])
+            else:
+                if p[1] in self.marxpar:
+                    m = self.marxpar[p[1]]
+                else:
+                    self.domain.env.warn(docname, 'Marx parameter {0} encountered, but no equivalent parameter found in {1}'.format(p[1], self.domain.env.config['marxmarkup_marxparpath']))
+                    m = ('', '')
+                entries.append([p[1], 0, docname, anchor, m[1], 'default', m[0]])
         # sort alphabetically, without "key" upper and lower case would
         # be separate
         entries = sorted(entries, key=lambda x: x[0].upper())
@@ -148,10 +212,23 @@ class MARXParIndex(Index):
         for k, g in groupby(entries, key=lambda x: x[0][0].upper()):
             content.append((k, list(g)))
 
+        # This routine gets called multiple times in the build process,
+        # sometimes with no content.
+        # I don't know why, but if it does this emits useless warnings.
+        if (len(content) > 0) and (self.marxpar is not None):
+            missingpars = set(self.marxpar.keys()) - set([o[1] for o in parameters])
+            if len(missingpars) > 0:
+                # parameters that are documented, but don't exist in the
+                # marx.par file are called out above one by one.
+                # Here, report parameters in marx.par that are undocumented.
+                self.domain.env.warn(str(self), 'The following parameters exist in {0}, but are not mentioned in the rst docs: {1}'.format(self.domain.env.config['marxmarkup_marxparpath'], missingpars))
+
         return content, False
 
 
 def setup(app):
+    app.add_config_value('marxmarkup_marxparpath', None, 'env')
+
     app.add_directive('marxtool', MARXtool)
     StandardDomain.object_types['marxtool'] = ObjType('marxtool', 'marxtool')
     # (objname or directivename, rolename)
@@ -171,3 +248,5 @@ def setup(app):
     app.add_index_to_domain('std', MARXParIndex)
     StandardDomain.initial_data['labels']['parindex'] = ('std-parindex', '', 'Marx Parameters')
     StandardDomain.initial_data['anonlabels']['parindex'] = ('std-parindex', '')
+
+
