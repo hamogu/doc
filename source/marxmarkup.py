@@ -102,6 +102,14 @@ def ciao_reference_role(role, rawtext, text, lineno, inliner,
 
 
 class Parameter(GenericObject):
+    '''MARX parameter
+
+    This class masked use of the ``config.par`` variable called
+    ``marxmarkup_marxparpath``. It parses the ``marx.par`` file at that
+    location and automatically adds the default value to the parameter
+    description. (If no description is given for the parameter, then it also
+    adds the description from ``marx.par``.
+    '''
     # use this line to make them show up in general index
     # indextemplate = 'pair: %s; MARX parameter'
     # use this line to NOT have them in general index
@@ -111,6 +119,9 @@ class Parameter(GenericObject):
     def read_marxpar(self):
         parfile = self.env.config['marxmarkup_marxparpath']
         if parfile is not None:
+            # This is a class attribute so that all parameters can share this
+            # dictionary. Otherwise, the marx.par would have to be read and
+            # parsed again for every single Parameter instance.
             self.__class__.marxpar = {}
             with open(parfile, 'r') as f:
                 for row in csv.reader(f):
@@ -145,6 +156,14 @@ class ParRole(XRefRole):
 class MARXParIndex(Index):
     """
     Index subclass to provide the MARX Parameter index.
+
+    MARXParIndex reads a the ``config.par`` variable called
+    ``marxmarkup_marxparpath`` and parses the ``marx.par`` file at that
+    location. Short descriptions of the parameters and their default values are
+    read from this file and included in the generated parameter index.
+    Furthermore, the parameter index tests that all documented parameters have
+    a counterpart in ``marx.par`` and the all parameters in ``marx.par`` are
+    documented in the source at some point.
     """
 
     name = 'parindex'
