@@ -333,8 +333,8 @@ If the values of :par:`SourceRA` and :par:`SourceDEC` are different
 from :par:`RA_Nom` and :par:`Dec_Nom`, the source will be off-axis.
 
 
-Source Spectrum and Spatial Distribution
-----------------------------------------
+Source Spectrum
+---------------
 This is described in more details in :ref:`sect-sourcemodels`. Here, we
 summarize the most important points.
 
@@ -343,6 +343,24 @@ of source photons: a built-in FLAT spectrum model
 which produces uniform flux over the specified energy range, or
 a FILE mode which reads the spectrum from an external ASCII file.
 The :par:`SpectrumType` parameter selects between these two options.
+In both cases, further parameters are needed to give details:
+
++-------------------+-------------------+-------------------------------+
+|:par:`SpectrumType`|Parameter          |Description                    |
++===================+===================+===============================+ 
+|FLAT               |:par:`MinEnergy`   |keV                            |
+|                   +-------------------+-------------------------------+
+|                   |:par:`MaxEnergy`   |keV                            |
+|                   +-------------------+-------------------------------+
+|                   |:par:`SourceFlux`  | phot/s/cm^2                   |
++-------------------+-------------------+-------------------------------+
+|FILE               |:par:`SpectrumFile`|phot/s/cm^2/keV - see text     |
+|                   +-------------------+-------------------------------+
+|                   |:par:`SourceFlux`  |< 0 to use data in the file    |
+|                   |                   |or > 0 to renormalize the      |
+|                   |                   |spectrum in the file           |
++-------------------+-------------------+-------------------------------+
+
 If the FLAT spectrum is selected, the :par:`SourceFlux` parameter
 is used to determine the overall normalization of the spectrum in
 photons/sec/cm^2.
@@ -374,6 +392,10 @@ will use the normalization inherent in the input spectrum.
 In this manner, several sources with a consistent spectral shape
 but varying total flux can be simulated using a single input spectrum
 file.
+
+The shape of the source on the sky
+----------------------------------
+Again, more details on this can be found in :ref:`sect-sourcemodels`.
 
 The spatial distribution of source photons in |marx| is determined
 by the choice of the :par:`SourceType` parameter.
