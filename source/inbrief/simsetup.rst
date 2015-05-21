@@ -356,8 +356,9 @@ In both cases, further parameters are needed to give details:
 +-------------------+-------------------+-------------------------------+
 |FILE               |:par:`SpectrumFile`|phot/s/cm^2/keV - see text     |
 |                   +-------------------+-------------------------------+
-|                   |:par:`SourceFlux`  | < 0 to use data in the file   |
-|                   |                   |or > 0 to renormalize the file |
+|                   |:par:`SourceFlux`  |< 0 to use data in the file    |
+|                   |                   |or > 0 to renormalize the      |
+|                   |                   |spectrum in the file           |
 +-------------------+-------------------+-------------------------------+
 
 If the FLAT spectrum is selected, the :par:`SourceFlux` parameter
