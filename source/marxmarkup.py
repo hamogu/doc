@@ -123,10 +123,13 @@ class Parameter(GenericObject):
             # dictionary. Otherwise, the marx.par would have to be read and
             # parsed again for every single Parameter instance.
             self.__class__.marxpar = {}
-            with open(parfile, 'r') as f:
-                for row in csv.reader(f):
-                    if not row[0][0] == '#':
-                        self.__class__.marxpar[row[0]] = (row[3], row[6])
+            try:
+                with open(parfile, 'r') as f:
+                    for row in csv.reader(f):
+                        if not row[0][0] == '#':
+                            self.__class__.marxpar[row[0]] = (row[3], row[6])
+            except IOError as e:
+                self.env.warn('config.py', 'marx.par could not be loaded - {0}'.format(str(e)))
 
     def before_content(self):
         # This is a little hacky way of modifying the content, but I did
@@ -176,10 +179,14 @@ class MARXParIndex(Index):
             self.marxpar = None
         else:
             self.marxpar = {}
-            with open(parfile, 'r') as f:
-                for row in csv.reader(f):
-                    if not row[0][0] == '#':
-                        self.marxpar[row[0]] = (row[3], row[6])
+            try:
+                with open(parfile, 'r') as f:
+                    for row in csv.reader(f):
+                        if not row[0][0] == '#':
+                            self.marxpar[row[0]] = (row[3], row[6])
+            except IOError as e:
+                self.domain.env.warn('config.py', 'marx.par could not be loaded - {0}'.format(str(e)))
+
 
     def generate(self, docnames=None):
         if not hasattr(self, "marxpar"):
