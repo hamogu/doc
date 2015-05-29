@@ -1,27 +1,21 @@
-
-import sherpa
-#### Make a dummy response ####
-energies = np.arange(0.03, 12., .01)
-one = np.ones(len(energies)-1)
-dummyrsp = sherpa.astro.data.DataRMF('dummy rsp', len(energies)-1,
-                                      energies[:-1], energies[1:],
-                                      one, one, one, one, energies[:1], energies[1:])
-dummyrmf = sherpa.astro.instrument.RMF1D(dummyrsp)
-
-# load dummy data (all ones)
-load_arrays(1, np.arange(len(one)), one, DataPHA)
-# load dummy response
-set_rmf(dummyrmf)
-
 # set source properties
 set_source(xsphabs.a * xspowerlaw.p)
 a.nH = 0.001
 p.PhoIndex = 1.8
 p.norm = 0.1
 
-set_analysis("energy", factor=0)
+# get source
+my_src = get_source()
 
-pl = get_source_plot()
-fluxdensity = pl.y
-energy = pl.xhi
-save_arrays("source_flux.tbl", [energy,fluxdensity], ["keV","photons/s/cm**2/keV"], ascii=True)
+# set energy grid
+bin_width = 0.01
+energies = np.arange(0.03, 12., bin_width)
+
+# evaluate source on energy grid
+flux = my_src(energies)
+
+# Sherpa uses the convention that an energy array holds the LOWER end of the bins;
+# Marx that it holds the UPPER end of a bin.
+# Thus, we need to shift energies and flux be one bin.
+# Also, we need to divide the flux by the bin width to obtain the flux density.
+save_arrays("source_flux.tbl", [energies[1:], flux[:-1] / bin_width], ["keV","photons/s/cm**2/keV"], ascii=True)

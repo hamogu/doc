@@ -12,8 +12,10 @@ specify the desired number of detected events.  In this case, the
 simulation will be run until 1,000,000 (1e6) events have been
 detected.
 
-Creating the spectral file
---------------------------
+.. _creating_sherpa_spectrum:
+
+Creating an input spectrum from a Sherpa model
+----------------------------------------------
 
 The first step is to create a 2-column text file that tabulates
 the absorbed powerlaw flux [photons/sec/keV/cm^2] (second column)
@@ -24,34 +26,14 @@ will use the `Sherpa`_ program in this example.
 We chose the specific physical model (a positive powerlaw with an
 unrealistically high flux) because we want
 to construct a really detailed picture of the features seen in the PSF and we
-need a large number of photons over a wide range of energies. 
-`Sherpa`_ needs an RMF that defines the energy
-bins. This can either be an observed RMF as in 
-`the Sherpa example <http://cxc.harvard.edu/sherpa/threads/marx/>`_ or a
-dummy RMF created with the following code run on the `Sherpa`_ command line:
+need a large number of photons over a wide range of energies:
 
 .. literalinclude:: spectralmodel.py
    :language: python 
 
-.. note:: A faster way, slightly less precise
-
-   If you do not need a very high precision, you can use the following simpler
-   code snippet.  Technically speaking, ``pl.x``
-   gives the mid-point of each energy bin and not the higher end point. For
-   narrow bins and a continuous energy distribution that difference is
-   negligible. However, for line dominated spectra it might become
-   important. 
-
-   .. code-block:: python
-
-      # Run this in Sherpa
-      dataspace1d(0.03, 12., .01)
-      set_source(xsphabs.a * xspowerlaw.p)
-      save_arrays("source_flux.tbl", [pl.x, pl.y], ["keV","photons/s/cm**2"], ascii=True, clobber=True)
-
-   Note that this simple way of doing it will lead to an arbitrary flux
-   normalization, so you need to set :par:`SourceFlux` to a positive value to
-   renormalize the spectrum in |marx|.
+More details about the format of the |marx| input spectrum can be found at :par:`SourceFile`.
+Note, that the parameter :par:`SourceFlux` sets the normalization of the flux; if the
+normalization of the model file should be used, set :par:`SourceFlux=-1`.
 
 
 Running marx
