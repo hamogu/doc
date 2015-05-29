@@ -112,7 +112,7 @@ external ASCII file. The following parameters describe the source spectrum:
    Input spectrum filename (only used if
    :par:`SpectrumType="FILE"`). The file has to consist of two columns of data
    with no header line. The first column contains the energy of the upper bin
-   edge in keV, the second the source flux in photons/s/cm^2/keV in that bin
+   edge in keV, the second the flux density in photons/s/cm^2/keV in that bin
    (the flux in the first row is ignored, because there is no row before
    which would define the lower energy edge of the bin).
    Various tools exist to help in generating this file:
@@ -121,8 +121,9 @@ external ASCII file. The following parameters describe the source spectrum:
          from an `ISIS`_ model,
        - :marxtool:`xspec2marx` helps with converting from
          `XSPEC`_ output,
-       -  and there are also instructions how to generate a file in the
-          `right format with Sherpa <http://cxc.harvard.edu/sherpa/threads/marx/>`_.
+       -  and there are also instructions how to generate a file
+          `from observations with Sherpa
+          <http://cxc.harvard.edu/sherpa/threads/marx/>`_ or :ref:`creating_sherpa_spectrum`.
 
 .. parameter:: MinEnergy
 
