@@ -363,10 +363,15 @@ Consider a ray with wavelength :math:`\lambda` and direction
 :math:`{\hat{p}}` incident upon a diffraction grating of period
 :math:`d` located at position :math:`{\vec{x}}` and normal
 :math:`\hat{n}`. The grating lines are assumed to oriented in the
-direction :math:`\hat{l}`. See Figure :ref:`Fig-Diffraction`. It can be shown
+direction :math:`\hat{l}`. See Figure :ref:`Fig-Diffraction`. 
+In a very general way, the diffraction equation can be written in vector form as
+:math:`\hat{p}' \times \hat{n} = \hat{p} \times \hat{n} + (m
+\lambda/d)\hat{l}`.
+Taking the dot product of this equation with :math:`\hat{d}` and
+:math:`\hat{l}` respectively, it can be shown
 that a ray diffracting into order :math:`m` will move in a direction
 :math:`{\hat{p}}'` determined by the conditions:
-
+ 
 .. math::
    :label: diffract0
 
@@ -379,11 +384,9 @@ where
 
 .. math:: \hat{d} = \hat{n} \times \hat{l}.
 
-These equations are consistent with the vector equation 
-:math:`\hat{p}' \times \hat{n} = \hat{p} \times \hat{n} + (m \lambda/d)\hat{l}`. 
-The first of the following equations is a simple result of taking the cross product of 
-this equation with :math:`\hat{l}`. The second one follows from taking the dot
-product of the equation with :math:`\hat{l}`.
+(And because these vectors form an orthonormal basis the following is also true:
+:math:`\hat{l} = \hat{d} \times \hat{n}` and :math:`\hat{n} = \hat{l} \times
+\hat{d}`.)
 
 .. _Fig-Diffraction:
 
