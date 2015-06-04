@@ -244,9 +244,6 @@ exclude_patterns = []
 # documents.
 #default_role = None
 
-# Add this to the top of every file
-rst_prolog = '.. include:: /aliases.txt'
-
 # If true, '()' will be appended to :func: etc. cross-reference text.
 #add_function_parentheses = True
 
