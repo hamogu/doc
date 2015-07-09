@@ -281,7 +281,11 @@ along the optical axis is also possible to adjust the focus.
 
    Offset in mm from the nominal on-axis, in-focus SIM position.
 
-   This parameter can be used to translate
+   The sign convention is opposite to the ``sim_z_offset`` that can be
+   specified in Chandra observations to move the source onto a 
+   different part of the detector (see `Fig 6.1 in the Observatory guide <http://cxc.cfa.harvard.edu/proposer/POG/html/chap6.html#tth_chAp6>`_ ).
+
+   For grating observations this parameter can be used to translate
    the SIM in the direction perpendicular to the grating
    dispersion. If the HESF (a.k.a. Drake Flat) is to be used, the
    ``DetOffsetZ`` parameter should be set to a value of 7.25 mm.
