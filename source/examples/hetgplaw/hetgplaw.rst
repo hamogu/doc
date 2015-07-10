@@ -154,7 +154,7 @@ parameters we put into the simulation above.
 
    Simulated spectra for MEG order +1 and -1
 
-   The MEG orders are shown as the red and orange line. They differ form
+   The MEG orders are shown as the red and orange line. They differ from
    one another because the effective area is different, e.g. the gaps between
    the ACIS chips fall on different wavelengths. The blue line is the best fit
    model for the spectrum shown in red.
