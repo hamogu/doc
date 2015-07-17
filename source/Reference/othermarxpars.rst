@@ -150,6 +150,8 @@ output, the available options are listed below for completeness:
    +--------------+------+------------------------------------------------+
    | sky_dec.dat  | S    | The Sky Y pixel value                          |
    +--------------+------+------------------------------------------------+
+   | sky_roll.dat | S    | The sky roll angle                             |
+   +--------------+------+------------------------------------------------+
 
    The following table describes the format of the binary output files (Length
    and Offset are given in bytes):
