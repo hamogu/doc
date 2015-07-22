@@ -1,0 +1,1 @@
+marxasp MarxDir="diffuse" OutputFile="diffuse_asol1.fits"

@@ -34,7 +34,6 @@ need a large number of photons over a wide range of energies:
    :language: python 
    :indent: "sherpa> "
 
-	      
 More details about the format of the |marx| input spectrum can be found at :par:`SpectrumFile`.
 Note, that the parameter :par:`SourceFlux` sets the normalization of the flux; if the
 normalization of the model file should be used, set :par:`SourceFlux=-1`.

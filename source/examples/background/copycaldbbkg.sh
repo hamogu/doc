@@ -1,0 +1,1 @@
+cp $CALDB/data/chandra/acis/bkgrnd/acis7sD2009-09-21bkgrndN0001.fits acis7sbkg.fits

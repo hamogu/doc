@@ -1,8 +1,7 @@
 # set source properties
-set_source(xsphabs.a * xspowerlaw.p)
-a.nH = 0.001
-p.PhoIndex = 1.8
-p.norm = 0.1
+set_source(xsphabs.abs1 * xsapec.apec1)
+abs1.nH = 0.01
+apec1.kT = 0.1
 
 # get source
 my_src = get_source()

@@ -1,0 +1,1 @@
+marx2fits diffuse diffuse_evt2.fits
