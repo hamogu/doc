@@ -119,9 +119,8 @@ amplitude and period of the variations and :math:`t` is time.
 of the simulation.
 
 Each of these parameters is controlled by an entry in the marx.par
-parameter file. Table [tab:dither] lists the relevant parameters and
-their default values. An example of the effects of dither on a simulated
-ACIS-I point source observation is shown in Figure [fig:dither]. The
+parameter file. An example of the effects of dither on a simulated
+ACIS-I point source observation is shown in `Example of a dither file`_. The
 images are displayed in Focal Plane (FP) coordinates.
 
 The :marxtool:`marxasp` tool will create an ASPSOL file containing the aspect motion
@@ -136,6 +135,7 @@ Set :par:`DitherModel=INTERNAL` and use the parameters described in :ref:`sect-i
 .. figure:: fig_asol.*
    :alt: Example of contents of a :marxtool:`marxasp` ASPSOL file
    :align: center
+   :name: Example of a dither file
 
    The variation in the declination of the simulated Chandra
    aimpoint with time as encoded in an ASPSOL file

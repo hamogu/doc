@@ -38,6 +38,7 @@ torus.
 .. figure:: coord.*
    :align: center
    :name: Figure Coordinate System
+   :alt: See text for a description of the coordinate system.
 
    The MARX Coordinate System.
 
