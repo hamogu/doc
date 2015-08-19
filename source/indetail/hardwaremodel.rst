@@ -723,7 +723,7 @@ has been undertaken by the CXC Calibration group to measure these
 variations as a function position for each of the ACIS CCDs. Currently,
 the ACIS-S aimpoint CCD (chip ID 7) has calibration data specifying the
 gain and spectral resolution for each 32x32 pixel region on the chip.
-Due to reduced single to noise, the remaining backside chip (chip ID 5)
+Due to reduced signal to noise, the remaining backside chip (chip ID 5)
 has been calibrated on 64x64 pixel regions. The remaining 8 frontside
 CCDs are calibrated in 256x32 pixel segments. For each of these CCD
 calibration regions, the CXC has determined a unique gain and functional
@@ -735,14 +735,18 @@ The CXC Calibration group currently models the ACIS redistribution using
 a functional form consisting of multiple Gaussian components. The
 internal |marx| redistribution function reproduces *only* the primary
 peak of the ACIS response, assuming a single Gaussian whose width is
-determined by the CXC CCD Calibration data mentioned above. The
-variations with energy and position of the Gaussian widths are encoded
-in a FITS binary table designated with the :par:`ACIS_Gain_Map_File`
-parameter. This file conforms to the format of an ACIS Gain Map file
-defined in the
-http://space.mit.edu/CXC/docs/ARD_ICD/ACIS_ARD_ICD_2.1.ps.gz with
-the addition of an extra column specifying the width of the primary
-redistribution peak.
+determined by the CXC CCD Calibration data mentioned above.
+
+.. outofdate:
+
+   Currently, MARX uses FEF and not the gain file.
+   The variations with energy and position of the Gaussian widths are encoded
+   in a FITS binary table designated with the :par:`ACIS_Gain_Map_File`
+   parameter. This file conforms to the format of an ACIS Gain Map file
+   defined in the
+   http://space.mit.edu/CXC/docs/ARD_ICD/ACIS_ARD_ICD_2.1.ps.gz with
+   the addition of an extra column specifying the width of the primary
+   redistribution peak.
 
 The gain and spectral response of the ACIS CCDs are also functions of
 focal plane temperature. At the time of this release, complete
@@ -784,7 +788,7 @@ Detector Spatial Resolution
 The physical characteristics and readout electronics of the HRC MCPs add
 a “blur” to the observed system point spread function in addition to the
 intrinsic FWHM of the HRMA. In |marx|, this blur is modeled as a
-Gaussian in the focal plane with a :math:`\sigma \sim 18 ~\mu\textnormal{m}`. The
+Gaussian in the focal plane with a :math:`\sigma \sim 18 ~\mu`m. The
 width of this Gaussian detector blur is controlled by the parameters
 :par:`HRC-I-BlurSigma` and :par:`HRC-S-BlurSigma` parameters. No detector blur is
 currently applied to ACIS simulations.
@@ -864,7 +868,8 @@ are listed here.
 -  Modified Rowland Diameter: The difference in the location of the
    focal plane at XRCF results in a different Rowland geometry for the
    HETG and LETG spectrometers. This geometry is controlled via the
-   :par:`RowlandDiameter` parameter.
+   :par:`HEGRowlandDiameter`, :par:`MEGRowlandDiameter`, and
+   :par:`LEGRowlandDiameter` parameters.
 
 To simulate XRCF data, these parameters should be modified in your
 ``marx.par`` file. The table provides a summary of the relevant
@@ -872,32 +877,31 @@ parameters, their default values, and values appropriate for simulating
 XRCF data. An example XRCF simulation is
 shown in the :ref:`figure below <fig-xrcf>` for test ID D-IXH-PI-3.003.
 
-====================== =========== ========== ========
-Parameter              Default     XRCF       Comment
-====================== =========== ========== ========
-:par:`P1Blur`          0.18129215  0.362
-:par:`H1Blur`          0.13995037  0.280
-:par:`P3Blur`          0.11527828  0.230
-:par:`H3Blur`          0.16360829  0.327
-:par:`P4Blur`          0.12891340  0.258
-:par:`H4Blur`          0.098093014 0.196
-:par:`P6Blur`          0.076202759 0.152
-:par:`H6Blur`          0.079767401 0.160
-:par:`DetOffsetX`      0.0         -194.925
-:par:`SourceType`      POINT       DISK
-:par:`S-DiskTheta0`    0.0         0.0
-:par:`S-DiskTheta1`    0.0         0.0767372
-:par:`SourceDistance`  0.0         537.587
-:par:`RowlandDiameter` 8632.48     8587.88     HETG
-:par:`RowlandDiameter` 8632.48     8593.12     LETG
-====================== =========== ========== ========
+========================= =========== ==========
+Parameter                 Default     XRCF      
+========================= =========== ==========
+:par:`P1Blur`             0.18129215  0.362
+:par:`H1Blur`             0.13995037  0.280
+:par:`P3Blur`             0.11527828  0.230
+:par:`H3Blur`             0.16360829  0.327
+:par:`P4Blur`             0.12891340  0.258
+:par:`H4Blur`             0.098093014 0.196
+:par:`P6Blur`             0.076202759 0.152
+:par:`H6Blur`             0.079767401 0.160
+:par:`DetOffsetX`         0.0         -194.925
+:par:`SourceType`         POINT       DISK
+:par:`S-DiskTheta0`       0.0         0.0
+:par:`S-DiskTheta1`       0.0         0.0767372
+:par:`SourceDistance`     0.0         537.587
+:par:`HEGRowlandDiameter` 8632.48     8587.88
+:par:`MEGRowlandDiameter` 8632.48     8587.88
+:par:`LEGRowlandDiameter` 8637.00     8593.12
+========================= =========== ==========
 
 .. _fig-xrcf:
 
 .. figure:: compare_xrcf.*
    :align: center
 
-   A comparison between data from XRCF test ID D-IXH-PI-3.003 and a corre-
-   sponding MARX simulation. The MARX simulation was 9.7 mm out of focus like the XRCF
-   test.
+   A comparison between data from XRCF test ID D-IXH-PI-3.003 and a corresponding MARX simulation. The MARX simulation was 9.7 mm out of focus like the XRCF test.
 

@@ -586,7 +586,9 @@ ACIS Model Parameters
 .. parameter:: ACIS_Frame_Transfer_Time
 
 .. parameter:: ACIS_Gain_Map_File
-
+	     
+   This parameter is currently not used; its value will be ignored.
+	       
 .. parameter:: ACIS_eV_Per_PI
 
 
