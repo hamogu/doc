@@ -787,18 +787,16 @@ Dither/Aspect Parameters
 ~~~~~~~~~~~~~~~~~~~~~~~~
 The most important parameters that control the dither model are described in
 :ref:`simulatingaspect`. In the following we list parameters that control the internal
-|marx| dither model, if selected by :par:`DitherModel`.
+|marx| dither model, if selected by :par:`DitherModel`. All default values are chosen for ACIS
+observations. See `Table 5.4 in the Observatory Guide <http://cxc.cfa.harvard.edu/proposer/POG/html/chap5.html#tb:dither>`_ for the values that are appropriate for HRC observations.
+|marx| also offers the possiblity to dither the roll angle, but this is not done in normal Chandra
+operations.
+(Note that |marx| calls the directions "RA" and "Dec", while the linked table calls it "pitch" and "yaw". The difference is historic, the |marx| implementation correctly applies the values as pitch and yaw angle despite the name.)
 
 
 .. parameter:: DitherAmp_RA
 
-   Amplitude for RA dither (arcsec).
-   The default is set for ACIS observations. Set this to ``20`` for HRC observations.
-
 .. parameter:: DitherAmp_Dec
-
-   Amplitude for Dec dither (arcsec).
-   The default is set for ACIS observations. Set this to ``20`` for HRC observations.
 
 .. parameter:: DitherAmp_Roll
 
