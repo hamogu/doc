@@ -74,10 +74,11 @@ The effect of these randomization methods may be seen in the following
 plot, which shows that the EDSER distribution approaches the
 exact limit.
 
-.. image: marxsubpix.*
+.. figure:: marxsubpix.*
    :alt: Image of PSF with different pixadj values
+   :align: center
 
-Image of PSF with different pixadj values
+   Image of PSF with different pixadj values
 
 
 If using `SAOTrace`_ rays with |marx|, see :ref:`caveats` regarding the use of the EDSER method with such rays.
