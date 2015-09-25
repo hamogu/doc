@@ -20,8 +20,8 @@ spectral model.
 This is similar to :ref:`sect-ex-ACISCCD` except that the source is brighter
 and has a less steep powerlaw.
 
-.. include:: isismodel.sl
-   :code:
+.. sourceinclude:: isismodel.sl
+   :indent: isis>
 
 Now, use :marxtool:`marxflux` to evaluate the ``plaw_hetg.par`` file to create a |marx| spectrum file.
 Here a fine binning is used having bins with dE/E = 0.0003 (v_bin = 90 km/s).
@@ -29,8 +29,9 @@ This gives a high resolution spectrum across the whole 1 to 40 A
 (0.31 to 12.4 keV) range suitable for use with the HETG as well as, e.g.,
 future microcalorimeter instruments.
 
-.. literalinclude:: run_marxflux.inc
+.. sourceinclude:: run_marxflux.inc
    :language: bash
+   :indent: unix>
 
 The file :download:`plawflux_hetg.tbl` can now be used by |marx| to define the spectrum.
 

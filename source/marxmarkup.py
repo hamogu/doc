@@ -5,6 +5,7 @@
 import re
 from itertools import groupby
 import csv
+import codecs
 
 from docutils import nodes
 from docutils.parsers.rst import directives
@@ -12,9 +13,65 @@ from docutils.parsers.rst import directives
 from sphinx import addnodes
 from sphinx.roles import XRefRole
 from sphinx.domains import ObjType, Index
-from sphinx.directives import ObjectDescription
+from sphinx.directives import ObjectDescription, LiteralInclude, dedent_lines
 from sphinx.util.docfields import TypedField
 from sphinx.domains.std import GenericObject, StandardDomain
+
+
+
+def indent_lines(lines, indent):
+    if not indent:
+        return lines
+
+    return [indent + " " + l for l in lines]
+
+
+class SourceIncludeDirective(LiteralInclude):
+    """
+    Like ``.. literallnclude:: :literal:``, but adds indent option.
+    """
+    option_spec = {
+        'dedent': int,
+        'indent': directives.unchanged,
+        'linenos': directives.flag,
+        'lineno-start': int,
+        'lineno-match': directives.flag,
+        'tab-width': int,
+        'language': directives.unchanged_required,
+        'encoding': directives.encoding,
+        'pyobject': directives.unchanged_required,
+        'lines': directives.unchanged_required,
+        'start-after': directives.unchanged_required,
+        'end-before': directives.unchanged_required,
+        'prepend': directives.unchanged_required,
+        'append': directives.unchanged_required,
+        'emphasize-lines': directives.unchanged_required,
+        'caption': directives.unchanged,
+        'name': directives.unchanged,
+        'diff': directives.unchanged_required,
+    }
+
+    def read_with_encoding(self, filename, document, codec_info, encoding):
+        f = None
+        try:
+            f = codecs.StreamReaderWriter(open(filename, 'rb'), codec_info[2],
+                                          codec_info[3], 'strict')
+            lines = f.readlines()
+            lines = dedent_lines(lines, self.options.get('dedent'))
+            lines = indent_lines(lines, self.options.get('indent'))
+            return lines
+        except (IOError, OSError):
+            return [document.reporter.warning(
+                'Include file %r not found or reading it failed' % filename,
+                line=self.lineno)]
+        except UnicodeError:
+            return [document.reporter.warning(
+                'Encoding %r used for reading included file %r seems to '
+                'be wrong, try giving an :encoding: option' %
+                (encoding, filename))]
+        finally:
+            if f is not None:
+                f.close()
 
 
 class MARXtool(ObjectDescription):
@@ -234,6 +291,8 @@ class MARXParIndex(Index):
 
 
 def setup(app):
+    app.add_directive('sourceinclude', SourceIncludeDirective)
+
     app.add_config_value('marxmarkup_marxparpath', None, 'env')
 
     app.add_directive('marxtool', MARXtool)
@@ -255,5 +314,3 @@ def setup(app):
     app.add_index_to_domain('std', MARXParIndex)
     StandardDomain.initial_data['labels']['parindex'] = ('std-parindex', '', 'Marx Parameters')
     StandardDomain.initial_data['anonlabels']['parindex'] = ('std-parindex', '')
-
-
