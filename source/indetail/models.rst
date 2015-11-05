@@ -20,9 +20,12 @@ The following sources are currently available:
 - ``RAYFILE``: Input from a |marx| rayfile
 - ``USER``: Dynamically linked user–supplied model
 
+In addition to the sources provided with |marx|, the following sources
+developed by users are worth a look:
 
-For even more flexibility, |marx| has the ability to dynamically link to
-user-defined source models. 
+- interface to the `yt<http://yt-project.org>`_ package: https://bitbucket.org/jzuhone/yt_marx_source
+- `SIMPUT<http://www.sternwarte.uni-erlangen.de/research/sixte/simput.php>`_: FITS-based standard for handling source descriptions for simulations (under development)
+
 
 First, it is important
 to have an understanding of what a source means in the context of
