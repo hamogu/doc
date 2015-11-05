@@ -261,6 +261,8 @@ repeated as needed.
 
 
 
+.. _knownbugs:
+
 Known Bugs and Limitations
 --------------------------
 
@@ -272,6 +274,14 @@ Mac OS X
 ~~~~~~~~
 The default C compiler on Mac OS X is ``clang``. Unfortunately, Apple decided to alias ``gcc`` to point to ``clang``, 
 so that is looks as if ``gcc`` was available. ``clang`` is a relatively new compiler and under rapid development.
-We found that |marx| compiles successfully with ``clang``, but before ``clang 3.5`` there is a bug in the optimization
+We found that |marx| compiles successfully with ``clang``, but there are differenes in the behaviour of the program 
+(e.g. under certain circumstances |marx| exits with an error code, although all the output is valid). 
+Until this is resolved, we recommend to compile |marx| using a real ``gcc``.  See e.g.
+http://hpc.sourceforge.net/ for a ``gcc`` version for Max OS X. The real ``gcc`` needs to be installed by hand and
+put early in the ``PATH`` environment variable, otherwise you will pick up the broken Mac OS X version.
+Please delete the marx directory and start with a fresh copy after installing ``gcc`` to ensure that there is 
+no mix-up with files that were compiled with the Apple compiler earlier.
+
+Also note, that before ``clang 3.5`` there is a bug in the optimization
 that leads to wrong numerical results. Until ``clang`` is a bit more mature, we recommend to compile |marx| without
 optimizations (``CFLAGS=-g``) and **not** with the default ``CFLAGS=-g -O``.

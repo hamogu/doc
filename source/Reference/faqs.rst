@@ -7,6 +7,10 @@ I have a question about marx that is not addressed here. Where can I get additio
 |marx| specific questions should be sent to |marx-email|.  If
 your question is related to `CIAO`_, then you should contact the `CXC helpdesk <http://asc.harvard.edu/helpdesk/index.html>`_.
 
+I'm using |marx| on Mac OS X and something does not work.
+=========================================================
+Over half of all user queries we receive are related to the broken compiler that ships with XCode on Mac OS X. Please see :ref:`knownbugs`.
+
 
 Do you distribute marx binaries?
 ================================
