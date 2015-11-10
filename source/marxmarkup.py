@@ -23,12 +23,15 @@ def indent_lines(lines, indent):
     if not indent:
         return lines
 
-    return [indent + " " + l for l in lines]
+    if indent[0] == '"' and indent[-1] == '"':
+        indent = indent[1:-1]
+
+    return [indent + l for l in lines]
 
 
 class SourceIncludeDirective(LiteralInclude):
     """
-    Like ``.. literallnclude:: :literal:``, but adds indent option.
+    Like ``.. literalinclude:: :literal:``, but adds indent option.
     """
     option_spec = {
         'dedent': int,
@@ -249,7 +252,7 @@ class MARXParIndex(Index):
         if not hasattr(self, "marxpar"):
             self.read_marxpar()
         entries = []
-        objects = self.domain.data['objects']
+        objects = self.domain.data.get('objects', [])
         parameters = [o for o in objects if o[0] == 'parameter']
         for p in parameters:
             docname, anchor = objects[p]
