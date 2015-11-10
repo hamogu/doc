@@ -28,9 +28,11 @@ unrealistically high flux) because we want
 to construct a really detailed picture of the features seen in the PSF and we
 need a large number of photons over a wide range of energies:
 
-.. literalinclude:: spectralmodel.py
+.. sourceinclude:: spectralmodel.py
    :language: python 
+   :indent: "sherpa> "
 
+	      
 More details about the format of the |marx| input spectrum can be found at :par:`SourceFile`.
 Note, that the parameter :par:`SourceFlux` sets the normalization of the flux; if the
 normalization of the model file should be used, set :par:`SourceFlux=-1`.
@@ -130,9 +132,11 @@ an absorbed powerlaw to the spectrum.  The spectral fits to the
 minus first order histograms can be carried out using the
 following commands (positive order works similarly):
 
-.. literalinclude:: sherpafit.py
+.. sourceinclude:: sherpafit.py
    :language: python
+   :indent: "sherpa> "
 
+	      
 This command sequence produced the following parameter values and a reduced
 chi-square around 1::
 

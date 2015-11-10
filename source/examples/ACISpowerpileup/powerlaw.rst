@@ -24,8 +24,9 @@ such a file is to make use of a spectral modeling program such as `ISIS`_,
 
 In `ISIS`_ the absorbed powerlaw model is specified using:
 
-.. include:: isismodel.sl
-   :code:
+.. sourceinclude:: isismodel.sl
+   :indent: "isis> "
+
 
 The model parameters lists by `ISIS`_ should look like this::
 
@@ -181,8 +182,9 @@ will be used to fit an absorbed powerlaw to the pha spectrum.  The
 figure below showing the resulting fit was created via the following
 ISIS script:
 
-.. include:: isisfit.sl
-   :code:
+.. sourceinclude:: isisfit.sl
+   :indent: "isis> "
+
 
 This script produced the following parameter values with a reduced
 chi-square of 1.2::

@@ -17,8 +17,8 @@ idea is to put the definition of the model into a file, which not only defines t
 creates the parameter file that :marxtool:`marxflux` will load.
 The contents of file :download:`apedfun.sl` that defines the model is:
 
-.. include:: apedfun.sl
-   :code:
+.. sourceinclude:: apedfun.sl
+   :prepend: # ISIS file defining spetral model
 
 Then the :marxtool:`marxflux` script may be used to create the spectral file via::
 
@@ -112,8 +112,9 @@ with the result::
 A plot of the MEG-1 spectrum, which corresponds to ``id=3`` in the
 above list may be created using:
 
-.. include:: isismeg1.sl
-   :code:
+.. sourceinclude:: isismeg1.sl
+   :indent: "isis> "
+
 
 .. figure:: apedmeg1.*
    :align: center
