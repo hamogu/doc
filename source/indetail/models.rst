@@ -23,8 +23,8 @@ The following sources are currently available:
 In addition to the source models provided with |marx|, the following models
 developed by users might be of interest:
 
-- interface to the `yt<http://yt-project.org>`_ package: https://bitbucket.org/jzuhone/yt_marx_source
-- `SIMPUT<http://www.sternwarte.uni-erlangen.de/research/sixte/simput.php>`_: FITS-based standard for handling source descriptions for simulations (under development)
+- interface to the `yt <http://yt-project.org>`_ package: https://bitbucket.org/jzuhone/yt_marx_source
+- `SIMPUT <http://www.sternwarte.uni-erlangen.de/research/sixte/simput.php>`_: FITS-based standard for handling source descriptions for simulations (under development)
 
 
 First, it is important
@@ -290,6 +290,8 @@ useful for modeling a supernova remnant.
 
 .. index::
    pair: Source Model; IMAGE
+
+.. _sect-imagesource:
 
 IMAGE Source
 ^^^^^^^^^^^^
