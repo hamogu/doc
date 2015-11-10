@@ -20,8 +20,8 @@ spectral model.
 This is similar to :ref:`sect-ex-ACISCCD` except that the source is brighter
 and has a less steep powerlaw.
 
-.. include:: isismodel.sl
-   :code:
+.. sourceinclude:: isismodel.sl
+   :indent: "isis> "
 
 Now, use :marxtool:`marxflux` to evaluate the ``plaw_hetg.par`` file to create a |marx| spectrum file.
 Here a fine binning is used having bins with dE/E = 0.0003 (v_bin = 90 km/s).
@@ -142,8 +142,8 @@ fitting software. In this example below, we use `ISIS`_, but `XSPEC`_ and
 
 This is `ISIS`_ code to fit an absorbed powerlaw to the simulated spectrum:
 
-.. include:: isisfit.sl
-   :code:
+.. sourceinclude:: isisfit.sl
+   :indent: "isis> "
 
 The resulting fit parameters are similar, but not identical, to the
 parameters we put into the simulation above.
