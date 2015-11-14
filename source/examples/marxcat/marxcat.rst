@@ -62,16 +62,39 @@ Analysing the results
 ---------------------
 	      
 It is interesting to look at the event file with a viewer such as
-`ds9`_.  Here we use :ciao:`dmimg2jpg`, which displays an RGB image of the events
-projected to the sky plane. The HETG grating as two parts, the HEG and the MEG, which form the shape of an X on the detector. The two X shapes from EQ Peg A and EQ Peg B overlap. We use `CIAO`_ to extract the grating spectrum from ``EQPegB.fits`` and ``EGPeg_both.fits``.
+`ds9`_.  
+The HETG grating has two parts, the HEG and the MEG. The grating spectra from the HEG and MEG form the shape of an X on the detector. The two X shapes from EQ Peg A and EQ Peg B overlap.
+
+.. _fig-ex-marxcat-ds9:
+
+.. figure:: eqpeg_ds9.*
+   :alt: The two X shapes overlap very close to the source.
+   :align: center
+
+   Detector image of the combined simulation for EQ Peg A and EQ Peg B
+
+   The grating spectra of both sources overlap very close to the source. Thus, care should be taken when fitting the short wavelengths in the extracted spectrum, while the longer wavelength regions are unaffected.
+
 
 .. literalinclude:: eqpeg_ciao.sh
    :language: bash
 
-We compare the spectra in `Sherpa`_. The difference between the two spectra shown is caused by photons from EQ Peg A that fall in the extraction region of EQ PEg B. The figure shows that this contamination is only relevant for very short wavelength. Thus, when we analyse the real observed data from the EQ Peg system, we should probably expclude the low wavelengths from the fit to avoid contamination from the other member of the binary.
+We use `CIAO`_ to extract the grating spectrum from ``EQPegB.fits`` and ``EGPeg_both.fits``.
+We compare the spectra in `Sherpa`_. The difference between the two spectra shown is caused by photons from EQ Peg A that fall in the extraction region of EQ Peg B. The figure shows that this contamination is only relevant for very short wavelengths. Thus, when we analyze the real, observed data from the EQ Peg system, we should probably exclude the low wavelengths from the fit to avoid contamination from the other member of the binary.
+
+.. _fig-ex-marxcat-spectra:
+
+.. figure:: eqpeg_spectra.*
+   :alt: The spetra differ only at short wavelength.
+   :align: center
+
+   Contaminated and clean spectrum extracted for EQ Peg B.
+
+   The black spectrum shows the uncontaminated spectrum of EQ Peg B, extracted from the simulation that contained only one source. The red spectrum is extracted from the combined fits file that contains both EQ Peg A and EQ Peg B. At short wavelengths this sprectrum is higher, because some photons from EQ Peg A fall into the extraction region of EQ Peg B. Remember that |marx| is a Monte-Carlo simulation, so the amount of contamination will be different when this example is re-run. This figure is made with `Sherpa`_ using the following script :download:`compare_eqpeg.py`.
+
 
 Summary
 -------
-This example shows how :marxtool:`marxcat` can be used to build up a more complex distribution of source on the sky from simple components. We can compare the simulated spectra of each component and thus estimate the contamination in the real data.
+This example shows how :marxtool:`marxcat` can be used to build up a more complex distribution of sources on the sky from simple components. We can asses how much the sources overlap and compare the simulated spectra of each component and thus estimate the contamination in the real data.
 
-In this example we simulated grating spectra of a binary star, but the same principle works for all cases where source overlap on the detector, e.g. a cluster of galaxies with a foreground HMXB, binary AGN, or imaging of a dense star forming region.
+In this example we simulated grating spectra of a binary star, but the same principle works for all cases where sources overlap on the detector, e.g. a cluster of galaxies with a foreground HMXB, binary AGN, or imaging of a dense star forming region.
