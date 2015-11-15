@@ -108,7 +108,7 @@ method most users will employ most of the time.
    scattered outside of the detector, so the *detected* number of rays will in
    general be lower than ``NumRays``. To specify the number of *detected* rays,
    set ``NumRays`` to a negative number. An example for this case is given in
-   :ref:`_sect-ex-letgplaw`.
+   :ref:`sect-ex-letgplaw`.
 
 .. parameter:: TStart
 
