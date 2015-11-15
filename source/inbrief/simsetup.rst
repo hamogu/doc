@@ -103,8 +103,8 @@ method most users will employ most of the time.
 
 .. parameter:: NumRays
 
-   This parameter sets the number of rays *denerated* 
-   in *ray generation mode*. Note, some rays maybe absorbed or
+   This parameter sets the number of rays *generated* 
+   in *ray generation mode*. Note that some rays may be absorbed or
    scattered outside of the detector, so the *detected* number of rays will in
    general be lower than ``NumRays``. To specify the number of *detected* rays,
    set ``NumRays`` to a negative number. An example for this case is given in
