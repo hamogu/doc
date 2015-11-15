@@ -103,11 +103,12 @@ method most users will employ most of the time.
 
 .. parameter:: NumRays
 
-   This parameter sets the exact number of rays to run through the simulator
-   in *ray generation mode*. Note, that this value is *not* the
-   number of detected rays which will be produced (some rays maybe absorbed or
-   scattered outside of the detector). This parameter
-   specifies the number of input rays. 
+   This parameter sets the number of rays *denerated* 
+   in *ray generation mode*. Note, some rays maybe absorbed or
+   scattered outside of the detector, so the *detected* number of rays will in
+   general be lower than ``NumRays``. To specify the number of *detected* rays,
+   set ``NumRays`` to a negative number. An example for this case is given in
+   :ref:`_sect-ex-letgplaw`.
 
 .. parameter:: TStart
 
