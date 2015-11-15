@@ -1,3 +1,5 @@
+.. _sect-ex-letgplaw:
+
 Simulating an LETG/ACIS-S observation
 =====================================
 
