@@ -1,19 +1,20 @@
 #!/bin/sh
 
-X=4096.5;    # determined by hand in ds9
-Y=4096.5;    # determined by hand in ds9
+X=4068.3;    # determined by hand in ds9
+Y=4112.7;    # determined by hand in ds9
 
 # We'll use the same mask for both extractions, because we want the same region.
 tg_create_mask infile="EQPegB.fits" outfile="EQPegB_reg1a.fits" \
   use_user_pars=yes last_source_toread=A \
-  sA_id=1 sA_zero_x=$X sA_zero_y=$Y clobber=yes grating_obs=header_value 
+  sA_id=1 sA_zero_x=$X sA_zero_y=$Y clobber=yes grating_obs=header_value \
+  width_factor_hetg=4
 
 
 ### Extract EQ Peg B from the EQ PEg B - only simulation ###
 
 tg_resolve_events infile="EQPegB.fits" outfile="EQPegB_evt1a.fits" \
-  regionfile="EQPegB_reg1a.fits" acaofffile="eqpeg_asol1.fits" \
-  alignmentfile="eqpeg_asol1.fits" osipfile=CALDB verbose=0 clobber=yes
+  regionfile="EQPegB_reg1a.fits" acaofffile="EQPeg_asol1.fits" \
+  alignmentfile="EQPeg_asol1.fits" osipfile=CALDB verbose=0 clobber=yes
 
 tgextract infile="EQPegB_evt1a.fits" outfile="EQPegB_pha2.fits" mode=h clobber=yes
 
@@ -21,8 +22,8 @@ tgextract infile="EQPegB_evt1a.fits" outfile="EQPegB_pha2.fits" mode=h clobber=y
 ### Extract EQ Peg B from the combined simulation ###
 
 tg_resolve_events infile="EQPeg_both.fits" outfile="EQPegB_both_evt1a.fits" \
-  regionfile="EQPegB_reg1a.fits" acaofffile="eqpeg_asol1.fits" \
-  alignmentfile="eqpeg_asol1.fits" osipfile=CALDB verbose=0 clobber=yes
+  regionfile="EQPegB_reg1a.fits" acaofffile="EQPeg_asol1.fits" \
+  alignmentfile="EQPeg_asol1.fits" osipfile=CALDB verbose=0 clobber=yes
 
 tgextract infile="EQPegB_both_evt1a.fits" outfile="EQPegB_both_pha2.fits" mode=h clobber=yes
 
@@ -40,9 +41,9 @@ mkgrmf grating_arm="MEG" order=-1 outfile="eqpegmeg-1_rmf.fits" srcid=1 detsubsy
    wvgrid_arf="compute" wvgrid_chan="compute"
 
 fullgarf phafile="EQPegB_pha2.fits"  pharow=3 evtfile="EQPegB.fits" \
-   asol="eqpeg_asol1.fits" engrid="grid(eqpeg_meg1_rmf.fits[cols ENERG_LO,ENERG_HI])" \
+   asol="EQPeg_asol1.fits" engrid="grid(eqpeg_meg1_rmf.fits[cols ENERG_LO,ENERG_HI])" \
    maskfile=NONE dafile=NONE dtffile=NONE badpix=NONE rootname="eqpeg"
 
 fullgarf phafile="EQPegB_pha2.fits"  pharow=4 evtfile="EQPegB.fits" \
-   asol="eqpeg_asol1.fits" engrid="grid(eqpeg_meg1_rmf.fits[cols ENERG_LO,ENERG_HI])" \
+   asol="EQPeg_asol1.fits" engrid="grid(eqpeg_meg1_rmf.fits[cols ENERG_LO,ENERG_HI])" \
    maskfile=NONE dafile=NONE dtffile=NONE badpix=NONE rootname="eqpeg"

@@ -8,15 +8,14 @@ my_src = get_source()
 
 # set energy grid
 bin_width = 0.01
-energies = np.arange(0.03, 12., bin_width)
-
-# evaluate source on energy grid
-flux = my_src(energies)
+energies = np.arange(0.15, 12., bin_width)
 
 ### EQ Peg A ###
 # check that out! Download and take number from real data.
-a1.norm = 2e-3
-a1.kT = 0.5
+a1.norm = 0.001
+a1.kT = 0.95
+# evaluate source on energy grid
+flux = my_src(energies)
 
 # Sherpa uses the convention that an energy array holds the LOWER end of the bins;
 # Marx that it holds the UPPER end of a bin.
@@ -25,10 +24,8 @@ a1.kT = 0.5
 save_arrays("EQPegA_flux.tbl", [energies[1:], flux[:-1] / bin_width], ["keV","photons/s/cm**2/keV"], ascii=True)
 
 ### EQ Peg B ###
-a1.norm = 1e-3
+a1.norm = 0.0003
 a1.kT = 0.7
-# check that that;s actually different.
-# if not, call my_src = get_source() again.
 flux = my_src(energies)
 
 save_arrays("EQPegB_flux.tbl", [energies[1:], flux[:-1] / bin_width], ["keV","photons/s/cm**2/keV"], ascii=True)

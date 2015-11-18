@@ -37,10 +37,12 @@ Then, we run |marx| twice - once for each star.
    :language: bash
 
 The :par:`SourceFlux` parameter may be used to indicate the integrated flux of
-the spectrum. The value of ``-1``
- means that the integrated flux is to be taken from the file. 
-The results of the
-simulation will be written to subdirectories called ``EQPegA`` and ``EQPegB``, as specified by the :par:`OutputDir` parameter. We use :marxtool:`marxcat` to combine both simulations in the directory ``EQPeg_both``:
+the spectrum. The value of ``-1`` means that the integrated flux is to be taken
+from the file. The results of the simulation will be written to sub-directories
+called ``EQPegA`` and ``EQPegB``, as specified by the :par:`OutputDir`
+parameter. We use :marxtool:`marxcat` to combine both simulations in the
+directory ``EQPeg_both``:
+
 
 .. literalinclude:: runmarxcat.inc
    :language: bash
@@ -63,24 +65,37 @@ Analysing the results
 	      
 It is interesting to look at the event file with a viewer such as
 `ds9`_.  
-The HETG grating has two parts, the HEG and the MEG. The grating spectra from the HEG and MEG form the shape of an X on the detector. The two X shapes from EQ Peg A and EQ Peg B overlap.
 
-.. _fig-ex-marxcat-ds9:
+The dispersed spectra of EQ Peg A and EQ Peg B are so close that they would
+both be contained in the standard region for the extraction of grating
+spectra. Thus, we first use the ``width_factor_hetg`` of the
+:ciao:`tg_create_mask` task to specify a smaller extraction region.
 
-.. figure:: eqpeg_ds9.*
-   :alt: The two X shapes overlap very close to the source.
+.. _fig-ex-marxcat-image:
+
+.. figure:: eqpeg_image.*
+   :alt: Two spectra on a detector very close to each other.
    :align: center
 
-   Detector image of the combined simulation for EQ Peg A and EQ Peg B
+   Small section of the detector image of the combined simulation.
 
-   The grating spectra of both sources overlap very close to the source. Thus, care should be taken when fitting the short wavelengths in the extracted spectrum, while the longer wavelength regions are unaffected.
+   The grating spectra of both sources are located fairly close to each
+   other. On the left is a MEG arm, the fainter signal of an HEG arm is
+   seen. The green region marks the extraction region for the EQ Peg B
+   spectrum (the weaker of the two sources).
 
 
 .. literalinclude:: eqpeg_ciao.sh
    :language: bash
 
-We use `CIAO`_ to extract the grating spectrum from ``EQPegB.fits`` and ``EGPeg_both.fits``.
-We compare the spectra in `Sherpa`_. The difference between the two spectra shown is caused by photons from EQ Peg A that fall in the extraction region of EQ Peg B. The figure shows that this contamination is only relevant for very short wavelengths. Thus, when we analyze the real, observed data from the EQ Peg system, we should probably exclude the low wavelengths from the fit to avoid contamination from the other member of the binary.
+We use `CIAO`_ to extract the grating spectrum from ``EQPegB.fits`` and
+``EGPeg_both.fits``.
+Now, we want to make use of our |marx| simulation to see how much the spectrum
+of EQ Peg A contaminates the extracted grating spectrum of EQ Peg B.
+We compare the spectra in `Sherpa`_. The difference between the two spectra
+shown is caused by photons from EQ Peg A that fall in the extraction region of
+EQ Peg B. 
+
 
 .. _fig-ex-marxcat-spectra:
 
@@ -88,10 +103,16 @@ We compare the spectra in `Sherpa`_. The difference between the two spectra show
    :alt: The spetra differ only at short wavelength.
    :align: center
 
-   Contaminated and clean spectrum extracted for EQ Peg B.
+   Contaminated and clean spectrum extracted for EQ Peg B (MEG order +1).
 
-   The black spectrum shows the uncontaminated spectrum of EQ Peg B, extracted from the simulation that contained only one source. The red spectrum is extracted from the combined fits file that contains both EQ Peg A and EQ Peg B. At short wavelengths this sprectrum is higher, because some photons from EQ Peg A fall into the extraction region of EQ Peg B. Remember that |marx| is a Monte-Carlo simulation, so the amount of contamination will be different when this example is re-run. This figure is made with `Sherpa`_ using the following script :download:`compare_eqpeg.py`.
-
+   The black spectrum shows the uncontaminated spectrum of EQ Peg B, extracted
+   from the simulation that contained only one source. The red spectrum is
+   extracted from the combined fits file that contains both EQ Peg A and EQ Peg
+   B.
+   
+Looking at this figure, we see that the spectrum is dominated by the signal
+from EQ Peg B, but there is quite some contribution from EQ Peg A as well. We
+should probably use a smaller value for ``width_factor_hetg`` and try again.
 
 Summary
 -------
