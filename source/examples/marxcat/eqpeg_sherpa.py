@@ -16,7 +16,24 @@ set_curve("crv1",["err.*","false"])
 set_curve("crv1",["line.style","solid","symbol.style","none"])
 set_curve("crv2",["err.*","false"])
 set_curve("crv2",["line.style","solid","symbol.style","none", "line.color","red"])
-set_plot_title("Contamination the EQ Peg B spectrum by EQ Peg A")
 
-print_window("eqpeg_spectra.png")
-print_window("eqpeg_spectra.pdf")
+set_plot_title("Contamination the EQ Peg B spectrum by EQ Peg A")
+set_axis(["label.size",20])
+print_window("eqpeg_spectra.png", ['export.clobber', 'True'])
+print_window("eqpeg_spectra.pdf", ['export.clobber', 'True'])
+
+
+load_data('EQPegB_both_pha2.fits')
+load_arf(4, 'eqpegMEG_1_garf.fits')
+load_rmf(4, 'eqpeg_meg1_rmf.fits')
+set_analysis('wave')
+subtract(4)
+group_counts(4, 10)
+plot_data(4)
+limits(X_AXIS, 4, 15)
+
+set_plot_title("Background-subtracted spectrum of  EQ Peg B spectrum")
+set_axis(["label.size",20])
+print_window("eqpeg_background.png", ['export.clobber', 'True'])
+print_window("eqpeg_background.pdf", ['export.clobber', 'True'])
+

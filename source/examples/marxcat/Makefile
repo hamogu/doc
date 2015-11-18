@@ -48,7 +48,7 @@ clean:
 	/bin/rm -f *~ */*~
 distclean: clean
 	/bin/rm -rf *.tbl *.fits *.par image_rgb.* \
-	  EQPegA EQPegB m1_fit.png m1_fit.eps
+	  EQPegA EQPegB *.png *.eps *.jpg
 #
 .PHONY: all clean distclean
 

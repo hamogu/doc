@@ -7,7 +7,7 @@ Y=4112.7;    # determined by hand in ds9
 tg_create_mask infile="EQPegB.fits" outfile="EQPegB_reg1a.fits" \
   use_user_pars=yes last_source_toread=A \
   sA_id=1 sA_zero_x=$X sA_zero_y=$Y clobber=yes grating_obs=header_value \
-  width_factor_hetg=4
+  width_factor_hetg=10
 
 
 ### Extract EQ Peg B from the EQ PEg B - only simulation ###
