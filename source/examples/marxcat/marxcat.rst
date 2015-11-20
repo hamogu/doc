@@ -7,9 +7,9 @@ In each run of |marx| the user can choose one and only one source from the list
 in :ref:`sect-sourcemodels`. Most of these sources are simple geometric shapes
 like a point or a disk. The :ref:`sect-imagesource` allows the user to specify an itensity image as input to define a complicated morphology on the sky, but the spectrum is the same in every position.
 
-If spectrum *and* intensity change with position, the user can write his/her own C-code to generate the photons as described in :ref:`sect-usersource`. Some of those codes are available for download, see :ref:`sect-imagesource` for links.
+If spectrum *and* intensity change with position, the user can write his/her own C-code to generate the photons as described in :ref:`sect-usersource`. Some of those codes are available for download, see :ref:`sect-sourcemodels` for links.
 
-However, in most cases it is easier to run |marx| several times and use the :marxtool:`marxcat` to combine the simulations.
+However, in most cases it is easier to run |marx| several times and use :marxtool:`marxcat` to combine the simulations.
 
 In this example we want to simulate a binary star, where both components are separated by only a few arcseconds. In the center of the field-of-view that is enough to separate the images of component A and B, but what happens when we insert a grating? Will the dispersed spectra overlap, or can they be separated in the data?
 
@@ -18,7 +18,7 @@ The parameters in the following example are inspired by the observations of the 
 Creating a file with the input spectra
 --------------------------------------
 First, we need to generate the input spectra. For this example, we use `Sherpa`_, but `XSPEC`_ or `ISIS`_ work very similar.
-We need two 2-column text files that tabulates the model flux [photons/sec/keV/cm^2] (second column) as a function of energy [keV] (first column).
+We need two 2-column text files that tabulate the model flux [photons/sec/keV/cm^2] (second column) as a function of energy [keV] (first column).
 
 Stars are generally well described by an optically thin, collisionally excited plasma. We use a model with only a single temperature component with a different temperature for EQ Peg A and EQ Peg B and slightly non-solar abundances as suggested by `Liefke et al. (2008) <http://adsabs.harvard.edu/abs/2008A%26A...491..859L>`_.
 
@@ -28,7 +28,6 @@ Stars are generally well described by an optically thin, collisionally excited p
 
 	      
 More details about the format of the |marx| input spectrum can be found at :par:`SpectrumFile`.
-Note, that the parameter :par:`SourceFlux` sets the normalization of the flux; if the normalization of the model file should be used, set :par:`SourceFlux=-1`.
 
 Running |marx|
 --------------
@@ -39,7 +38,7 @@ We run |marx| twice - once for each star.
    :language: bash
 
 The :par:`SourceFlux` parameter may be used to indicate the integrated flux of
-the spectrum. The value of ``-1`` means that the integrated flux is to be taken
+the spectrum. The value of ``-1`` means that the integrated flux is taken
 from the file. The results of the simulation will be written to sub-directories
 called ``EQPegA`` and ``EQPegB``, as specified by the :par:`OutputDir`
 parameter. We use :marxtool:`marxcat` to combine both simulations in the
@@ -49,15 +48,16 @@ directory ``EQPeg_both``:
 .. literalinclude:: runmarxcat.inc
    :language: bash
 
-In this simulation we know exactly which photon comes from which star, so we can generate three fits file, one for EQ Peg A only, one for EQ PEg B only, and one that contains both sources, similar to the observed data.
+In the simulation we know exactly which photon comes from which star, so we can generate three fits files, one for EQ Peg A only, one for EQ PEg B only, and one that contains both sources, similar to the observed data.
 
 .. literalinclude:: runmarx2fits.inc
    :language: bash
 
-The fits file ``letgplaw_evt1.fits`` can be further processed
+The fits files can be further processed
 with standard `CIAO`_ tools.  As some of these tools require the aspect
 history, the :marxtool:`marxasp` program is used to create an aspect
-solution file. Since both simulations used the same pointing and dither, the asol file is the same for each of the three fits files.
+solution file. Since both simulations used the same pointing and dither, we can
+use the same asol file for all three fits files.
 
 .. literalinclude:: runmarxasp.inc
    :language: bash
@@ -80,22 +80,21 @@ spectrum of EQ Peg B.
 
    The grating spectra of both sources are located fairly close to each
    other. On the left is an MEG arm, the fainter signal of an HEG arm is
-   seen on the right. The green region marks the extraction region for the EQ Peg B
-   spectrum (the weaker of the two sources). :ciao:`tgextract` splits this
-   region: It extracts the "source" spectrum from the center and the
-   "background" spectrum from the left and right.
+   seen on the right. The green lines mark the extraction regions for the EQ Peg B
+   MEG and HEG spectra. :ciao:`tgextract` subdivides this green region into
+   source and background regions for spectral extraction.
 
+We use `CIAO`_ to extract the grating spectrum from ``EQPegB.fits`` and
+``EGPeg_both.fits``.
 
 .. literalinclude:: eqpeg_ciao.sh
    :language: bash
 
-We use `CIAO`_ to extract the grating spectrum from ``EQPegB.fits`` and
-``EGPeg_both.fits``.
 Now, we want to make use of our |marx| simulation to see how much the spectrum
 of EQ Peg A contaminates the extracted grating spectrum of EQ Peg B.
-We compare the spectra in `Sherpa`_. The difference between the two spectra
-shown is caused by photons from EQ Peg A that fall in the extraction region of
-EQ Peg B. 
+We compare the spectra in `Sherpa`_. The difference between the two spectra in
+some of the lines is caused by photons from EQ Peg A that fall in the
+extraction region of EQ Peg B. 
 
 
 .. _fig-ex-marxcat-spectra:
@@ -106,8 +105,8 @@ EQ Peg B.
 
    Contaminated and clean spectrum extracted for EQ Peg B (MEG order +1).
 
-   The black spectrum shows the uncontaminated spectrum of EQ Peg B, extracted
-   from the simulation that contained only one source. The red spectrum is
+   The red spectrum shows the uncontaminated spectrum of EQ Peg B, extracted
+   from the simulation that contained only one source. The black spectrum is
    extracted from the combined fits file that contains both EQ Peg A and EQ Peg
    B.
    
