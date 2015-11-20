@@ -10,10 +10,11 @@ The `Proposers Observatory Guide
 <http://cxc.harvard.edu/proposer/POG/html/chap6.html#tth_sEc6.16>`_ describes
 all these components in detail.
 
-The background matters most for faint and / or extended sources. In this
+The background matters most for faint or extended sources. In this
 example we show two different methods to include a background component into a
 |marx| simulation. Because |marx| ray-traces X-ray photons and does not
-calculate the interaction of particles, both methods make some approximations:
+calculate the interaction between spacecraft components and energetic
+particles, both methods need to make approximations:
 
 #. The Chandra calibration team has released "blank sky background" files for the ACIS
    detector. :ref:`subsect-ex-bkg-blanksky` shows how to add observed background
@@ -24,8 +25,7 @@ calculate the interaction of particles, both methods make some approximations:
      non-uniformity maps for the ACIS detector, nor does it employ the spatially
      varying CTI-corrected pha redistribution matrices (RMFs). As such there
      always will be systematic differences between the simulated MARX source and
-     the real background data and simply adding some background to the simulation
-     will introduce systematic effects into the output image.
+     the real background data.
    * The "blank sky" files contain between a 30,000 and a few million photons
      (depending on the chip). If this procedure is repeated for many |marx|
      simulations, it adds photons *from the same pool* every time, so this cannot
@@ -46,8 +46,8 @@ calculate the interaction of particles, both methods make some approximations:
    The background count rate can vary within minutes in so-called flares (`example for a background
    lightcurve <http://cxc.harvard.edu/proposer/POG/html/chap6.html#tth_sEc6.16.3>`_),
    and even the quiescent background level changes over time.
-   so both methods only give a prediction of a *typical* background. The actual
-   background might turn out to be higher.
+   Thus, the simulation can only give a prediction of a *typical* background. The actual
+   background might turn out to be higher or lower.
 
 .. warning:: Sky background depends on Ra, Dec!
 
@@ -84,10 +84,11 @@ ionization equilibrium with parameters similar to those observed by `Güdel et. 
    Image credit: NASA/CXC/PSU/L.Townsley et al.
 
 Similar to :ref:`creating_sherpa_spectrum` we will use `Sherpa`_ to create a 
-a 2-column text file that tabulates the flux [photons/sec/keV/cm^2] (second
+2-column text file that tabulates the flux [photons/sec/keV/cm^2] (second
 column) as a function of energy [keV] (first column).
 
-.. literalinclude:: spectralmodel.py
+.. sourceinclude:: spectralmodel.py
+   :prefix: "sherpa> "
    :language: python 
 
 More details about the format of the |marx| input spectrum can be found at
@@ -100,7 +101,7 @@ The next step is to run |marx| in the desired configuration:
 
 The :par:`SourceFlux` sets the observed photon flux by renormalizing the input
 spectrum. For the shape of the source we choose a Gaussian that is more than one
-arcmin wide and we set the aimpoint on the back-illuminated ACIS-S3 chip (chip OD 7). The results of the
+arcmin wide and we set the aimpoint on the back-illuminated ACIS-S3 chip (chip ID 7). The results of the
 simulation will be written to a subdirectory called ``diffuse``, as
 specified by the :par:`OutputDir` parameter.  After the simulation has
 completed, a standard Chandra event file may be created using the
@@ -125,7 +126,7 @@ by hand from http://cxc.harvard.edu/ciao/download/caldb.html . |marx| does not
 simulate all physical effects in Chandra (see :ref:`caveats`) and thus none of
 the "blank sky background" files matches the way that |marx| generates the data
 exactly. In particular, |marx| does not apply the CTI correction, thus we will
-use the "blanK sky background" files that doe not have ``_cti`` in their
+use the "blank sky background" files that do not have ``_cti`` in their
 filename. The naming convention is
 ``acis<chip><aimpoint>D<date>bkgrndN<version>.fits``. 
 
@@ -136,26 +137,26 @@ the most recent background file and copy it to the working directory:
    :language: bash
 
 We now need to do some fiddleing with the |marx| simulation and the background
-file to make their formats compatible so tat we can eventually merge them into
+file to make their formats compatible so that we can eventually merge them into
 a single event file. This involves the following steps:
 
 #. Select a random subset of photons in the "blank sky file". Do do so, we need
    to
 
     - Find the number of columns in that file (header keyword ``NAXIS2``).
-    - Estiamte the number of background photons we want to simulate.
+    - Estimate the number of background photons we want to simulate.
       Looking at the appropriate table in the `Observatory Guide 
       <http://cxc.harvard.edu/proposer/POG/html/chap6.html#tab:acis_intg_part_rates>`_
       we see that roughly 3 cts/s (in the event grades we care for) is a good,
       conservative estiamte. For an observation of 50 ks, we thus decide to
-      select roughly 150,000 photons.
+      select roughly 155,000 photons.
     - Events in the "blank sky" files are sorted in x and y. In order to
       select a random subset, we use :ciao:`dmtcalc` to assign a random number
       in column ``randnum`` and multiply it with the ratio of total the total
       number of photons on the "blank sky" file and the number of photons we
       want to select.
     - We copy only those photons where the ratio is smaller than 1. Since this
-      involves a random number, this also introduces a "random error" into te
+      involves a random number, this also introduces a "random error" to the
       number of photons we select - it will not be exactly 150,000. 
  
 #. Add a time column to the "blank sky" file and fill it with random value
@@ -169,7 +170,7 @@ Here is the script that we use:
 .. literalinclude:: mergebkg.sh
    :language: bash
 
-If the source in the simulation covers multiple ACIS chips, then this procude
+If the source in the simulation covers multiple ACIS chips, then this
 can be repeated chip-by-chip. 
 
 .. _fig-ex-bkg:
@@ -188,16 +189,39 @@ can be repeated chip-by-chip.
    (here 0.2-2.0 keV) that focusses on the energy range where the source is
    strongest relative to the background. A slight overdensity of photons can
    be seen at the position of the source, but it will be very difficult to fit
-   spectral parameters or to contrain the maximal radius of the source accurately.
+   spectral parameters or to determine the radius of the source accurately.
 
 The :ref:`fig-ex-bkg` show the |marx| simulation alone, with added
 background from the "blank sky" file and with an energy filter that suppresses
-the signal in the background. The source can still be detected, but fitted
-source parameters will be more uncertain than they would be in a
-background-free scenario. 
+the signal in the background. 
 
+Looking at the background-free |marx| simulation measuring the flux and the
+size of this source seems like an easy task. When properly including background
+the source can still be detected, but fitted source parameters will be more
+uncertain than they would be in a background-free scenario. This example shows
+how important it is to consider the instrumental background when simulating weak sources.
 
 .. _subsect-ex-bkg-marxbkg:
 
 Simulating a background-like source with |marx|
 -----------------------------------------------
+
+
+Notes about additional background components
+--------------------------------------------
+In addition to the instrumental background, there is
+also an astrophyiscal background. This can be unrelated to the target of the
+observation, such as charge exchange emission in the solar wind or the
+population of weak background AGN, that is roughly homogeneous over the
+field-of-view and contributes to the observed "diffuse" background.
+
+For some targets, there are additional contributions to the apparent backgroud
+that are related to he source. For example, in the case of diffuse emission in a star
+forming region there will be stars in the cluster. While the bright stars
+should be detected as point sources and those regions can be excluded from the
+analysis, there might be a population of weak stars that contribute only a few
+photons each, but add up to provide significant flux in addition to a truly
+diffuse component from a hot gas.
+
+Different strategies can be used to account for those backgrounds in spectral
+modeling, but that is beyond the scope of this |marx| example.
