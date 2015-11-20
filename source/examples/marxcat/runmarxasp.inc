@@ -1,0 +1,1 @@
+marxasp MarxDir="EQPegA" OutputFile="EQPeg_asol1.fits"

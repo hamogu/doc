@@ -254,7 +254,8 @@ with no parameters on the call line.
 
    The marxcat tool concatenates multiple |marx| simulation directories together. In this manner,
    users may build arbitrarily complex simulations, one component at a time and then merge
-   them together to produce the final result. Note, marxcat will overwrite the contents of the
+   them together to produce the final result (see :ref:`sect-ex-marxcat` for a detailed example).
+   Note, marxcat will overwrite the contents of the
    target directory if it already exists. If the directory does not exist, marxcat will create it.
    The marxcat tool works by merging the various binary output vectors contained in the indicated
    |marx| output directories. It is the user's responsibility to ensure that the simulations being
