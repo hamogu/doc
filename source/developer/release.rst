@@ -28,8 +28,15 @@ Source repro
    ``5.0.0`` (or whatever the previous version was called).
 #) ``git tag v5.1.0``
 #) ``git push --tags reproname`` Push tag to all repositories that should have a copy.
-#) ``git archive --format=tar --prefix=marx-5.1.0/ v5.1.0 | gzip >  marx-dist-5.1.0.tar.gz``
-#) ``scp marx-dist-5.1.0.tar.gz space:/space/ftp/pub/cxc/marx/v5.1`` (make directory as required)
+#) ``git archive --format=tar --prefix=marx-5.1.0/ v5.1.0 | gzip >
+   marx-dist-5.1.0.tar.gz``
+#) Sign with your private key: ``gpg --armor --detach-sig
+   marx-dist-5.1.0.tar.gz.asc``
+#) Calculate hash, so that user can verify error-free download: ``sha1sum marx-dist-5.1.0* > sha1sums.txt``
+#) ``scp marx-dist-5.1.0.tar.gz space:/space/ftp/pub/cxc/marx/v5.1`` (make
+   directory as required)
+#) ``scp marx-dist-5.1.0.tar.gz.asc space:/space/ftp/pub/cxc/marx/v5.1``
+#) ``scp sha1sums.txt space:/space/ftp/pub/cxc/marx/v5.1`` 
 
 
 Documentation repro
