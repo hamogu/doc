@@ -21,17 +21,17 @@ EQPegB_flux.tbl: spectralmodel.py ../runciaotool.sh
 %.par:
 	cp ${MARXPREFIX}/share/marx/pfiles/$@ .
 
-EQPegB/energy.dat: ${CONFIG} EQPegB_flux.tbl runmarx.inc marx.par
-	./runmarx.inc
+EQPegB/energy.dat: ${CONFIG} EQPegB_flux.tbl runmarx.inc marx.par ../runmarxtool.sh 
+	../runmarxtool.sh ./runmarx.inc
 
-EQPeg_both/energy.dat: EQPegB/energy.dat
-	./runmarxcat.inc
+EQPeg_both/energy.dat: EQPegB/energy.dat ../runmarxtool.sh 
+	../runmarxtool.sh ./runmarxcat.inc
 
-EQPeg_both.fits: runmarx2fits.inc EQPeg_both/energy.dat
-	./runmarx2fits.inc
+EQPeg_both.fits: runmarx2fits.inc EQPeg_both/energy.dat ../runmarxtool.sh 
+	../runmarxtool.sh ./runmarx2fits.inc
 
-EQPeg_asol1.fits : EQPeg_both.fits marxasp.par
-	./runmarxasp.inc
+EQPeg_asol1.fits : EQPeg_both.fits marxasp.par ../runmarxtool.sh 
+	../runmarxtool.sh ./runmarxasp.inc
 
 EQPegB_both_pha2.fits: ${CONFIG} EQPeg_both.fits EQPeg_asol1.fits eqpeg_ciao.sh ../runciaotool.sh
 	../runciaotool.sh ./eqpeg_ciao.sh

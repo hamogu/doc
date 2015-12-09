@@ -4,7 +4,7 @@ HETG simulation of an extended source
 =====================================
 
 The purpose of this example, contributed by
-`Dan Dewey <http://space.mit.edu/home/dd/>`_ is to show how to use
+`Dan Dewey <http://space.mit.edu/home/dd/>`_, is to show how to use
 |marx| to simulate an HETG observation of a point and a
 simple extended source with a user-specified spectrum. This example, like many
 of the other examples, uses |marx|, `ISIS`_ and `CIAO`_, which should be 

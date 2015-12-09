@@ -1,6 +1,6 @@
 #!/bin/sh
 
 . ../config.inc
-PATH="$MARXLIB:$PATH"
+PATH="$MARXPREFIX/bin:$MARXPREFIX/lib/marx:$PATH"
 
 . ./run_marxflux.inc
