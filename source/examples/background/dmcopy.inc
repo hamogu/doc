@@ -1,0 +1,1 @@
+ dmcopy "acis7sbkg_reproj.fits[EVENTS][bin x=::32,y=::32]" chip-shape.fits option=image

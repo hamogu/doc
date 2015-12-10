@@ -33,7 +33,7 @@ particles, both methods need to make approximations:
      approaches the number of photons in the file.
 
 #. We can fit the apparent X-ray spectrum of the "blank sky" files ("apparent"
-   because the events look like X-ray photons on the CCD, but really are electron
+   because the events look like X-ray photons on the CCD, but they really are electron
    or proton impacts) and then use |marx| to simulate an extended source that
    produces a similar spectrum (:ref:`subsect-ex-bkg-marxbkg`). This approach is
    easier and faster, but it does  not capture the `spatial variations of the
@@ -88,7 +88,7 @@ Similar to :ref:`creating_sherpa_spectrum` we will use `Sherpa`_ to create a
 column) as a function of energy [keV] (first column).
 
 .. sourceinclude:: spectralmodel.py
-   :prefix: "sherpa> "
+   :indent: "sherpa> "
    :language: python 
 
 More details about the format of the |marx| input spectrum can be found at
@@ -119,7 +119,8 @@ We also generate an aspect solution file that matches the simulation:
 
 Adding "blank-sky background" to a |marx| simulation
 ----------------------------------------------------
-The "blank sky background" files are part of `CalDB <http://cxc.cfa.harvard.edu/caldb/>`_ but because of their size
+The "blank sky background" files are part of 
+`CalDB <http://cxc.cfa.harvard.edu/caldb/>`_ but because of their size
 they are not installed by default. If you don't have them yet, use the
 `ciao-install script <http://cxc.harvard.edu/ciao/download/>`_ or download them
 by hand from http://cxc.harvard.edu/ciao/download/caldb.html . |marx| does not
@@ -140,8 +141,7 @@ We now need to do some fiddleing with the |marx| simulation and the background
 file to make their formats compatible so that we can eventually merge them into
 a single event file. This involves the following steps:
 
-#. Select a random subset of photons in the "blank sky file". Do do so, we need
-   to
+#. Select a random subset of photons in the "blank sky file". We need to
 
     - Find the number of columns in that file (header keyword ``NAXIS2``).
     - Estimate the number of background photons we want to simulate.
@@ -149,19 +149,19 @@ a single event file. This involves the following steps:
       <http://cxc.harvard.edu/proposer/POG/html/chap6.html#tab:acis_intg_part_rates>`_
       we see that roughly 3 cts/s (in the event grades we care for) is a good,
       conservative estiamte. For an observation of 50 ks, we thus decide to
-      select roughly 155,000 photons.
+      select roughly 150,000 photons.
     - Events in the "blank sky" files are sorted in x and y. In order to
       select a random subset, we use :ciao:`dmtcalc` to assign a random number
-      in column ``randnum`` and multiply it with the ratio of total the total
-      number of photons on the "blank sky" file and the number of photons we
+      in column ``randnum`` and multiply it with the ratio of the number of
+      photons in the "blank sky" file and the number of photons we
       want to select.
     - We copy only those photons where the ratio is smaller than 1. Since this
       involves a random number, this also introduces a "random error" to the
       number of photons we select - it will not be exactly 150,000. 
  
-#. Add a time column to the "blank sky" file and fill it with random value
+#. Add a time column to the "blank sky" file and fill it with random values
    during the observation.
-#. Reproject the "blank sky" file to the observed position in the sky.
+#. Reproject the "blank sky" file to the observed position on the sky.
 #. Select the same columns in the |marx| simulation and the "blank sky" file, so
    that they can be merged with :ciao:`dmmerge`.
 
@@ -171,7 +171,7 @@ Here is the script that we use:
    :language: bash
 
 If the source in the simulation covers multiple ACIS chips, then this
-can be repeated chip-by-chip. 
+has to be repeated chip-by-chip. 
 
 .. _fig-ex-bkg:
 
@@ -191,9 +191,9 @@ can be repeated chip-by-chip.
    be seen at the position of the source, but it will be very difficult to fit
    spectral parameters or to determine the radius of the source accurately.
 
-The :ref:`fig-ex-bkg` show the |marx| simulation alone, with added
-background from the "blank sky" file and with an energy filter that suppresses
-the signal in the background. 
+The figure :ref:`fig-ex-bkg` shows the |marx| simulation alone, with added
+background from the "blank sky" file and with an energy filter that we would
+probably use for real data to suppresses some of the background.
 
 Looking at the background-free |marx| simulation measuring the flux and the
 size of this source seems like an easy task. When properly including background
@@ -205,6 +205,107 @@ how important it is to consider the instrumental background when simulating weak
 
 Simulating a background-like source with |marx|
 -----------------------------------------------
+An alternative approach is to extract a spectrum from the "black-sky" fields 
+in the region of interest. We can then describe this spectrum with a smooth,
+analytical model. This model shall not describe the *physical
+properties* such as the energy of the background events (many of them
+are not even photons), it just provides an effective way
+to simulate "something that looks similar on the detector when run through
+|marx|". 
+
+The advantage of this approach is that, once we have decided on a model for the
+background, we can run as many simulations as we want and randomly generate more photons
+than the original "blank-sky" file has without exactly repeating photons.
+
+First, extract a spectrum from the "blank-sky" background.
+
+
+# Clean up and rename some intermediate products simplesteps -> ???
+dmextract
+infile="acis7sbkg_reproject.fits[sky=rotbox(1:59:59,+39:59:20,3.2',3.5',0)][bin
+pi]" outfile='simplesteps.pi' wmap="[bin tdet=8]"
+
+asphist infile=diffuse_asol1.fits outfile=simple_steps.asphist
+evtfile="diffuse_evt2.fits[ccd_id=7]"
+
+sky2tdet
+infile="acis7sbkg_reproject.fits[sky=rotbox(1:59:59,+39:59:20,3.2',3.5',0)][bin
+sky=8]" asphistfile="simple_steps.asphist" outfile="simple_steps_tdet.fits[wmap]"
+
+
+mkwarf infile="simple_steps_tdet.fits[wmap]" outfile=simple_steps.arf
+weightfile=simple_steps.wfef egridspec=0.3:11.0:0.1  mskfile=NONE
+spectrumfile=NONE pbkfile=NONE
+
+
+mkrmf infile=CALDB outfile=simple_steps_mkrmf.rmf axis1="energy=0:1" axis2="pi=1:1024:1"
+weights=simple_steps.wfef
+
+sherpa-1> load_data('simplesteps.pi')
+sherpa-2> load_rmf('simple_steps_mkrmf.rmf')
+sherpa-3> load_arf('simple_steps.arf')
+sherpa-4> plot_data()
+print_window('extracted_bkgspec.png')
+print_window('extracted_bkgspec.ps')
+pl = get_data_plot()
+save_arrays('bkgspec.tbl', [pl.x, pl.y], ['Energy', pl.ylabel], ascii=True)
+
+Follow this thread: http://cxc.harvard.edu/ciao/threads/extended/
+I'm at "Create WMAP"
+
+Again, we want source flux of about 3 counts/s over the entire detector, so we
+set :par:`SourceFlux=3` and :par:`SpectrumFile` to the spectrum of
+the background. Now we only need to specify the shape of the
+source. Figure :ref:`fig-bkgonchip` shows regions with higher or
+lower background level in the input "blank sky" file.
+
+.. literalinclude:: dmcopy.inc
+   :language: bash
+
+.. _fig-ex-ch: fig-bkgonchip
+
+.. figure:: chip-shape.*
+   :align: center
+   :alt: Image with rough blocks almost like a checkerboard, but with very
+   little contrast.
+
+   Binned "blank sky" file for chip 7
+
+To reproduce that in our simulation, we use the image
+in the figure as the source for our |marx| run with :par:`SourceType="IMAGE"`
+and :par:`S-ImageFile` set to the filename of the image. 
+There is a trade-off here: If we bin the image too much, we smooth out the
+structure, if we bin too little such that we still see the random noise in the
+image, then our |marx| simulation will produce an event distribution that shows
+the same "random noise pattern". That fine, unless we want to run many |marx|
+simulations, where we would see the same "random" pattern any time. Here, the
+binning is chosen such that we find a few thousand events in every pixel of the
+image.
+
+All remaining |marx| parameters (:par:`RA_Nom`, :par:`Dec_Nom` etc.) are the
+same as in the simulation of "diffuse source" above.
+
+.. literalinclude:: marx4bkg.inc
+   :language: bash
+
+Now, we can use :marxtool:`marxcat` to merge the simulation of the diffuse
+source and the background and :marxtool:`marx2fits` to convert the merged
+results into a fits file.
+
+.. literalinclude:: marxcat.sh
+   :language: bash
+
+.. _fig-ex-bkg2:
+
+.. figure:: bkg.*
+   :align: center
+   :alt: Images of three event files. See caption for a description.
+
+   Images of the final event files
+
+   This image is the same as :ref:`fig-ex-bkg2`, except that the background is
+   simulated with |marx| instead of drawing photons directly from the "blank
+   sky" file.
 
 
 Notes about additional background components
@@ -215,7 +316,7 @@ observation, such as charge exchange emission in the solar wind or the
 population of weak background AGN, that is roughly homogeneous over the
 field-of-view and contributes to the observed "diffuse" background.
 
-For some targets, there are additional contributions to the apparent backgroud
+For some targets, there are additional contributions to the apparent background
 that are related to he source. For example, in the case of diffuse emission in a star
 forming region there will be stars in the cluster. While the bright stars
 should be detected as point sources and those regions can be excluded from the
