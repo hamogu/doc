@@ -4,6 +4,26 @@
 Highlights for each version of |marx|
 *************************************
 
+Marx 5.2
+========
+
+There are only minor enhancements, calibration updates, and bug fixes 
+in this version.
+
+Change in default parameters
+----------------------------
+Set the :par:`PointingOffsetY` and :par:`PointingOffsetZ` to 0 to match the
+values in current Chandra observations (was ``-21`` and ``12`` before).
+This defines the difference between RA/DEC_NOM and RA/DEC_PNT in the 
+fits headers of event files; it is not used in the code except to output 
+the RA/DEC_PNT values by :marxtool:`marx2fits`.
+
+Bug Fixes
+---------
+- Match use of long and double types in fits output to standard CIAO products.
+- Previously an ASOL file name > 63 characters would crash :marxtool:`marx2fits`.
+  Now, it cuts the pathname to shorten the string.
+
 Marx 5.1
 ========
 

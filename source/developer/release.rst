@@ -45,6 +45,7 @@ Documentation repro
 #) update ``copyright``, ``version``, and ``release`` in ``conf.py``. (Note
    that the copyright year turn up further down for LaTeX and epub again.)
 #) Update any notes on the front page ``index.rst`` etc.
+#) Update ``inbrief/news.rst``.
 #) ``make clean``
 #) Install marx and set path in ``source/examples/config.inc`` to it, so that
    the examples are build with the new version.
