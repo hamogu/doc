@@ -206,52 +206,40 @@ how important it is to consider the instrumental background when simulating weak
 Simulating a background-like source with |marx|
 -----------------------------------------------
 An alternative approach is to extract a spectrum from the "black-sky" fields 
-in the region of interest. We can then describe this spectrum with a smooth,
-analytical model. This model shall not describe the *physical
-properties* such as the energy of the background events (many of them
-are not even photons), it just provides an effective way
-to simulate "something that looks similar on the detector when run through
+and use this spectrum as input for |marx|. Note, that this spectrum does **not**
+really describe the *physical properties* such as the energy of the background events 
+(many of them are not even photons), it just provides an effective way
+to simulate "something that looks similar to real background when run through
 |marx|". 
 
-The advantage of this approach is that, once we have decided on a model for the
-background, we can run as many simulations as we want and randomly generate more photons
-than the original "blank-sky" file has without exactly repeating photons.
+The advantage of this approach is that we can run randomly generate more photons
+than the original "blank-sky" file has without repeating photons.
 
-First, extract a spectrum from the "blank-sky" background.
+First, extract a spectrum from the "blank-sky" background and save this
+spectrum in an tables that |marx| can read. This can be done
+with the following commands (a detailed explanation for this is at 
+http://cxc.harvard.edu/ciao/threads/extended/ ):
 
+.. literalinclude:: extract_blanksky.inc
+   :language: bash
 
-# Clean up and rename some intermediate products simplesteps -> ???
-dmextract
-infile="acis7sbkg_reproject.fits[sky=rotbox(1:59:59,+39:59:20,3.2',3.5',0)][bin
-pi]" outfile='simplesteps.pi' wmap="[bin tdet=8]"
+We use `Sherpa`_ to display the spectrum on the screen (see
+:ref:`fig-ex-blankskyspectrum`) and save it in a table
+with columns energy and count rate density (see :par:`SpectrumFile` for details
+of the input spectrum format for |marx|):
 
-asphist infile=diffuse_asol1.fits outfile=simple_steps.asphist
-evtfile="diffuse_evt2.fits[ccd_id=7]"
+.. sourceinclude:: blank_sky.py
+   :indent: "sherpa> "
+   :language: python 
 
-sky2tdet
-infile="acis7sbkg_reproject.fits[sky=rotbox(1:59:59,+39:59:20,3.2',3.5',0)][bin
-sky=8]" asphistfile="simple_steps.asphist" outfile="simple_steps_tdet.fits[wmap]"
+.. _fig-ex-blankskyspectrum:
 
+.. figure:: extracted-bkgspec.*
+   :alt: Mostly flat spectrum, rising at large energies. There are a few
+   emission features on top of the spectrum.
 
-mkwarf infile="simple_steps_tdet.fits[wmap]" outfile=simple_steps.arf
-weightfile=simple_steps.wfef egridspec=0.3:11.0:0.1  mskfile=NONE
-spectrumfile=NONE pbkfile=NONE
+   Extracted "blank-sky" spectrum.
 
-
-mkrmf infile=CALDB outfile=simple_steps_mkrmf.rmf axis1="energy=0:1" axis2="pi=1:1024:1"
-weights=simple_steps.wfef
-
-sherpa-1> load_data('simplesteps.pi')
-sherpa-2> load_rmf('simple_steps_mkrmf.rmf')
-sherpa-3> load_arf('simple_steps.arf')
-sherpa-4> plot_data()
-print_window('extracted_bkgspec.png')
-print_window('extracted_bkgspec.ps')
-pl = get_data_plot()
-save_arrays('bkgspec.tbl', [pl.x, pl.y], ['Energy', pl.ylabel], ascii=True)
-
-Follow this thread: http://cxc.harvard.edu/ciao/threads/extended/
-I'm at "Create WMAP"
 
 Again, we want source flux of about 3 counts/s over the entire detector, so we
 set :par:`SourceFlux=3` and :par:`SpectrumFile` to the spectrum of
@@ -262,7 +250,7 @@ lower background level in the input "blank sky" file.
 .. literalinclude:: dmcopy.inc
    :language: bash
 
-.. _fig-ex-ch: fig-bkgonchip
+.. _fig-ex-bkgonchip:
 
 .. figure:: chip-shape.*
    :align: center

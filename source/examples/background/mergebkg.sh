@@ -15,9 +15,9 @@ dmsort temp3.fits temp4.fits keys=TIME
 
 # Reproject the blank sky fields to the same position on the sky as the marx simulation.
 punlearn reproject_events 
-reproject_events infile=temp4.fits outfile=acis7s_bgk_reproj.fits aspect=diffuse_asol1.fits match=diffuse_evt2.fits
+reproject_events infile=temp4.fits outfile=acis7s_bkg_reproj.fits aspect=diffuse_asol1.fits match=diffuse_evt2.fits
 
 # Merge marx simulation and blank sky fields into a single fits table.
 punlearn dmmerge
-dmmerge "diffuse_evt2.fits[cols ccd_id,node_id,chip,det,sky,pha,energy,pi,fltgrade,grade,status,time]","acis7s_bgk_reproj.fits[cols ccd_id,node_id,chip,det,sky,pha,energy,pi,fltgrade,grade,status,time]" merged.fits
+dmmerge "diffuse_evt2.fits[cols ccd_id,node_id,chip,det,sky,pha,energy,pi,fltgrade,grade,status,time]","acis7s_bkg_reproj.fits[cols ccd_id,node_id,chip,det,sky,pha,energy,pi,fltgrade,grade,status,time]" merged.fits
 
