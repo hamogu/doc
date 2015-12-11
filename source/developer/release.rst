@@ -21,7 +21,7 @@ Source repro
 
       grep -rli 'Copyright (C) 2002-2013 Massachusetts Institute of Technology' * | xargs -i@ sed -i 's/Copyright (C) 2002-2013 Massachusetts Institute of Technology/Copyright (C) 2002-2015 Massachusetts Institute of Technology/g' @
 
-  Note separate copyright in ``jdmath/COPYRIGHT``.
+   Note separate copyright in ``jdmath/COPYRIGHT``.
 
 #) Update version string in e.g. the start-up message or |marx| or in the
    comments in ``marx.par``. The best way to do this is properly to grep for
@@ -42,7 +42,8 @@ Source repro
 Documentation repro
 -------------------
 
-#) update ``copyright``, ``version``, and ``release`` in ``conf.py`` (note that the same variables need to be set again further down in the file for LaTeX output).
+#) update ``copyright``, ``version``, and ``release`` in ``conf.py``. (Note
+   that the copyright year turn up further down for LaTeX and epub again.)
 #) Update any notes on the front page ``index.rst`` etc.
 #) ``make clean``
 #) Install marx and set path in ``source/examples/config.inc`` to it, so that
