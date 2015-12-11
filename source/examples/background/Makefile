@@ -16,6 +16,10 @@ diffuse_evt2.fits: ${CONFIG} source_flux.tbl run_marx.sh runmarx.inc runmarx2fit
 	./run_marx.sh
 acis7sbkg.fits: copycaldbbkg.sh
 	../runciaotool.sh ./copycaldbbkg.sh
+	# By default, blank sky fields are not writable, which causes problems
+	# in the clean target
+	chmod ug+w acis7sbkg.fits
+
 merged.fits: acis7sbkg.fits diffuse_evt2.fits
 	../runciaotool.sh ./mergebkg.sh
 bkg.eps bkg.png: diffuse_evt2.fits merged.fits ../runciaotool.sh
@@ -32,8 +36,11 @@ bkgspec.tbl : blank_sky.py blank_sky.rmf ../runciaotool.sh
 chip-shape.fits: dmcopy.sh merged.fits
 	../runciaotool.sh ./dmcopy.sh
 
-chip-shape.jpg chip-shape.eps: chip-shape.fits	../runciaotool.sh
-	../runciaotool.sh ds9 -geometry 500x600 -cmap heat chip-shape.fits -zoom 8 -crop 4300 3750 1600 5000 -saveimage $@ -exit
+# the "-sleep 1" is necessary to allow the image to refresh, which will not happen
+# otherwise.
+# I reported this bug and it will be fixed in the next release of ds9.
+chip-shape.png chip-shape.eps: chip-shape.fits	../runciaotool.sh
+	../runciaotool.sh ds9 -geometry 500x600 -cmap heat chip-shape.fits -zoom 8 -crop 4300 3750 1600 5000 -sleep 1 -saveimage $@ -exit
 
 bkg/xpos.dat: marx4bkg.sh chip-shape.fits ../runmarxtool.sh bkgspec.tbl
 	../runmarxtool.sh ./marx4bkg.sh
