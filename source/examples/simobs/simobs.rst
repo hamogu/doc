@@ -77,22 +77,36 @@ First, create a region file containing the source events with
 
 The energy binning of the ARF and extracted spectrum are the same. Thus, we can
 now calculate the corrected spectrum by dividing that flux by the effective
-area. There is an extra factor of 0.9, because the ARF assumes that 100% of the
+area and the exposure time. 
+There is an extra factor of 0.9, because the ARF assumes that 100% of the
 PSF are included in the data extraction, while the ellipse above only contains
-90% of the counts. We write from intermediary files to copy columns back and
+90% of the counts. Also, we divide by the exposure time (about 1760 s).
+ We write from intermediary files to copy columns back and
 forth and write the spectrum out as an ASCII table in the end.
 
 .. literalinclude:: spectrum2ascii.sh
    :language: bash
 
-The :download:`resulting ASCII table <input_spec.tbl>` containing the spectrum
-will be input into both |marx| and `SAOTrace`_.
+The resulting ASCII tables :download:`for marx <input_spec_marx.tbl>` and
+:download:`for SAOTrace/Chart <input_spec_saotrace.tbl>` with the spectrum
+will be input into both |marx| and `SAOTrace`_. The spectrum is the same, but
+the format of the tables is two columns (energy, flux density) for |marx| and
+three columns (lower energy, upper energy, flux density) for `SAOTrace`_ / `ChaRT`_)
 
 Running |marx| (without SAOTrace)
 ---------------------------------
+Running |marx| for this example does not differ much from any of the previous
+example. We use the :par:`SpectrumFile` parameter to input the source spectrum
+we estimated above and set the remaining parameters to match the setting of the
+observation for the pointing direction, exposure time, etc. To get the numbers
+we display the header (e.g. in `ds9`_) and manually look for the required fits
+header keywords (e.g. ``EXPOSURE`` for :par:`ExposureTime`, ``RA_NOM`` for
+:par:`RA_Nom``, etc.).
+
+.. literalinclude:: marxonly.sh
+   :language: bash
 
 
-
-Running SAOTRace and |marx|
----------------------------
+Running SAOTrace / Chart and |marx|
+-----------------------------------
 

@@ -18,16 +18,20 @@ obs1068_chandra.png obs1068_chandra.eps: 1068/repro/acisf01068_repro_evt2.fits
 obs1068.arf: 1068/repro/acisf01068_repro_evt2.fits runmkarf.sh ../runciaotool.sh
 	../runciaotool.sh ./runmkarf.sh
 
-obs1068.pi: 1068/repro/acisf01068_repro_evt2.fits extract.sh ../runciaotool.sh
+obs1068.spec: 1068/repro/acisf01068_repro_evt2.fits extract.sh ../runciaotool.sh
 	../runciaotool.sh ./extract.sh
 
-input_spec.tbl: obs1068.arf obs1068.pi spectrum2ascii.sh ../runciaotool.sh
+input_spec_marx.tbl: obs1068.arf obs1068.spec spectrum2ascii.sh ../runciaotool.sh
 	../runciaotool.sh ./spectrum2ascii.sh
+
+marx_only.fits: marxonly.sh 1068/repro/acisf01068_repro_evt2.fits ../runmarxtool.sh input_spec_marx.tbl marx.par
+	../runmarxtool.sh ./$<
 
 clean:
 	/bin/rm -f *~ */*~
 distclean: clean
-	/bin/rm -rf *.tbl *.fits *.par 1068 *.png *.eps *.jpg
+	/bin/rm -rf *.tbl *.fits *.par 1068 *.png *.eps *.jpg \
+	marx_only
 
 .PHONY: all clean distclean
 
