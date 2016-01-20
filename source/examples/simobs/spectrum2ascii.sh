@@ -5,3 +5,11 @@ dmtcalc input_spec_1.fits input_spec_2.fits  expr="flux=counts/((float)specresp 
 dmtcalc input_spec_2.fits input_spec_3.fits  expr="fluxdens=flux/0.1" clobber=yes
 dmcopy "input_spec_3.fits[cols energ_hi,fluxdens]" "input_spec_marx.tbl[opt kernel=text/simple]" clobber=yes
 dmcopy "input_spec_3.fits[cols energ_lo,energ_hi,flux]" "input_spec_saotrace.tbl[opt kernel=text/simple]" clobber=yes
+
+# We now use a combination of some of the most obscure UNIX tools to
+# bring the SAOTRACE input spectrum into the right format
+# see http://cxc.harvard.edu/cal/Hrma/RDB/FileFormat.html
+# Remove the leading "#" from the line with the column names
+awk '{ sub(/\# ENERG_LO/,"ENERG_LO"); print }' < input_spec_saotrace.tbl > input_spec_saotrace.temp
+# Then, replace spaces with tabs
+tr ' ' \\t < input_spec_saotrace.temp > input_spec_saotrace.rdb

@@ -27,6 +27,15 @@ input_spec_marx.tbl: obs1068.arf obs1068.spec spectrum2ascii.sh ../runciaotool.s
 marx_only.fits: marxonly.sh 1068/repro/acisf01068_repro_evt2.fits ../runmarxtool.sh input_spec_marx.tbl marx.par
 	../runmarxtool.sh ./$<
 
+saotrace.fits: saotrace.sh input_spec_marx.tbl ../runsaotracetool.sh
+	../runsaotracetool.sh ./$<
+
+marx_saotrace.fits: marxsaotrace.sh saotrace.fits ../runmarxtool.sh marx.par
+	../runmarxtool.sh ./$<
+
+marx_saotrace-filtered.fits: gtimarxsaotrace.sh marx_saotrace.fits ../runciaotool.sh
+	../runciaotool.sh ./$<
+
 clean:
 	/bin/rm -f *~ */*~
 distclean: clean
