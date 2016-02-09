@@ -795,18 +795,18 @@ HRC
 
 The physical characteristics and readout electronics of the HRC MCPs add
 a “blur” to the observed system point spread function in addition to the
-intrinsic FWHM of the HRMA. In |marx|, this blur is modeled as the sum 
+intrinsic FWHM of the HRMA. In |marx|, this blur is modeled as the sum
 of two Gaussians and a Lorentzian.
 Since the 2d Lorentzian diverges, it has to be cutoff at some
 radius, :math:`R_\mathrm{max}`.  Its normalized form is given by
- 
+
  .. math::
 
     L(r) = \frac{L_0}{1+r^2/g^2}
- 
+
 where :math:`1/L_0 = g^2 \pi \log(1 + R_\mathrm{max}^2/g^2)`.
 Then :math:`1 = \int_0^{R_\mathrm{max}} (2 \pi r) L(r) \;dr`.
- 
+
 The 2-d gaussian has the normalized form
 
 .. math::
