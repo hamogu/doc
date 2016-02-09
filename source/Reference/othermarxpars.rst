@@ -640,6 +640,7 @@ ACIS-I Model Parameters
 
 .. parameter:: ACIS-I3-FilterFile
 
+.. _HRCIparameters:
 
 HRC-I Model Parameters
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -678,6 +679,7 @@ The (Xctr,Yctr) are offset at runtime such that (G1Xctr,G1Yctr)=(0,0).
 
 .. parameter:: HRC-I-UVISFile
 
+.. _HRCSparameters:
 
 HRC-S Model Parameters
 ~~~~~~~~~~~~~~~~~~~~~~

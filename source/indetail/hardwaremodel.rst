@@ -786,14 +786,36 @@ function.
 Detector Spatial Resolution
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+ACIS
+~~~~
+No extra blur is applied to ACIS simulations.
+
+HRC
+~~~
+
 The physical characteristics and readout electronics of the HRC MCPs add
 a “blur” to the observed system point spread function in addition to the
-intrinsic FWHM of the HRMA. In |marx|, this blur is modeled as a
-Gaussian in the focal plane with a :math:`\sigma \sim 18 ~\mu`m. The
-width of this Gaussian detector blur is controlled by the parameters
-:par:`HRC-I-BlurSigma` and :par:`HRC-S-BlurSigma` parameters. No detector blur is
-currently applied to ACIS simulations.
+intrinsic FWHM of the HRMA. In |marx|, this blur is modeled as the sum 
+of two Gaussians and a Lorentzian.
+Since the 2d Lorentzian diverges, it has to be cutoff at some
+radius, :math:`R_\mathrm{max}`.  Its normalized form is given by
+ 
+ .. math::
 
+    L(r) = \frac{L_0}{1+r^2/g^2}
+ 
+where :math:`1/L_0 = g^2 \pi \log(1 + R_\mathrm{max}^2/g^2)`.
+Then :math:`1 = \int_0^{R_\mathrm{max}} (2 \pi r) L(r) \;dr`.
+ 
+The 2-d gaussian has the normalized form
+
+.. math::
+
+   G(r) = \exp(-\frac{r^2}{2\sigma^2}) / (2 \pi \sigma^2)\\
+   1 = \int (2 \pi r) G(r) \;dr
+ 
+The parameters that specify the coefficients of all functions are listed 
+in :ref:`HRCIparameters` and :ref:`HRCSparameters`.
 
 .. index::
    single: HESF
