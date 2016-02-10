@@ -3,7 +3,7 @@
 .. |marx-email| replace:: marx-help@space.mit.edu
 .. |emailme| replace:: Technical questions should be addressed to |marx-email|
 
-.. _distribution: ftp://space.mit.edu/pub/cxc/marx/v5.2/marx-dist-5.2.0.tar.gz
+.. _distribution: ftp://space.mit.edu/pub/cxc/marx/v5.2/marx-dist-5.2.1.tar.gz
 
 .. _cfitsio: http://heasarc.gsfc.nasa.gov/docs/software/fitsio/c/c_user/cfitsio.html 
 
@@ -22,13 +22,6 @@
 .. _ChaRT: http://cxc.harvard.edu/chart/description.html
 
 .. _Chandra: http://cxc.harvard.edu/
-
-.. oldstuff:
-   #d chandra_home_image \imagedir/science.png
-   #d cxc_image \img{\chandra_home_image}{Chandra Science}{border=0 height=50 width=70 hspace=8}
-   #d mit_home_image  \mit_home/interface/mit.gif
-   #d mit_image \img{\mit_home_image}{MIT}{border=0 width=42 height=24 hspace=20}
-
 
 .. _CIAO: http://cxc.harvard.edu/ciao/
 

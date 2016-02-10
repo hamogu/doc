@@ -1,10 +1,15 @@
 Welcome to MARX's documentation!
 ================================
 
-.. note:: 
-   MARX 5.2 was released in December 2015. This release includes significant
-   updates to the Chandra calibration files. See :ref:`installing` for
-   installation instructions.
+.. warning:: 
+   MARX 5.0, 5.1, and 5.2 contain a bug that affects the PSF for 
+   simulations of off-axis sources. If you use MARX to simulate any source more
+   than 3 arcmin from the aimpoint, please upgrade to the bugfix release
+   5.2.1. See :ref:`installing` for installation instructions.
+   (On-axis sources and simulations that trace the mirror with `SAOTrace`_ are
+   unaffected.)
+   See https://github.com/Chandra-MARX/marx/issues/21 for a detailed
+   description of the issue.
 
 |marx| is a suite of programs created and maintained by the
 `MIT/CXC/HETG group <http://space.mit.edu/cxc/>`_ group and is designed

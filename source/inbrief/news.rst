@@ -4,6 +4,14 @@
 Highlights for each version of |marx|
 *************************************
 
+Marx 5.2.1
+==========
+MARX 5.0, 5.1, and 5.2 contain a bug that affects the PSF for 
+simulations of off-axis sources; this is fixed in 5.2.1.
+See https://github.com/Chandra-MARX/marx/issues/21 for a detailed
+description of the issue.
+
+
 Marx 5.2
 ========
 
