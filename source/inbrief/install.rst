@@ -11,6 +11,20 @@ before can do.  It is written in ANSI-C (with a few POSIX extensions)
 and is intended to be portable across most 32 and 64 bit Unix
 operating systems, as well as MacOSX and CYGWIN.
 
+
+The short-cut
+-------------
+
+- A script that automates the steps below is included in `CIAO`_ as
+  :ciao:`install_marx`.
+- If you use `macports <https://www.macports.org/>`_,
+  try ``port install marx``.
+  (If you know of any other package manager that includes |marx|
+  please let us know so that we can list it here, too.)
+
+
+The normal way
+--------------
 First download |marx| from ftp://space.mit.edu/pub/cxc/marx/ where the latest
 `distribution`_ can be found and copy it to a directory that has at least a
 couple of hundred megabytes of free disk space.  Note that this
