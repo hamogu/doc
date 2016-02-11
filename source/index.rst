@@ -1,6 +1,29 @@
 Welcome to MARX's documentation!
 ================================
 
+.. warning::
+   We discovered a severe bug in MARX that affects all simulations of 
+   off-axis sources using the MARX mirror module.
+   In those simulations a part of the PSF is just cut-off.
+
+   The bug was introduced in 2011 and is present in MARX 5.0, 5.1, and 5.2.
+   There is no cut-off distance where
+   simulations are "safe", but the area of the PSF that's missing is negligible
+   close to the aimpoint and grows with off-axis distance.
+   See https://github.com/Chandra-MARX/marx/pull/21 for an example for an affected
+   PSF for a 25 arcmin off-axis source.
+
+   For sources that are simulated more than 5 arcmin from the aimpoint and with more than a few
+   thousand counts we advice the following work-around:
+   Trace the mirror with `SAOTrace`_ or `ChaRT`_ and simulate only the
+   detector response with |marx|. Detailed instructions on running `ChaRT`_ and |marx|
+   in this way can be found at
+   http://cxc.harvard.edu/ciao/threads/psf.html .
+   
+   We will release a new |marx| version that fixes this bug after the Chandra
+   proposal deadline.
+
+
 .. note:: 
    MARX 5.2 was released in December 2015. This release includes significant
    updates to the Chandra calibration files. See :ref:`installing` for
