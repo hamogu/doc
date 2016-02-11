@@ -18,7 +18,7 @@
 .. _XSpec: http://heasarc.nasa.gov/xanadu/xspec/
 .. _Sherpa: http://cxc.harvard.edu/sherpa/
 
-.. _SAOTrace: http://cxc.harvard.edu/chart/index.html
+.. _SAOTrace: http://cxc.harvard.edu/cal/Hrma/SAOTrace.html
 .. _ChaRT: http://cxc.harvard.edu/chart/description.html
 
 .. _Chandra: http://cxc.harvard.edu/
