@@ -17,7 +17,8 @@ The short-cut
 
 - A script that automates the steps below is included in `CIAO`_ as
   :ciao:`install_marx`.
-- If you use macports, try ``port install marx``.
+- If you use `macports <https://www.macports.org/>`_,
+  try ``port install marx``.
   (If you know of any other package manager that includes |marx|
   please let us know so that we can list it here, too.)
 
