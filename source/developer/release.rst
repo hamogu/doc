@@ -1,16 +1,12 @@
-=======================
-Developer documentation
-=======================
-
-This section collects notes and documentation for the |marx| developer(s). 
-
-.. note::
-   The |marx| documentation is build and deployed locally on MIT servers,
-   thus these instructions will not be relevant for people outside the MIT/CXC
-   group.
 
 Making a release
 ================
+
+.. note::
+   The |marx| source packages and documentation are build and deployed locally on MIT servers,
+   thus these instructions will not be relevant for people outside the MIT/CXC
+   group.
+
 
 Source repro
 ------------
@@ -61,4 +57,4 @@ Get the word out
 #) Announce release to cxc at mit.edu
 #) Announce release on marx-users at space.mit.edu
 #) Ask T. Gorcas to include release in next Chandra electronic announcement
-#) Ask CIAO time to advertise release through the CIAO Twitter, facebook, Google+ feeds.
+#) Ask CIAO team to advertise release through the CIAO Twitter, facebook, Google+ feeds.
