@@ -38,10 +38,11 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`search`
 
-Developer documentation
-=======================
+Contributing to MARX
+====================
 
 .. toctree::
    :maxdepth: 2
 
+   developer/contributing
    developer/release

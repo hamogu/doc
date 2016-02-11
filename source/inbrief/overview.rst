@@ -16,3 +16,4 @@ short, but links are provided to more detailed explanations.
    install
    caveats
    simsetup
+   gettinghelp
