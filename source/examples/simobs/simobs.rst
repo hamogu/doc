@@ -1,13 +1,13 @@
 .. _sect-ex-simobs:
 
-Replicating a Chandra Observation
-=================================
+Replicating a Chandra Observation / Using ChaRT or SAOTrace
+===========================================================
 
 The example presented here was originally designed to see how well the
 |marx| PSF compares to that of an actual Chandra observation of a far
 off-axis source.  We will also be comparing the |marx| intrinsic PSF to
 that of `SAOTrace`_ (`SAOTrace`_ is a high-fidelity ray-tracer for the Chandra
-mirrors that simulates many details that are treated statistically in |marx| tp
+mirrors that simulates many details that are treated statistically in |marx| to
 improve efficiency).
 Hence, this example will serve several purposes:
 
@@ -28,9 +28,9 @@ The figure shows the source as seen in `ds9`_:
 .. figure:: obs1068_chandra.*
    :alt: 
    :align: center
-   :scale: 80%
+   :scale: 60%
 
-   ds9 image of the PSF
+   `ds9`_ image of the PSF
 
 The crosshairs in :ref:`fig-ex-simobs-obspsf` mark the position where the
 support strut shadows meet
@@ -63,7 +63,7 @@ spectral fitting.  Strictly speaking, the validity of this technique
 assumes that spectrum does not vary much over the scale of the RMF.
 
 The first step is to create the ARF to be used for the flux-correction.
-The creation of the ARF is straightforward via the Bourne shell script:
+The creation of the ARF is straightforward via this Bourne shell script:
 
 .. literalinclude:: runmkarf.sh
    :language: bash
@@ -95,7 +95,7 @@ The resulting ASCII tables :download:`for marx <input_spec_marx.tbl>` and
 :download:`for SAOTrace/Chart <input_spec_saotrace.rdb>` with the spectrum
 will be input into both |marx| and `SAOTrace`_. The spectrum is the same, but
 the format of the tables is two columns (energy, flux *density*) for |marx| and
-three columns (lower energy, upper energy, flux) for `SAOTrace`_ / `ChaRT`_)
+three columns (lower energy, upper energy, flux) for `SAOTrace`_ / `ChaRT`_.
 
 Running |marx| (without SAOTrace)
 ---------------------------------
@@ -161,3 +161,28 @@ the telescope is still slewing.
 
 Comparing the results
 ---------------------
+
+We can now use `ds9`_ to compare the observation with the two simulated event
+lists:
+
+.. _fig-ex-simobs-simpsf:
+
+.. figure:: compare_sims.*
+   :alt: Three very similar PSFs.
+   :align: center
+   :scale: 100%
+
+   `ds9`_ image of the PSF in the observation (top left), the simulation using
+   only |marx| (top right), and the simulation using `SAOTrace`_ to trace the
+   mirror and |marx| as the instrument model (bottom left).
+
+The structure of the PSFs is very similar, emphasizing how good both mirror
+models are. On closer inspection, there is a small shadow just above and to the
+right of the point where the support strut shadows meet. This feature is a
+little smaller in |marx| than in `SAOTrace`_ or the real data due to the
+simplification that the |marx| mirror model makes. However, very few point
+sources are observed long enough this far off-axis that these tiny differences
+actually matter.
+
+So, we can see from this comparison that |marx| is the tool of choice for
+almost all Chandra simulations.

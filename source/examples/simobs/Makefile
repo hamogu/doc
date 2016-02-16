@@ -1,7 +1,7 @@
 CONFIG=../config.inc
 include ${CONFIG}
 
-all: obs1068_chandra.png
+all: obs1068_chandra.png compare_sims.png
 
 %.par:
 	cp ${MARXPREFIX}/share/marx/pfiles/$@ .
@@ -35,6 +35,9 @@ marx_saotrace.fits: marxsaotrace.sh saotrace.fits ../runmarxtool.sh marx.par
 
 marx_saotrace-filtered.fits: gtimarxsaotrace.sh marx_saotrace.fits ../runciaotool.sh
 	../runciaotool.sh ./$<
+
+compare_sims.png compare_sims.eps: 1068/repro/acisf01068_repro_evt2.fits marx_only.fits marx_saotrace-filtered.fits
+	../runciaotool.sh ds9 -width 800 -height 500 -log -cmap heat $^ -pan to 5256 6890 physical -bin about 5256 6890 -match frame wcs -match bin -frame 1 -regions command 'text 5:39:27.987 -69:43:52.31 # text=Observation font="helvetica 24"' -frame 2 -regions command 'text 5:39:27.987 -69:43:52.31 # text="only MARX" font="helvetica 24"' -frame 3 -regions command 'text 5:39:27.987 -69:43:52.31 # text=SAOTrace font="helvetica 24"' -saveimage $@ -exit
 
 clean:
 	/bin/rm -f *~ */*~
