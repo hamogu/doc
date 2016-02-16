@@ -26,7 +26,7 @@ The figure shows the source as seen in `ds9`_:
 .. _fig-ex-simobs-obspsf:
 
 .. figure:: obs1068_chandra.*
-   :alt: 
+   :alt: The Chandra PSF at this position is an ellipse with spokes.
    :align: center
    :scale: 60%
 
