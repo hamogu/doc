@@ -118,7 +118,7 @@ method most users will employ most of the time.
    time of the observation to reproduce a specific dataset or to the current
    year for proposal planning.
 
-   All numbers below ``2100`` (when we expect the orbit to become unstable) are
+   All numbers below ``2100`` (when we expect Chandra's orbit to become unstable) are
    interpreted as years, all numbers above that are interpreted as
    "seconds since 1998.0" (the time system of the space craft clock).
 
