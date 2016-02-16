@@ -100,12 +100,13 @@ three columns (lower energy, upper energy, flux) for `SAOTrace`_ / `ChaRT`_)
 Running |marx| (without SAOTrace)
 ---------------------------------
 Running |marx| for this example does not differ much from any of the previous
-example. We use the :par:`SpectrumFile` parameter to input the source spectrum
+examples. We use the :par:`SpectrumFile` parameter to input the source spectrum
 we estimated above and set the remaining parameters to match the setting of the
 observation for the pointing direction, exposure time, etc. To get the numbers
 we display the header (e.g. in `ds9`_) and manually look for the required fits
 header keywords (e.g. ``EXPOSURE`` for :par:`ExposureTime`, ``RA_NOM`` for
-:par:`RA_Nom`, etc.).
+:par:`RA_Nom`, etc.). Note the :par:`TStart` is given in seconds on the space
+craft clock as in the ``TSTART`` and ``TSTOP`` header keywords.
 
 .. literalinclude:: marxonly.sh
    :language: bash
@@ -127,9 +128,9 @@ sources).
 
 Below, we use the installed version of `SAOTrace`_, but to follow this example,
 you can equally well upload :download:`input_spec_saotrace.rdb` to `ChaRT`.
-`SAOTrace`_ itself is a very complex systems of many different parts. Here, we
+`SAOTrace`_ itself is a very complex system of many different parts. Here, we
 will explain the parameters used in this example, but we need to refer to the
-the `SAOTrace`_ documentation for details.
+`SAOTrace`_ documentation for details.
 
 We define the source in a file called ``saotrace_source.lua``:
 
@@ -151,7 +152,7 @@ exposure time, pointing direction etc. are the same as above:
 
 As a last step, we will apply a GTI filter to the output, because the asol
 file, which contains the "aspect solution" (describing where exactly Chandra
-points at any one time) can have a short period of time in the beginning, when
+points at any one time), can have a short period of time in the beginning, when
 the telescope is still slewing.
 
 .. literalinclude:: gtimarxsaotrace.sh

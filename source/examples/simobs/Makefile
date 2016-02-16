@@ -40,7 +40,7 @@ clean:
 	/bin/rm -f *~ */*~
 distclean: clean
 	/bin/rm -rf *.tbl *.fits *.par 1068 *.png *.eps *.jpg \
-	marx_only
+	marx_onlyx_saotrace obs1068* input_spec* *.reg
 
 .PHONY: all clean distclean
 
