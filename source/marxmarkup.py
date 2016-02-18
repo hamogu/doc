@@ -18,7 +18,6 @@ from sphinx.util.docfields import TypedField
 from sphinx.domains.std import GenericObject, StandardDomain
 
 
-
 def indent_lines(lines, indent):
     if not indent:
         return lines

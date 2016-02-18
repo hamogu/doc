@@ -28,7 +28,7 @@ I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) source
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  figures    to make figures included in the docs from source"
-	@echo "examples --Not Implemeted yet--   to run all examples to check they work and to make plots"
+	@echo "  examples   to run all examples to check they work and to make plots"
 	@echo "  clean      to remove all build and compiled products"
 	@echo "  --------------------------------------------------------------"
 	@echo "  html       to make standalone HTML files"
