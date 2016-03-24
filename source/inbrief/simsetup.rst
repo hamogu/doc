@@ -89,14 +89,14 @@ method most users will employ most of the time.
 
 .. parameter:: ExposureTime
 
-   This parameter is used to specify the total integration time in seconds.
+   This parameter is used to specify the total integration time in seconds::
 
        unix% marx ExposureTime=10000 ...
 
    would generate a 10 ksec simulation. |marx| will accumulate photons
    until the indicated integration time is reached.
    **This mode takes precedence over ray generation mode.
-   If ``ExposureTime`` parameter is set to any positive,
+   If the ExposureTime parameter is set to any positive,
    non-zero value, the simulation will be run in timed exposure mode.**
    Users wishing to run simulations in ray generation mode, should set
    ``ExposureTime=0``.
