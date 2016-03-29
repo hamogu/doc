@@ -99,28 +99,6 @@ of the input model will show strong systematic residuals near 1.8 keV.
    parameter set to the name of the file.
 
 
-LETG+HRC Line Widths
-====================
-
-In standard Chandra pipeline processing, the motion of the observatory
-over the course of an observation is computed and stored in the aspect
-solution (ASOL) file.  The tool :marxtool:`marxasp` replicates this behavior and
-produces an aspect solution file for a given |marx| simulation. A
-number of factors contribute to the accuracy or inaccuracy of Chandra
-aspect reconstructions. In :marxtool:`marxasp`, these noise terms are represented
-empirically using the ``sigma`` parameters in ``marxasp.par``. The
-default values for these noise terms have been calibrated to be
-consistent with HETG+ACIS observations and will give erroneously
-narrow line widths when used with LETG+HRC simulations. Users wishing
-to simulate LETG+HRC instrument combinations should adjust these
-values before running :marxtool:`marxasp`.  For example, a calling sequence of the
-form::
-
-   unix% marxasp RA_Sigma=0.34 Dec_Sigma=0.34 Roll_Sigma=0.34 ......
-
-will produce an ASOL file consistent with current pipeline processing
-for LETG+HRC datasets.
-
 ISIS Pileup Fitting Kernel
 ==========================
 
