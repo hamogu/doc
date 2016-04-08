@@ -49,14 +49,14 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'MARX'
-copyright = u'2002-2015, Massachusetts Institute of Technology'
+copyright = u'2002-2016, Massachusetts Institute of Technology'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = '5.2'
+version = '5.3'
 # The full version, including alpha/beta/rc tags.
 release = version
 
@@ -428,7 +428,7 @@ texinfo_documents = [
 epub_title = u'MARX'
 epub_author = u'Hans Moritz Günther for the MARX team'
 epub_publisher = u'Chandra X–Ray Center / MIT Center for Space Research'
-epub_copyright = u'2015, MIT/CXC'
+epub_copyright = u'2016, MIT/CXC'
 
 # The basename for the epub file. It defaults to the project name.
 #epub_basename = u'MARX'
