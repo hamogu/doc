@@ -3,7 +3,7 @@
 .. |marx-email| replace:: marx-help@space.mit.edu
 .. |emailme| replace:: Technical questions should be addressed to |marx-email|
 
-.. _distribution: ftp://space.mit.edu/pub/cxc/marx/v5.2/marx-dist-5.2.1.tar.gz
+.. _distribution: ftp://space.mit.edu/pub/cxc/marx/v5.3/marx-dist-5.3.0.tar.gz
 
 .. _cfitsio: http://heasarc.gsfc.nasa.gov/docs/software/fitsio/c/c_user/cfitsio.html 
 
@@ -25,3 +25,5 @@
 
 .. _CIAO: http://cxc.harvard.edu/ciao/
 
+.. _SIMPUT standard: http://hea-www.harvard.edu/heasarc/formats/simput-1.1.0.pdf
+.. _SIMPUT code: http://www.sternwarte.uni-erlangen.de/research/sixte/simulation.php
