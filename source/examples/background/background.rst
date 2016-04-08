@@ -149,9 +149,9 @@ a single event file. This involves the following steps:
     - Estimate the number of background photons we want to simulate.
       Looking at `the appropriate table in the Observatory Guide 
       <http://cxc.harvard.edu/proposer/POG/html/chap6.html#tth_sEc6.16.2>`_
-      we see that roughly 3 cts/s (in the event grades we care for) is a good,
-      conservative estiamte. For an observation of 50 ks, we thus decide to
-      select roughly 150,000 photons.
+      we see that roughly 0.3 cts/s (in the event grades we care for) is a good,
+      conservative estiamte. For an observation of 100 ks, we thus decide to
+      select roughly 30,000 photons.
     - Events in the "blank sky" files are sorted in x and y. In order to
       select a random subset, we use :ciao:`dmtcalc` to assign a random number
       in column ``randnum`` and multiply it with the ratio of the number of
@@ -159,7 +159,7 @@ a single event file. This involves the following steps:
       want to select.
     - We copy only those photons where the ratio is smaller than 1. Since this
       involves a random number, this also introduces a "random error" to the
-      number of photons we select - it will not be exactly 150,000. 
+      number of photons we select - it will not be exactly 30,000. 
  
 #. Add a time column to the "blank sky" file and fill it with random values
    during the observation.
@@ -244,7 +244,7 @@ of the input spectrum format for |marx|):
    Extracted "blank-sky" spectrum.
 
 
-Again, we want a source flux of about 3 counts/s over the entire detector. 
+Again, we want a source flux of about 0.3 counts/s over the entire detector. 
 :par:`SourceFlux` expects the flux in counts/s/cm^2, so we would have to devide
 by *Chandra*'s effective area. Alternatively, we can just set the
 exact number of photons we want to detect with :par:`ExposureTime=0` and :par:`NumRays`
@@ -264,7 +264,7 @@ lower background level in the input "blank sky" file.
 
    Binned "blank sky" file for chip 7
 
-To reproduce this patters, we use |marx| with :par:`SourceType="IMAGE"`. 
+To reproduce this pattern, we use |marx| with :par:`SourceType="IMAGE"`. 
 There is a trade-off here: If we bin the image too much, we smooth out the
 structure, if we bin too little such that we still see the random noise in the
 image, then our |marx| simulation will produce an event distribution that shows
