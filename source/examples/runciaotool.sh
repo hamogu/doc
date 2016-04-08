@@ -1,6 +1,6 @@
 #!/bin/sh 
 # unset DISPLAY
-export CIAO_MAJOR_VER=-4.7
+# export CIAO_MAJOR_VER=-4.7
 
 # Use -o option to overrride here. Otherwise, this script fails with an error if a CIAO
 # environment is already set up and make stops.

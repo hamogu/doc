@@ -18,13 +18,13 @@ The following sources are currently available:
 - ``IMAGE``: Input from a FITS image file
 - ``SAOSAC``: Input from an SAOSAC FITS rayfile
 - ``RAYFILE``: Input from a |marx| rayfile
+- ``SIMPUT``: Input from a fits file following the `SIMPUT standard`_.
 - ``USER``: Dynamically linked user–supplied model
 
 In addition to the source models provided with |marx|, the following models
 developed by users might be of interest:
 
 - interface to the `yt <http://yt-project.org>`_ package: https://bitbucket.org/jzuhone/yt_marx_source
-- `SIMPUT <http://www.sternwarte.uni-erlangen.de/research/sixte/simput.php>`_: FITS-based standard for handling source descriptions for simulations (under development)
 
 
 First, it is important
@@ -88,7 +88,13 @@ Spectrum of the simulated X-ray source
 -------------------------------------------
 
 In the |marx| parameter file, ``marx.par``, the parameter
-:par:`SpectrumType` is used to specify the function :math:`f_E`. Currently,
+:par:`SpectrumType` is used to specify the function :math:`f_E` for the
+following source types: ``"POINT"``, ``"LINE"``, ``"GAUSS"``, ``"BETA"``, 
+``"DISK"``, and ``"IMAGE"`` (the other source have a source specific way to
+input the energy, e.g. for a ``"SAOSAC"`` source the energy of each ray is
+already included in the ray file).
+
+Currently,
 :math:`f_E` can only be a ``FLAT`` spectrum or a ``FILE`` spectrum.
 Similarly, when :math:`f(t)` is time-independent, as it for all
 |marx| sources in this class, then its value is specified by the
@@ -166,7 +172,7 @@ In |marx| the following parameter selects model for the spatial distribution of 
 .. parameter:: SourceType
 
    The following values are allowed: ``"POINT"``, ``"LINE"``, ``"GAUSS"``, ``"BETA"``, 
-   ``"DISK"``, ``"IMAGE"``, ``"SAOSAC"``, ``"RAYFILE"``, ``"USER"``. Depending on the source model chosen,
+   ``"DISK"``, ``"IMAGE"``, ``"SAOSAC"``, ``"RAYFILE"``, ``"SIMPUT"``, and ``"USER"``. Depending on the source model chosen,
    further parameters (such as the radius of the disk) may be required.
 
 Each availble model is now described in more detail.
@@ -332,6 +338,25 @@ different, e.g. if a different detector or dither is chosen.
 
 
 .. parameter:: RayFile
+
+
+.. index::
+   pair: Source Model; SIMPUT
+
+
+SIMPUT Source
+^^^^^^^^^^^^^
+|marx| supports the `SIMPUT standard`_, which is a fits based
+description of sources, that allows a large number of sources with different
+spectra, light curves, and shapes on the sky. This file format is supported by a
+number of other simulators (e.g. for ATHENA), so integrating it in |marx|
+allows users to use the same source specification for different X-ray missions.
+The support in |marx| is through the `SIMPUT code`_ which needs to be installed
+separately and is linked dynamically at runtime if :par:`SourceType="SIMPUT"`.
+
+.. parameter:: S-SIMPUT-Source
+
+.. parameter:: S-SIMPUT-Library
 
 
 .. index::

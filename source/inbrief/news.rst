@@ -4,6 +4,34 @@
 Highlights for each version of |marx|
 *************************************
 
+Marx 5.3
+==========
+
+Important bug-fix for off-axis sources: Please upgrade!
+-------------------------------------------------------
+MARX 5.0, 5.1, and 5.2 contain a bug that affects the PSF for 
+simulations of off-axis sources; this is fixed in 5.3.
+The root cause for this bug was that the entrance aperture of the Chandra
+mirrors was chosen to match the size of the mirror opening as seen an on-axis
+source exactly. For an off-axis source that means that the generated photons
+hit only part of the mirror, leading to gaps in the simulated PSF. Now, the
+entrance aperture has been increased to allow sources anywhere in the
+field-of-view to fill the detector. This necessarily increases the run time of
+all |marx| simulations, because more photons need to be generated.
+See https://github.com/Chandra-MARX/marx/issues/21 for a detailed
+description of the issue.
+
+
+New source type: SIMPUT
+-----------------------
+|marx| now supports the new `SIMPUT standard`_, which is a fits based
+description of sources, which allows a large number of source with different
+spectra, light curves, and shapes on the sky. This file format is supported by a
+number of other simulators (e.g. for ATHENA), so integrating it in |marx|
+allows users to use the same source specification for different X-ray missions.
+The support in |marx| is through the `SIMPUT code`_ which needs to be installed
+separately and is linked dynamically at runtime if :par:`SourceType="SIMPUT"`.
+
 Marx 5.2
 ========
 
