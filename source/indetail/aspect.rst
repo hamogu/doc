@@ -70,6 +70,9 @@ in ``marx.par`` controls which type of dither model is used:
 
 .. parameter:: AspectBlur
 
+   Uncertainty of the Aspect reconstruction (sigma - arcsec).
+   Number taken from http://cxc.harvard.edu/cal/ASPECT/img_recon/report.html
+   (version: 06/29/11).
 
 .. figure:: dither_combo.*
    :alt: Example of simulation with dither enabled

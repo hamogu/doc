@@ -129,7 +129,9 @@ exact limit.
    Image of PSF with different pixadj values
 
 
-If using `SAOTrace`_ rays with |marx|, see :ref:`caveats` regarding the use of the EDSER method with such rays.
+If using `SAOTrace`_ rays with |marx|, see :ref:`caveats` regarding the use of
+the EDSER method with such rays. **Note: Caveat removed in 2015. SAOTrace now
+supports dither.**
 
 New dither model
 ----------------
