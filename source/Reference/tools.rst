@@ -588,7 +588,7 @@ with no parameters on the call line.
    `detailed description of the format
    <http://cxc.harvard.edu/ciao/ahelp/parameter.html#Contents_of_a_Parameter_File>`_.
 
- Alternatively, these parameters can be given as arguments on the 
+   Alternatively, these parameters can be given as arguments on the 
    command line. All relevant parameters for a typical pileup simulation and their default
    values are shown below. In general, none of these parameters will need to be adjusted
    for simulating standard Chandra observations. Using the pileup tool is
