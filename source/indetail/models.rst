@@ -21,12 +21,6 @@ The following sources are currently available:
 - ``SIMPUT``: Input from a fits file following the `SIMPUT standard`_.
 - ``USER``: Dynamically linked user–supplied model
 
-In addition to the source models provided with |marx|, the following models
-developed by users might be of interest:
-
-- interface to the `yt <http://yt-project.org>`_ package: https://bitbucket.org/jzuhone/yt_marx_source
-
-
 First, it is important
 to have an understanding of what a source means in the context of
 |marx|. It is particularly important to understand how
