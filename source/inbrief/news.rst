@@ -4,6 +4,12 @@
 Highlights for each version of |marx|
 *************************************
 
+Marx 5.3.1
+==========
+This fixes two bugs for users of SIMPUT sources; all other
+runs are unaffected.
+
+
 Marx 5.3
 ==========
 

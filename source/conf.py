@@ -58,7 +58,7 @@ copyright = u'2002-2016, Massachusetts Institute of Technology'
 # The short X.Y version.
 version = '5.3'
 # The full version, including alpha/beta/rc tags.
-release = version
+release = '5.3.1'
 
 # This is needed for the marxmarkup module.
 # It reads the marx.par file to autogenerate a list of parameters and

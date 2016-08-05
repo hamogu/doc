@@ -60,7 +60,7 @@ Here, we will simply extract the
 counts in a region containing the observed PSF and divide it by the
 effective area.  This is known as "flux-correction", and involves no
 spectral fitting.  Strictly speaking, the validity of this technique
-assumes that spectrum does not vary much over the scale of the RMF.
+assumes that the spectrum does not vary much over the scale of the RMF.
 
 The first step is to create the ARF to be used for the flux-correction.
 The creation of the ARF is straightforward via this Bourne shell script:
