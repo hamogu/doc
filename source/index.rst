@@ -32,6 +32,7 @@ with MARX: x-ray observatory design, calibration, and support (Davis et al. 2012
    inbrief/overview
    examples/examples
    indetail/docs
+   tests/index
 
    Reference/reference
 
