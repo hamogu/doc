@@ -22,6 +22,7 @@ Source repro
 #) Update version string in e.g. the start-up message or |marx| or in the
    comments in ``marx.par``. The best way to do this is properly to grep for
    ``5.0.0`` (or whatever the previous version was called).
+#) commit changes to git
 #) ``git tag v5.1.0``
 #) ``git push --tags reproname`` Push tag to all repositories that should have a copy.
 #) ``git archive --format=tar --prefix=marx-5.1.0/ v5.1.0 | gzip >
@@ -51,6 +52,7 @@ Documentation repro
 #) ``make html``. Fix any errors that come up.
 #) ``scp -r build/html/* space:/space/web/ASC/marx-5.1`` (Create directory on
    space as required.)
+#) On ``/space/web/ASC``: ``rm marx; ln -s marx-5.1 marx``.
 
 Get the word out
 ----------------

@@ -1,3 +1,5 @@
+.. _sect-modelsforthespacecraft:
+
 The |marx| Models for the Spacecraft
 ====================================
 

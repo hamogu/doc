@@ -329,7 +329,7 @@ as specified in the ray file.
 Thus, the *source* properties are identical to those used to 
 generate the original ray file, but the *Chandra response* to them might be
 different, e.g. if a different detector or dither is chosen.
-
+Rayfiles are produced by setting :par:`DumpToRayFile=yes`.
 
 .. parameter:: RayFile
 

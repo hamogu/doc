@@ -20,6 +20,7 @@
 
 .. _SAOTrace: http://cxc.harvard.edu/cal/Hrma/SAOTrace.html
 .. _ChaRT: http://cxc.harvard.edu/chart/description.html
+.. _CalDB: http://cxc.harvard.edu/caldb/
 
 .. _Chandra: http://cxc.harvard.edu/
 

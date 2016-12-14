@@ -7,5 +7,5 @@
 # This is true, evne if the previous CIAO environmet is the same version.
 # Due to the >/dev/null the error message is invisible, so it's better to make sure that
 # something is set.
-. /nfs/cxc/a1/setup/ciao-setup.sh -o > /dev/null
+. /nfs/mkx/a1/setup/ciaox-setup.sh -o > /dev/null
 "$@"

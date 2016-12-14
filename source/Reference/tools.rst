@@ -576,8 +576,8 @@ with no parameters on the call line.
    same algorithm has been implemented into the `ISIS`_, `Sherpa`_, and `XSPEC`_
    spectral fitting packages. The ACIS pileup model is statistical and is
    not an a priori photon-silicon interaction model which generates charge
-   clouds and then PHAs per event "island" The model is valid on-axis for
-   point sources for low to moderate pileup. Users should interpret all
+   clouds and then PHAs per event "island". The model is valid for on-axis
+   point sources with low to moderate pileup. Users should interpret all
    results including the effects of pileup cautiously.
 
 
