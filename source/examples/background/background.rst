@@ -122,7 +122,7 @@ We also generate an aspect solution file that matches the simulation:
 Adding "blank-sky background" to a |marx| simulation
 ----------------------------------------------------
 The "blank sky background" files are part of 
-`CalDB <http://cxc.cfa.harvard.edu/caldb/>`_ but because of their size
+`CalDB`_ but because of their size
 they are not installed by default. If you don't have them yet, use the
 `ciao-install script <http://cxc.harvard.edu/ciao/download/>`_ or download them
 by hand from http://cxc.harvard.edu/ciao/download/caldb.html . |marx| does not

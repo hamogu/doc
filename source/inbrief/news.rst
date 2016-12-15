@@ -4,6 +4,12 @@
 Highlights for each version of |marx|
 *************************************
 
+Marx 5.3.2
+==========
+Update `CalDB`_ files that are shipped with |marx|. No changes to the source
+code.
+
+
 Marx 5.3.1
 ==========
 This fixes two bugs for users of SIMPUT sources; all other
