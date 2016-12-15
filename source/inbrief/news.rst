@@ -4,20 +4,20 @@
 Highlights for each version of |marx|
 *************************************
 
-Marx 5.3.2
-==========
+Marx 5.3.2 (Dec 2016)
+=====================
 Update `CalDB`_ files that are shipped with |marx|. No changes to the source
 code.
 
 
-Marx 5.3.1
-==========
+Marx 5.3.1 (Aug 2016)
+=====================
 This fixes two bugs for users of SIMPUT sources; all other
 runs are unaffected.
 
 
-Marx 5.3
-==========
+Marx 5.3 (Apr 2016)
+===================
 
 Important bug-fix for off-axis sources: Please upgrade!
 -------------------------------------------------------
@@ -44,8 +44,8 @@ allows users to use the same source specification for different X-ray missions.
 The support in |marx| is through the `SIMPUT code`_ which needs to be installed
 separately and is linked dynamically at runtime if :par:`SourceType="SIMPUT"`.
 
-Marx 5.2
-========
+Marx 5.2 (Dec 2015)
+===================
 
 There are only minor enhancements, calibration updates, and bug fixes 
 in this version.
@@ -64,8 +64,8 @@ Bug Fixes
 - Previously an ASOL file name > 63 characters would crash :marxtool:`marx2fits`.
   Now, it cuts the pathname to shorten the string.
 
-Marx 5.1
-========
+Marx 5.1 (Apr 2015)
+===================
 
 |marx| version 5.1 is a maintenance release. Since more than
 two years have gone by since release 5.0, there are major changes in the
