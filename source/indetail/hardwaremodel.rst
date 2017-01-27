@@ -400,7 +400,8 @@ where
 
    Figure showing the orthogonal coordinate system local to an individual grating
    facet. The vector :math:`\hat{n}` is normal to the facet and :math:`\hat{l}` is in the direction of the grating lines. The
-   vector :math:`\hat{d}` is in the dispersion direction. The incident ray is given by p and the diffracted ray is :math:`\hat{p}'`.
+   vector :math:`\hat{d}` is in the dispersion direction. The incident ray is
+   given by :math:`\hat{p}` and the diffracted ray is :math:`\hat{p}'`.
 
 Since :math:`\hat{n}`, :math:`\hat{l}`, and :math:`\hat{d}` form a
 right-handed orthonormal coordinate system, it trivially follows that
