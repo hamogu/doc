@@ -10,7 +10,7 @@ Welcome to MARX's documentation!
    MARX 5.0, 5.1, and 5.2 contain a bug that affects the PSF for 
    simulations of off-axis sources. If you use MARX to simulate any source more
    than 3 arcmin from the aimpoint, **please upgrade to current version 
-   5.3.2** immediately. See :ref:`installing` for installation instructions.
+   |release|** immediately. See :ref:`installing` for installation instructions.
    (On-axis sources and simulations that trace the mirror with `SAOTrace`_ are
    unaffected.)
    See https://github.com/Chandra-MARX/marx/issues/21 for a detailed

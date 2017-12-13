@@ -4,6 +4,11 @@
 Highlights for each version of |marx|
 *************************************
 
+Marx 5.3.3 (Dec 2017)
+=====================
+Small bug fix to the source code to allow compilation with clang
+(which is the default compiler on Macs).
+
 Marx 5.3.2 (Dec 2016)
 =====================
 Update `CalDB`_ files that are shipped with |marx|. No changes to the source
