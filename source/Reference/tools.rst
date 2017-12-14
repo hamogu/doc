@@ -1043,7 +1043,7 @@ Other scripts and helper programs
    :param z0: Z coordinate of 0th order [mm]
    :param dd: Output vector of photon distances from zero order parallel to dispersion axis [mm]
    :param dxd: Output vector of photon distances from dispersion line in perpendicular direction [mm]
-   :param list selected: Optional output vector of indices within input vectors of selected photons
+   :param list_selected: Optional output vector of indices within input vectors of selected photons
 
    Examples::
 
