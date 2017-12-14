@@ -10,7 +10,7 @@ fit()
 
 # Do not display a window
 # Delete this line for interactive use!
-set_preferences(['window.display', False])
+# set_preferences(['window.display', False])
 
 plot_fit_delchi()
 log_scale(X_AXIS)
