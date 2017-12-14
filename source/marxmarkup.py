@@ -146,7 +146,7 @@ class MARXtool(ObjectDescription):
             objects['marxtool', name] = (self.env.docname, name)
 
         indextext = self.indextext % name
-        self.indexnode['entries'].append(('pair', indextext, name, ''))
+        self.indexnode['entries'].append(('pair', indextext, name, '', None))
 
 
 class MARXpost(MARXtool):
