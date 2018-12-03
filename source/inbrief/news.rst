@@ -4,6 +4,21 @@
 Highlights for each version of |marx|
 *************************************
 
+Marx 5.4 (Dec 2018)
+===================
+
+HRC PSF
+-------
+The HRC detector PSF has some blur in it. See
+https://cxc.cfa.harvard.edu/twiki/bin/view/HrcCal/DetectorPSF for how the
+parameters used in previous versions of |marx| are determined. However, we
+recently found that the PSFs are wider than observed. Thus, in this version we
+change the values of the default `marx.par` file to use a single Gaussian
+instead. This change is most important for the profile of the wings in very
+bright HRC sources.  We continue to investigate this and expect another change
+in the next |marx| release.
+
+
 Marx 5.3.3 (Dec 2017)
 =====================
 Small bug fix to the source code to allow compilation with clang
