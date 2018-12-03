@@ -7,6 +7,10 @@ Making a release
    thus these instructions will not be relevant for people outside the MIT/CXC
    group.
 
+Preparation
+-----------
+Ensure that ``NEWS`` in the source directory and ``source/inbrief/news.rst`` in
+the documentation repository describe the new release.
 
 Source repro
 ------------
