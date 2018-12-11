@@ -33,7 +33,7 @@ mkgrmf grating_arm="LEG" order=-1 outfile="leg-1_rmf.fits" srcid=1 detsubsys="AC
 
 fullgarf phafile="$pha2file"  pharow=1 evtfile="$evt2file" \
   asol="$asolfile" engrid="grid(leg-1_rmf.fits[cols ENERG_LO,ENERG_HI])" \
-  maskfile=NONE dafile=NONE dtffile=NONE badpix=NONE maskfile=NONE rootname="leg"
+  maskfile=NONE dafile=NONE dtffile=NONE badpix=NONE maskfile=NONE rootname="leg" ardlibqual=";UNIFORM;bpmask=0"
 
 mkgrmf grating_arm="LEG" order=+1 outfile="leg+1_rmf.fits" srcid=1 detsubsys="ACIS-S3" \
    threshold=1e-06 obsfile="$pha2file" regionfile="$pha2file" \
@@ -41,6 +41,6 @@ mkgrmf grating_arm="LEG" order=+1 outfile="leg+1_rmf.fits" srcid=1 detsubsys="AC
 
 fullgarf phafile="$pha2file"  pharow=2 evtfile="$evt2file" \
    asol="$asolfile" engrid="grid(leg+1_rmf.fits[cols ENERG_LO,ENERG_HI])" \
-   maskfile=NONE dafile=NONE dtffile=NONE badpix=NONE maskfile=NONE rootname="leg"
+   maskfile=NONE dafile=NONE dtffile=NONE badpix=NONE maskfile=NONE rootname="leg" ardlibqual=";UNIFORM;bpmask=0"
 
 
