@@ -42,8 +42,8 @@ mkgrmf grating_arm="MEG" order=-1 outfile="eqpegmeg-1_rmf.fits" srcid=1 detsubsy
 
 fullgarf phafile="EQPegB_pha2.fits"  pharow=3 evtfile="EQPegB.fits" \
    asol="EQPeg_asol1.fits" engrid="grid(eqpeg_meg1_rmf.fits[cols ENERG_LO,ENERG_HI])" \
-   maskfile=NONE dafile=NONE dtffile=NONE badpix=NONE rootname="eqpeg"
+   maskfile=NONE dafile=NONE dtffile=NONE badpix=NONE rootname="eqpeg" ardlibqual=";UNIFORM;bpmask=0"
 
 fullgarf phafile="EQPegB_pha2.fits"  pharow=4 evtfile="EQPegB.fits" \
    asol="EQPeg_asol1.fits" engrid="grid(eqpeg_meg1_rmf.fits[cols ENERG_LO,ENERG_HI])" \
-   maskfile=NONE dafile=NONE dtffile=NONE badpix=NONE rootname="eqpeg"
+   maskfile=NONE dafile=NONE dtffile=NONE badpix=NONE rootname="eqpeg" ardlibqual=";UNIFORM;bpmask=0"
