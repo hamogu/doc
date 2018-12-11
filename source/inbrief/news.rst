@@ -6,6 +6,7 @@ Highlights for each version of |marx|
 
 Marx 5.4 (Dec 2018)
 ===================
+Update `CalDB`_ files that are shipped with |marx| to `CalDB`_ version 4.8.2.
 
 HRC PSF
 -------
