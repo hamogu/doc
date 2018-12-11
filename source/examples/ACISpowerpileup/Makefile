@@ -18,6 +18,7 @@ plaw_evt2.fits: ${CONFIG} plawflux.tbl run_marx.sh
 plaw.p: ${CONFIG}
 	$(ISISSCRIPT) ./isismodel.sl
 plawflux.tbl: ${CONFIG} plaw.p
+	export ISISSCRIPT
 	./run_marxflux.sh
 plaw_pha.fits: ${CONFIG} plaw_evt2.fits plaw_ciao.sh ../runciaotool.sh
 	../runciaotool.sh ./plaw_ciao.sh

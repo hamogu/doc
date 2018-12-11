@@ -2,6 +2,10 @@
 CONFIG=../config.inc
 include ${CONFIG}
 
+# marxflux below requires isis in path, so export that here for all
+# subcommands. It does not harm those where isis is not required.
+export PATH := $(ISISPATH):$(PATH)
+
 all: aped_evt2.fits apedflux.png apedmeg1.png #MEG_drywet_osort.png
 # apedfit.png
 

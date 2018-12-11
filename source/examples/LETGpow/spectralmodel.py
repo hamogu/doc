@@ -1,3 +1,5 @@
+import numpy as np
+
 # set source properties
 set_source(xsphabs.a * xspowerlaw.p)
 a.nH = 0.001
